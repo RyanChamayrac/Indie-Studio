@@ -11,7 +11,7 @@ PATH_SRCS	=	src/
 
 CFLAGS		+=	-W -Wall -Wextra -Werror -std=gnu++11
 
-LDFLAGS		+=	-I./include/ -I./include/Irrlicht
+LDFLAGS		+=	-I./include/ -I./include/Irrlicht -no-pie
 
 LDLIBS		+=	-Llib -L/usr/lib64 -L/usr/X11R6/lib
 
