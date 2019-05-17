@@ -13,6 +13,10 @@
 
 using namespace irr;
 using namespace video;
+using namespace gui;
+using namespace scene;
+using namespace io;
+using namespace core;
 
 class Core
 {
@@ -23,7 +27,9 @@ public:
 
 private:
 	IrrlichtDevice *_window;
-
+    IGUIEnvironment *env;
+    IVideoDriver *driver;
+    ISceneManager *smgr;
 	void initMenu();
 };
 
