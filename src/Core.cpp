@@ -7,14 +7,14 @@
 
 #include "Core.hpp"
 
-Core::Core(IrrlichtDevice *const device) : _device(device)
+Core::Core(IrrlichtDevice *const window) : _window(window)
 {
 	initMenu();
 }
 
 void Core::run()
 {
-	while (_device->run()) {
+	while (_window->run()) {
 
 	}
 }

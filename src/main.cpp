@@ -14,14 +14,12 @@ int main()
 	SIrrlichtCreationParameters params;
 	E_DRIVER_TYPE driverType = EDT_OPENGL;
 
-	params.DriverType = driverType;
+	IrrlichtDevice *window = createDevice(driverType, core::dimension2d<u32>(1920, 1080), 16, false, false, false);
 
-	IrrlichtDevice *device = createDevice(driverType, core::dimension2d<u32>(1024, 980), 16, false, false, false);
-
-	if (!device)
+	if (!window)
 		return 1;
-	device->setWindowCaption(L"Indie Studio");
-	Core app(device);
-	app.run();
+    window->setWindowCaption(L"Indie Studio");
+	Core launch(window);
+	launch.run();
 	return 0;
 }

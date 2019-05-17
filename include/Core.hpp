@@ -17,12 +17,12 @@ using namespace video;
 class Core
 {
 public:
-	Core(IrrlichtDevice *const device);
+	Core(IrrlichtDevice *const window);
 	~Core(){}
 	void run();
 
 private:
-	IrrlichtDevice *_device;
+	IrrlichtDevice *_window;
 
 	void initMenu();
 };
