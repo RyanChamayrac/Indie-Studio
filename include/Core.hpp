@@ -30,6 +30,10 @@ private:
     IGUIEnvironment *env;
     IVideoDriver *driver;
     ISceneManager *smgr;
+    ITexture *image;
+    ITexture *button1;
+    ITexture *button2;
+    ITexture *button3;
 	void initMenu();
 };
 
