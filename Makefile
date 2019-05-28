@@ -18,7 +18,8 @@ LDLIBS		+=	-Llib -L/usr/lib64 -L/usr/X11R6/lib
 LDLIBS		+=	-lIrrlicht -lGL -lXxf86vm -lXext -lX11 -lXcursor -lpthread
 
 SRC		=	main.cpp \
-			Core.cpp
+			Core.cpp    \
+			Event.cpp
 
 SRCS		=	$(addprefix $(PATH_SRCS), $(SRC))
 

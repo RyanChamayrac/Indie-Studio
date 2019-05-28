@@ -1083,6 +1083,9 @@
 		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Core.cpp">
 			<Option target="OOP_indie_studio_2018"/>
 		</Unit>
+		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Event.cpp">
+			<Option target="OOP_indie_studio_2018"/>
+		</Unit>
 		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/main.cpp">
 			<Option target="OOP_indie_studio_2018"/>
 		</Unit>

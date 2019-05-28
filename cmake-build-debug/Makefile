@@ -2580,6 +2580,33 @@ src/Core.cpp.s:
 	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Core.cpp.s
 .PHONY : src/Core.cpp.s
 
+src/Event.o: src/Event.cpp.o
+
+.PHONY : src/Event.o
+
+# target to build an object file
+src/Event.cpp.o:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o
+.PHONY : src/Event.cpp.o
+
+src/Event.i: src/Event.cpp.i
+
+.PHONY : src/Event.i
+
+# target to preprocess a source file
+src/Event.cpp.i:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.i
+.PHONY : src/Event.cpp.i
+
+src/Event.s: src/Event.cpp.s
+
+.PHONY : src/Event.s
+
+# target to generate assembly for a file
+src/Event.cpp.s:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.s
+.PHONY : src/Event.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -2889,6 +2916,9 @@ help:
 	@echo "... src/Core.o"
 	@echo "... src/Core.i"
 	@echo "... src/Core.s"
+	@echo "... src/Event.o"
+	@echo "... src/Event.i"
+	@echo "... src/Event.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -109,6 +109,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/tfoucou/OOP_indie_studio_2018/cross_platform/src/main.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/cross_platform/src/main.cpp.o"
   "/home/tfoucou/OOP_indie_studio_2018/src/Core.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Core.cpp.o"
+  "/home/tfoucou/OOP_indie_studio_2018/src/Event.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o"
   "/home/tfoucou/OOP_indie_studio_2018/src/main.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

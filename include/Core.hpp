@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "irrlicht.h"
+//#include "driverChoice.h"
 
 using namespace irr;
 using namespace video;
@@ -18,15 +19,19 @@ using namespace scene;
 using namespace io;
 using namespace core;
 
+struct SAppContext {
+    IrrlichtDevice *device;
+};
+
 class Core
 {
 public:
 	Core(IrrlichtDevice *const window);
 	~Core(){}
 	void run();
+    IrrlichtDevice *_window;
 
 private:
-	IrrlichtDevice *_window;
     IGUIEnvironment *env;
     IVideoDriver *driver;
     ISceneManager *smgr;
@@ -35,6 +40,19 @@ private:
     ITexture *button2;
     ITexture *button3;
 	void initMenu();
+};
+
+class MyEventReceiver : public IEventReceiver
+{
+public:
+    MyEventReceiver(SAppContext &context);
+    virtual bool OnEvent(const SEvent &event);
+private:
+    SAppContext &Context;
+};
+
+enum button{
+    GUI_ID_QUIT_BUTTON = 101,
 };
 
 #endif

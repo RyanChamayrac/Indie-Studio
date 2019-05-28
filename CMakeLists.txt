@@ -340,4 +340,5 @@ add_executable(OOP_indie_studio_2018
         lib/lua/lzio.c
         lib/lua/lzio.h
         src/Core.cpp
-        src/main.cpp)
+        src/main.cpp
+        src/Event.cpp)

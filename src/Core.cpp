@@ -19,11 +19,19 @@ Core::Core(IrrlichtDevice *const window) : _window(window)
 
 void Core::run()
 {
-	while (_window->run()) {
-	    this->driver->beginScene(true, true, SColor(255, 100, 101, 140));
-	    this->driver->draw2DImage(this->image, position2d<s32>(0, 0), rect<s32>(0, 0, 1920, 1080), 0, SColor(255, 255, 255, 255), true);
-	    this->driver->draw2DImage(this->button1, position2d<s32>(900, 400), rect<s32>(0, 0, 425, 77), 0, SColor(255, 255, 255, 255), true);
-	    this->smgr->drawAll();
+    SAppContext context;
+    context.device = this->_window;
+    MyEventReceiver receiver(context);
+    this->_window->setEventReceiver(&receiver);
+    IGUIButton *button_quit = this->env->addButton(rect<s32>(0, 0, 425, 77), 0, GUI_ID_QUIT_BUTTON, L"Quit", L"Exits Program");
+
+    while (_window->run()) {
+        button_quit->setImage(this->button1);
+        button_quit->setRelativePosition(position2d<s32>(900, 400));
+        this->driver->beginScene(true, true, SColor(255, 100, 101, 140));
+        this->driver->draw2DImage(this->image, position2d<s32>(0, 0), rect<s32>(0, 0, 1920, 1080), 0, SColor(255, 255, 255, 255), true);
+        //this->driver->draw2DImage(this->button1, position2d<s32>(900, 400), rect<s32>(0, 0, 425, 77), 0, SColor(255, 255, 255, 255), true);
+        this->smgr->drawAll();
         this->env->drawAll();
         this->driver->endScene();
 	}
