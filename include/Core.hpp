@@ -29,6 +29,7 @@ public:
 	Core(IrrlichtDevice *const window);
 	~Core(){}
 	void run();
+    void game();
     IrrlichtDevice *_window;
 
 private:
@@ -39,6 +40,8 @@ private:
     ITexture *button1;
     ITexture *button2;
     ITexture *button3;
+    ITexture *button4;
+    ITexture *button5;
 	void initMenu();
 };
 
@@ -53,6 +56,8 @@ private:
 
 enum button{
     GUI_ID_QUIT_BUTTON = 101,
+    GUI_ID_PLAY_BUTTON = 102,
+    GUI_ID_OPTIONS_BUTTON = 103,
 };
 
 #endif

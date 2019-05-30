@@ -22,6 +22,12 @@ bool MyEventReceiver::OnEvent(const SEvent &event)
                     case GUI_ID_QUIT_BUTTON:
                         this->Context.device->closeDevice();
                         return true;
+                    case GUI_ID_PLAY_BUTTON:
+                        std::cout << "print game" << std::endl;
+                        return true;
+                    case GUI_ID_OPTIONS_BUTTON:
+                        std::cout << "print options" << std::endl;
+                        return true;
                     default:
                         return false;
                 }
