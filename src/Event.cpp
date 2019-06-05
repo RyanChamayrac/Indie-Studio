@@ -7,7 +7,7 @@
 
 #include "Core.hpp"
 
-MyEventReceiver::MyEventReceiver(SAppContext &context): Context(context)
+MyEventReceiver::MyEventReceiver(SAppContext &context): _Context(context)
 {
 
 }
@@ -20,7 +20,7 @@ bool MyEventReceiver::OnEvent(const SEvent &event)
             case EGET_BUTTON_CLICKED:
                 switch (id) {
                     case GUI_ID_QUIT_BUTTON:
-                        this->Context.device->closeDevice();
+                        this->_Context.device->closeDevice();
                         return true;
                     case GUI_ID_PLAY_BUTTON:
                         std::cout << "print game" << std::endl;
@@ -31,7 +31,6 @@ bool MyEventReceiver::OnEvent(const SEvent &event)
                     default:
                         return false;
                 }
-                break;
             default:
                 break;
         }

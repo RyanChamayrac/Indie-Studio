@@ -9,6 +9,7 @@
 #define __CORE_HPP__
 
 #include <iostream>
+#include <map>
 #include "irrlicht.h"
 //#include "driverChoice.h"
 
@@ -26,22 +27,22 @@ struct SAppContext {
 class Core
 {
 public:
-	Core(IrrlichtDevice *const window);
-	~Core(){}
+	Core();
+	~Core() = default;
 	void run();
     void game();
-    IrrlichtDevice *_window;
+
+    //Loaders
+    void loadTextures();
+    void loadButtons();
 
 private:
-    IGUIEnvironment *env;
-    IVideoDriver *driver;
-    ISceneManager *smgr;
-    ITexture *image;
-    ITexture *button1;
-    ITexture *button2;
-    ITexture *button3;
-    ITexture *button4;
-    ITexture *button5;
+    IrrlichtDevice *_window;
+    IGUIEnvironment *_env;
+    IVideoDriver *_driver;
+    ISceneManager *_smgr;
+    std::map<std::string, ITexture *> _textures;
+    std::map<std::string, IGUIButton *> _buttons;
 	void initMenu();
 };
 
@@ -51,7 +52,7 @@ public:
     MyEventReceiver(SAppContext &context);
     virtual bool OnEvent(const SEvent &event);
 private:
-    SAppContext &Context;
+    SAppContext &_Context;
 };
 
 enum button{
