@@ -195,6 +195,9 @@ add_executable(OOP_indie_studio_2018
         include/Irrlicht/vector2d.h
         include/Irrlicht/vector3d.h
         include/Core.hpp
+        include/Menu.hpp
+        include/Graphic.hpp
+        include/GameStat.hpp
         lib/lua/readline/examples/rlfe/extern.h
         lib/lua/readline/examples/rlfe/os.h
         lib/lua/readline/examples/rlfe/pty.c
@@ -341,4 +344,7 @@ add_executable(OOP_indie_studio_2018
         lib/lua/lzio.h
         src/Core.cpp
         src/main.cpp
+        src/Menu.cpp
+        src/Graphic.cpp
+        src/GameStat.cpp
         src/Event.cpp)

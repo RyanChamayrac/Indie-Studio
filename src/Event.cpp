@@ -6,18 +6,19 @@
 //
 
 #include "Core.hpp"
+#include "GameStat.hpp"
 
 MyEventReceiver::MyEventReceiver(SAppContext &context): _Context(context)
 {
 
 }
 
-bool MyEventReceiver::OnEvent(const SEvent &event)
+bool MyEventReceiver::OnEvent(const irr::SEvent &event)
 {
-    if (event.EventType == EET_GUI_EVENT) {
-        s32 id = event.GUIEvent.Caller->getID();
+    if (event.EventType == irr::EET_GUI_EVENT) {
+        irr::s32 id = event.GUIEvent.Caller->getID();
         switch (event.GUIEvent.EventType) {
-            case EGET_BUTTON_CLICKED:
+            case irr::gui::EGET_BUTTON_CLICKED:
                 switch (id) {
                     case GUI_ID_QUIT_BUTTON:
                         this->_Context.device->closeDevice();

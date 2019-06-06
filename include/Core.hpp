@@ -10,19 +10,34 @@
 
 #include <iostream>
 #include <map>
-#include "irrlicht.h"
+#include <irrlicht.h>
+#include "Graphic.hpp"
 //#include "driverChoice.h"
 
+/*
 using namespace irr;
 using namespace video;
 using namespace gui;
 using namespace scene;
 using namespace io;
 using namespace core;
+*/
+
+class Menu;
 
 struct SAppContext {
-    IrrlichtDevice *device;
+    irr::IrrlichtDevice *device;
 };
+
+class MyEventReceiver : public irr::IEventReceiver
+{
+public:
+    explicit MyEventReceiver(SAppContext &context);
+    bool OnEvent(const irr::SEvent &event) override;
+private:
+    SAppContext &_Context;
+};
+
 
 class Core
 {
@@ -30,35 +45,19 @@ public:
 	Core();
 	~Core() = default;
 	void run();
-    void game();
+    void initMenu();
 
-    //Loaders
-    void loadTextures();
-    void loadButtons();
+    enum gameState_e {
+        mainMenu,
+        mainGame,
+        mainOptions
+    };
 
 private:
-    IrrlichtDevice *_window;
-    IGUIEnvironment *_env;
-    IVideoDriver *_driver;
-    ISceneManager *_smgr;
-    std::map<std::string, ITexture *> _textures;
-    std::map<std::string, IGUIButton *> _buttons;
-	void initMenu();
+    Menu *menu;
+    gameState_e state;
+    Graphic *graphic;
+    SAppContext context;
+    MyEventReceiver *receiver;
 };
-
-class MyEventReceiver : public IEventReceiver
-{
-public:
-    MyEventReceiver(SAppContext &context);
-    virtual bool OnEvent(const SEvent &event);
-private:
-    SAppContext &_Context;
-};
-
-enum button{
-    GUI_ID_QUIT_BUTTON = 101,
-    GUI_ID_PLAY_BUTTON = 102,
-    GUI_ID_OPTIONS_BUTTON = 103,
-};
-
 #endif

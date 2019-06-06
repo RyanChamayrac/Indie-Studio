@@ -9,7 +9,7 @@ NAME		=	indie_studio
 
 PATH_SRCS	=	src/
 
-CFLAGS		+=	-W -Wall -Wextra -Werror -std=gnu++11
+CFLAGS		+=	-W -Wall -Wextra -Werror -std=gnu++11 -g3
 
 LDFLAGS		+=	-I./include/ -I./include/Irrlicht -no-pie
 
@@ -19,6 +19,8 @@ LDLIBS		+=	-lIrrlicht -lGL -lXxf86vm -lXext -lX11 -lXcursor -lpthread
 
 SRC		=	main.cpp \
 			Core.cpp    \
+			Menu.cpp	\
+			Graphic.cpp	\
 			Event.cpp
 
 SRCS		=	$(addprefix $(PATH_SRCS), $(SRC))

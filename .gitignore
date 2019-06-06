@@ -1,1 +1,9 @@
 .vscode/
+.idea/
+cmake-build-debug
+indie_studio
+src/Core.o
+src/Event.o
+src/Graphic.o
+src/Menu.o
+src/main.o
