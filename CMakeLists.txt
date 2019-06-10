@@ -346,5 +346,4 @@ add_executable(OOP_indie_studio_2018
         src/main.cpp
         src/Menu.cpp
         src/Graphic.cpp
-        src/GameStat.cpp
         src/Event.cpp)
