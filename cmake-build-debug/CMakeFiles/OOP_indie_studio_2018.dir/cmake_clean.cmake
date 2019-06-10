@@ -91,6 +91,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/OOP_indie_studio_2018.dir/lib/lua/lzio.c.o"
   "CMakeFiles/OOP_indie_studio_2018.dir/src/Core.cpp.o"
   "CMakeFiles/OOP_indie_studio_2018.dir/src/main.cpp.o"
+  "CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.o"
+  "CMakeFiles/OOP_indie_studio_2018.dir/src/Graphic.cpp.o"
   "CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o"
   "OOP_indie_studio_2018.pdb"
   "OOP_indie_studio_2018"

@@ -7,11 +7,11 @@ C_FLAGS = -g
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/tfoucou/OOP_indie_studio_2018/include -I/home/tfoucou/OOP_indie_studio_2018/include/Irrlicht -I/home/tfoucou/OOP_indie_studio_2018/lib/lua -I/home/tfoucou/OOP_indie_studio_2018/lib/lua/readline -I/home/tfoucou/OOP_indie_studio_2018/lib/lua/readline/examples -I/home/tfoucou/OOP_indie_studio_2018/lib/lua/readline/examples/rlfe 
+C_INCLUDES = -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/include -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/include/Irrlicht -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/lib/lua -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/lib/lua/readline -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/lib/lua/readline/examples -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/lib/lua/readline/examples/rlfe 
 
 CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/tfoucou/OOP_indie_studio_2018/include -I/home/tfoucou/OOP_indie_studio_2018/include/Irrlicht -I/home/tfoucou/OOP_indie_studio_2018/lib/lua -I/home/tfoucou/OOP_indie_studio_2018/lib/lua/readline -I/home/tfoucou/OOP_indie_studio_2018/lib/lua/readline/examples -I/home/tfoucou/OOP_indie_studio_2018/lib/lua/readline/examples/rlfe 
+CXX_INCLUDES = -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/include -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/include/Irrlicht -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/lib/lua -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/lib/lua/readline -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/lib/lua/readline/examples -I/home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/lib/lua/readline/examples/rlfe 
 

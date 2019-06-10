@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/tfoucou/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/Daykem/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/tfoucou/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/Daykem/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tfoucou/OOP_indie_studio_2018
+CMAKE_SOURCE_DIR = /home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tfoucou/OOP_indie_studio_2018/cmake-build-debug
+CMAKE_BINARY_DIR = /home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/tfoucou/OOP_indie_studio_2018/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/tfoucou/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/Daykem/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/tfoucou/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/Daykem/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles /home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles /home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Daykem/TOM/4semestre/cpp/Indie/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -2607,6 +2607,60 @@ src/Event.cpp.s:
 	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.s
 .PHONY : src/Event.cpp.s
 
+src/Graphic.o: src/Graphic.cpp.o
+
+.PHONY : src/Graphic.o
+
+# target to build an object file
+src/Graphic.cpp.o:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Graphic.cpp.o
+.PHONY : src/Graphic.cpp.o
+
+src/Graphic.i: src/Graphic.cpp.i
+
+.PHONY : src/Graphic.i
+
+# target to preprocess a source file
+src/Graphic.cpp.i:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Graphic.cpp.i
+.PHONY : src/Graphic.cpp.i
+
+src/Graphic.s: src/Graphic.cpp.s
+
+.PHONY : src/Graphic.s
+
+# target to generate assembly for a file
+src/Graphic.cpp.s:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Graphic.cpp.s
+.PHONY : src/Graphic.cpp.s
+
+src/Menu.o: src/Menu.cpp.o
+
+.PHONY : src/Menu.o
+
+# target to build an object file
+src/Menu.cpp.o:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.o
+.PHONY : src/Menu.cpp.o
+
+src/Menu.i: src/Menu.cpp.i
+
+.PHONY : src/Menu.i
+
+# target to preprocess a source file
+src/Menu.cpp.i:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.i
+.PHONY : src/Menu.cpp.i
+
+src/Menu.s: src/Menu.cpp.s
+
+.PHONY : src/Menu.s
+
+# target to generate assembly for a file
+src/Menu.cpp.s:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.s
+.PHONY : src/Menu.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -2919,6 +2973,12 @@ help:
 	@echo "... src/Event.o"
 	@echo "... src/Event.i"
 	@echo "... src/Event.s"
+	@echo "... src/Graphic.o"
+	@echo "... src/Graphic.i"
+	@echo "... src/Graphic.s"
+	@echo "... src/Menu.o"
+	@echo "... src/Menu.i"
+	@echo "... src/Menu.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

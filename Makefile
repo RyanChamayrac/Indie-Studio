@@ -5,7 +5,7 @@
 ## Indie Studio
 ##
 
-NAME		=	indie_studio
+NAME		=	bomberman
 
 PATH_SRCS	=	src/
 
