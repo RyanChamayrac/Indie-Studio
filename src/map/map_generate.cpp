@@ -24,6 +24,14 @@ int generate_map(int argc, char *argv[])
             n = rand();
             if (i == 0 && j == 0 || i == 0 && j == 16 || i == 16 && j == 0 || i == 16 && j == 16)
                 fputs("x", file);
+            else if (i == 1 && j == 0 || i == 0 && j == 1)
+                fputs("x", file);
+            else if (i == 15 && j == 0 || i == 16 && j == 1)
+                fputs("x", file);
+            else if (i == 1 && j == 16 || i == 0 && j == 15)
+                fputs("x", file);
+            else if (i == 15 && j == 16 || i == 16 && j == 15)
+                fputs("x", file);
             else if (i % 2 != 0 && j % 2 != 0)
                 fputs("A", file);
             else if (n % 2 == 0)
