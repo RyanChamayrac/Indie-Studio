@@ -6,3 +6,8 @@
 //
 
 #include <vector>
+
+int generate_map(int ac, char **av)
+{
+
+}

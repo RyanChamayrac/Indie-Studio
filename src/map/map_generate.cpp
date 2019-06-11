@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int generate_map(int argc, char *argv[])
+int generate_map()
 {
     FILE* file = NULL;
     file = fopen("map.txt", "w");
