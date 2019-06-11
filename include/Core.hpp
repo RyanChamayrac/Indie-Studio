@@ -17,18 +17,14 @@ class Menu;
 class Game;
 class Core;
 
-struct SAppContext {
-    irr::IrrlichtDevice *device;
-};
-
-
 class MyEventReceiver : public irr::IEventReceiver
 {
 public:
-    explicit MyEventReceiver(SAppContext &context, Core &core) : _Context(context), _core(core) {};
+    explicit MyEventReceiver(irr::IrrlichtDevice *window, Core &core) : _window(window), _core(core) {};
     bool OnEvent(const irr::SEvent &event) override;
 private:
-    SAppContext &_Context;
+
+    irr::IrrlichtDevice *_window;
     Core &_core;
 };
 
@@ -60,7 +56,6 @@ private:
     Game *_game;
     gameState_e _state;
     irr::IrrlichtDevice *_window;
-    SAppContext _context{};
     MyEventReceiver *_receiver;
 };
 #endif

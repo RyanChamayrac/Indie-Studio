@@ -15,7 +15,6 @@ class Menu : public GameStat {
 public:
     explicit Menu(irr::IrrlichtDevice *window);
     ~Menu() override = default;
-
     void run(irr::IrrlichtDevice *window) override;
 
     //Loaders

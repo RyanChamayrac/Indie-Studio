@@ -9,7 +9,7 @@
 #include "Menu.hpp"
 #include "Game.hpp"
 
-Core::Core() : _context()
+Core::Core()
 {
     this->_window = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1920, 1080),
                                       16, false, false, false);
@@ -19,8 +19,7 @@ Core::Core() : _context()
         return;
     }
     this->_window->setWindowCaption(L"Indie Studio");
-    _context.device = this->_window;
-    this->_receiver = new MyEventReceiver(this->_context, *this);
+    this->_receiver = new MyEventReceiver(this->_window, *this);
     this->_window->setEventReceiver(_receiver);
     this->_state = mainMenu;
     this->_menu = nullptr;
@@ -50,6 +49,7 @@ Menu *Core::getMenu()
 void Core::run()
 {
     while (this->_window->run()) {
+        this->_window->getVideoDriver()->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
         switch (this->_state) {
             case mainMenu:
                 if (!this->_menu)
@@ -72,6 +72,7 @@ void Core::run()
         this->_window->getGUIEnvironment()->drawAll();
         this->_window->getVideoDriver()->endScene();
 	}
+    this->_window->drop();
 }
 
 void Core::initMenu()
