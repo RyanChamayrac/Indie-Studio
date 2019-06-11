@@ -7,7 +7,7 @@
 
 #include <vector>
 
-int generate_map(int ac, char **av)
+int read_map(int ac, char **av)
 {
 
 }
