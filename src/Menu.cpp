@@ -48,39 +48,6 @@ void Menu::loadButtons(irr::IrrlichtDevice *window)
     this->_buttons["menuExit"]->setPressedImage(this->_textures["menuLeavepressed"]);
 }
 
-void Menu::hideAll(irr::IrrlichtDevice *window)
-{
-    (void)window;
-    for (auto & _button : this->_buttons) {
-        std::cout << _button.first << std::endl;
-        _button.second->setVisible(false);
-        //_button.second->remove();
-    }
-}
-
-Menu::~Menu()
-{
-    std::cout << "menu destroyed" << std::endl;
-/*
-    for (auto it = this->_textures.begin(); it != this->_textures.end(); ++it) {
-        delete(it->second);
-*/
-/*
-        it->second->drop();
-*//*
-
-    }
-    for (auto it = this->_buttons.begin(); it != this->_buttons.end(); ++it) {
-        delete(it->second);
-*/
-/*
-        it->second->drop();
-*//*
-
-    }
-*/
-}
-
 Menu::Menu(irr::IrrlichtDevice *window)
 {
     this->loadTextures(window);

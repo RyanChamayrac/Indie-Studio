@@ -9,6 +9,7 @@
 
 void Game::run(irr::IrrlichtDevice *window)
 {
+    window->getVideoDriver()->beginScene(true, true, irr::video::SColor(255,100,101,140));
     (void)window;
 }
 

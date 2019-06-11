@@ -19,8 +19,8 @@ Core::Core() : _context()
         return;
     }
     this->_window->setWindowCaption(L"Indie Studio");
-    this->_receiver = new MyEventReceiver(this->_context, *this);
     _context.device = this->_window;
+    this->_receiver = new MyEventReceiver(this->_context, *this);
     this->_window->setEventReceiver(_receiver);
     this->_state = mainMenu;
     this->_menu = nullptr;
@@ -59,14 +59,10 @@ void Core::run()
             case mainGame:
                 if (!this->_game) {
                     this->_game = new Game(this->_window);
-                    this->_menu->hideAll(this->_window);
+                    this->_window->getVideoDriver()->removeAllTextures();
+                    this->_window->getGUIEnvironment()->clear();
+                    delete(this->_menu);
                 }
-                this->_window->getGUIEnvironment()->clear();
-/*
-                this->_window->getDriver()->removeAllTextures();
-                this->_window->getEnv()->clear();
-                delete(this->_menu);
-*/
                 this->_game->run(this->_window);
                 break;
             default:
