@@ -20,7 +20,7 @@ LDLIBS		+=	-lIrrlicht -lGL -lXxf86vm -lXext -lX11 -lXcursor -lpthread
 SRC		=	main.cpp \
 			Core.cpp    \
 			Menu.cpp	\
-			Graphic.cpp	\
+			Game.cpp	\
 			Event.cpp
 
 SRCS		=	$(addprefix $(PATH_SRCS), $(SRC))

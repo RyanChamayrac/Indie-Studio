@@ -8,11 +8,6 @@
 #include "Core.hpp"
 #include "GameStat.hpp"
 
-MyEventReceiver::MyEventReceiver(SAppContext &context): _Context(context)
-{
-
-}
-
 bool MyEventReceiver::OnEvent(const irr::SEvent &event)
 {
     if (event.EventType == irr::EET_GUI_EVENT) {
@@ -24,6 +19,7 @@ bool MyEventReceiver::OnEvent(const irr::SEvent &event)
                         this->_Context.device->closeDevice();
                         return true;
                     case GUI_ID_PLAY_BUTTON:
+                        this->_core.setState(Core::mainGame);
                         std::cout << "print game" << std::endl;
                         return true;
                     case GUI_ID_OPTIONS_BUTTON:

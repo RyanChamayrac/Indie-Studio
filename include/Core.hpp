@@ -11,31 +11,25 @@
 #include <iostream>
 #include <map>
 #include <irrlicht.h>
-#include "Graphic.hpp"
 //#include "driverChoice.h"
 
-/*
-using namespace irr;
-using namespace video;
-using namespace gui;
-using namespace scene;
-using namespace io;
-using namespace core;
-*/
-
 class Menu;
+class Game;
+class Core;
 
 struct SAppContext {
     irr::IrrlichtDevice *device;
 };
 
+
 class MyEventReceiver : public irr::IEventReceiver
 {
 public:
-    explicit MyEventReceiver(SAppContext &context);
+    explicit MyEventReceiver(SAppContext &context, Core &core) : _Context(context), _core(core) {};
     bool OnEvent(const irr::SEvent &event) override;
 private:
     SAppContext &_Context;
+    Core &_core;
 };
 
 
@@ -53,11 +47,20 @@ public:
         mainOptions
     };
 
+    //Setters
+    void setState(gameState_e state);
+
+    //Getters
+    Menu *getMenu();
+    Game *getGame();
+    gameState_e getState();
+
 private:
-    Menu *menu;
-    gameState_e state;
-    Graphic *graphic;
-    SAppContext context;
-    MyEventReceiver *receiver;
+    Menu *_menu;
+    Game *_game;
+    gameState_e _state;
+    irr::IrrlichtDevice *_window;
+    SAppContext _context{};
+    MyEventReceiver *_receiver;
 };
 #endif

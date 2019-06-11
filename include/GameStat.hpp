@@ -12,7 +12,6 @@
 #include <map>
 #include <iostream>
 
-#include "Graphic.hpp"
 
 enum button{
     GUI_ID_QUIT_BUTTON = 101,
@@ -23,11 +22,12 @@ enum button{
 class GameStat {
 
 public:
-    virtual void run(Graphic *graphic) = 0;
+    virtual ~GameStat() = default;
+    virtual void run(irr::IrrlichtDevice *window) = 0;
 
     //Loaders
-    virtual void loadButtons(Graphic *graphic) = 0;
-    virtual void loadTextures(Graphic *graphic) = 0;
+    virtual void loadButtons(irr::IrrlichtDevice *window) = 0;
+    virtual void loadTextures(irr::IrrlichtDevice *window) = 0;
 };
 
 

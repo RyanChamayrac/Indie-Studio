@@ -7,46 +7,79 @@
 
 #include "Menu.hpp"
 
-void Menu::loadTextures(Graphic *graphic)
+void Menu::loadTextures(irr::IrrlichtDevice *window)
 {
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuBackground"),
-            graphic->getDriver()->getTexture("./assets/images/background.png")));
+            window->getVideoDriver()->getTexture("./ressources/background.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuExitButton"),
-            graphic->getDriver()->getTexture("./assets/buttons/leave.png")));
+            window->getVideoDriver()->getTexture("./ressources/EXIT.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuPlayButton"),
-            graphic->getDriver()->getTexture("./assets/buttons/play.png")));
+            window->getVideoDriver()->getTexture("./ressources/PLAY.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuHelpButton"),
-            graphic->getDriver()->getTexture("./assets/HELP.png")));
+            window->getVideoDriver()->getTexture("./ressources/HELP.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuOptionsButton"),
-            graphic->getDriver()->getTexture("./assets/buttons/options.png")));
+            window->getVideoDriver()->getTexture("./ressources/OPTIONS.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuTestButton"),
-            graphic->getDriver()->getTexture("./ressources/test.jpg")));
+            window->getVideoDriver()->getTexture("./ressources/test.jpg")));
 }
 
-void Menu::loadButtons(Graphic *graphic)
+void Menu::loadButtons(irr::IrrlichtDevice *window)
 {
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuExit"),
-            graphic->getEnv()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_QUIT_BUTTON, L"Exit", L"Exits Program")));
+            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 425, 77), nullptr, GUI_ID_QUIT_BUTTON, L"Exit", L"Exits Program")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuPlay"),
-            graphic->getEnv()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_PLAY_BUTTON, L"Play", L"Play game")));
+            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 425, 77), nullptr, GUI_ID_PLAY_BUTTON, L"Play", L"Play game")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuOptions"),
-            graphic->getEnv()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTIONS_BUTTON, L"", L"Set options")));
+            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 425, 77), nullptr, GUI_ID_OPTIONS_BUTTON, L"", L"Set options")));
     this->_buttons["menuExit"]->setImage(this->_textures["menuExitButton"]);
     this->_buttons["menuPlay"]->setImage(this->_textures["menuPlayButton"]);
     this->_buttons["menuOptions"]->setImage(this->_textures["menuOptionsButton"]);
-    this->_buttons["menuExit"]->setRelativePosition(irr::core::position2d<irr::s32>(850, 800));
-    this->_buttons["menuPlay"]->setRelativePosition(irr::core::position2d<irr::s32>(300, 500));
-    this->_buttons["menuOptions"]->setRelativePosition(irr::core::position2d<irr::s32>(1400, 500));
+    this->_buttons["menuExit"]->setRelativePosition(irr::core::position2d<irr::s32>(748, 800));
+    this->_buttons["menuPlay"]->setRelativePosition(irr::core::position2d<irr::s32>(748, 200));
+    this->_buttons["menuOptions"]->setRelativePosition(irr::core::position2d<irr::s32>(748, 500));
 }
 
-Menu::Menu(Graphic *graphic)
+void Menu::hideAll(irr::IrrlichtDevice *window)
 {
-    this->loadTextures(graphic);
-    this->loadButtons(graphic);
+    (void)window;
+    for (auto & _button : this->_buttons) {
+        std::cout << _button.first << std::endl;
+        _button.second->setVisible(false);
+        //_button.second->remove();
+    }
 }
 
-void Menu::run(Graphic *graphic)
+Menu::~Menu()
 {
-    graphic->getDriver()->draw2DImage(this->_textures["menuBackground"], irr::core::position2d<irr::s32>(0, 0),
+    std::cout << "menu destroyed" << std::endl;
+/*
+    for (auto it = this->_textures.begin(); it != this->_textures.end(); ++it) {
+        delete(it->second);
+*/
+/*
+        it->second->drop();
+*//*
+
+    }
+    for (auto it = this->_buttons.begin(); it != this->_buttons.end(); ++it) {
+        delete(it->second);
+*/
+/*
+        it->second->drop();
+*//*
+
+    }
+*/
+}
+
+Menu::Menu(irr::IrrlichtDevice *window)
+{
+    this->loadTextures(window);
+    this->loadButtons(window);
+}
+
+void Menu::run(irr::IrrlichtDevice *window)
+{
+    window->getVideoDriver()->draw2DImage(this->_textures["menuBackground"], irr::core::position2d<irr::s32>(0, 0),
             irr::core::rect<irr::s32>(0, 0, 1920, 1080), nullptr, irr::video::SColor(255, 255, 255, 255), true);
 }
