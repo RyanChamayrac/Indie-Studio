@@ -9,5 +9,8 @@
 
 int read_map(int ac, char **av)
 {
+    FILE* file = NULL;
+    file = fopen("map.txt", "r+");
+
 
 }
