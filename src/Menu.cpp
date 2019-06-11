@@ -40,9 +40,9 @@ void Menu::loadButtons(irr::IrrlichtDevice *window)
     this->_buttons["menuExit"]->setImage(this->_textures["menuExitButton"]);
     this->_buttons["menuPlay"]->setImage(this->_textures["menuPlayButton"]);
     this->_buttons["menuOptions"]->setImage(this->_textures["menuOptionsButton"]);
-    this->_buttons["menuExit"]->setRelativePosition(irr::core::position2d<irr::s32>(748, 800));
-    this->_buttons["menuPlay"]->setRelativePosition(irr::core::position2d<irr::s32>(748, 200));
-    this->_buttons["menuOptions"]->setRelativePosition(irr::core::position2d<irr::s32>(748, 500));
+    this->_buttons["menuPlay"]->setRelativePosition(irr::core::position2d<irr::s32>(400, 400));
+    this->_buttons["menuOptions"]->setRelativePosition(irr::core::position2d<irr::s32>(1300, 400));
+    this->_buttons["menuExit"]->setRelativePosition(irr::core::position2d<irr::s32>(852, 800));
     this->_buttons["menuPlay"]->setPressedImage(this->_textures["menuPlaypressed"]);
     this->_buttons["menuOptions"]->setPressedImage(this->_textures["menuOptionspressed"]);
     this->_buttons["menuExit"]->setPressedImage(this->_textures["menuLeavepressed"]);
