@@ -91,25 +91,31 @@ bool Game::getMap(const std::string& fileName)
 
 Game::Game(irr::IrrlichtDevice *window)
 {
-    (void)window;
     if (!this->getMap("assets/map/map.txt"))
         return;
+    int starting_x = -14;
+    int starting_y = -14;
+    int x = 0;
+    int y = 0;
+    std::vector<irr::scene::IMeshSceneNode *> tmp;
+
     for (auto &it : this->_map) {
-        for (auto &it2 : it)
-            std::cout << it2;
-    std::cout << std::endl;
+        for (auto &it2 : it) {
+            if (it2 == 'A') {
+                tmp.push_back(window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
+                   irr::core::vector3df((starting_x) + x * 2, (starting_y) + y * 2, 0.0f),
+                   irr::core::vector3df(0.0f, 0.0f, 0.0f)));
+                tmp.back()->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
+            } else {
+                tmp.push_back(nullptr);
+            }
+            x++;
+        }
+        std::cout << std::endl;
+        x = 0;
+        this->_cubes.push_back(tmp);
+        y++;
     }
-/*
-    irr::scene::IMeshSceneNode* cube = window->getSceneManager()->addCubeSceneNode(2.0f, 0, -1,
-       irr::core::vector3df(0.0f, 0.0f, 15.0f),
-       irr::core::vector3df(0.0f, 0.0f, 0.0f));
-    irr::scene::IMeshSceneNode* cube2 = window->getSceneManager()->addCubeSceneNode(2.0f, 0, -1,
-        irr::core::vector3df(2.0f, 0.0f, 15.0f),
-        irr::core::vector3df(0.0f, 0.0f, 0.0f));
-    cube->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
-    cube->setMaterialTexture(0, window->getVideoDriver()->getTexture("ressources/HELP.png"));
-    cube2->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
-    window->getSceneManager()->addCameraSceneNode(0, irr::core::vector3df(0, 10, 0),
-          irr::core::vector3df(0, -50, 100));
-*/
+    window->getSceneManager()->addCameraSceneNode(nullptr, irr::core::vector3df(0, 0, -10),
+          irr::core::vector3df(0, 0, 0));
 }

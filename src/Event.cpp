@@ -16,7 +16,7 @@ bool MyEventReceiver::OnEvent(const irr::SEvent &event)
             case irr::gui::EGET_BUTTON_CLICKED:
                 switch (id) {
                     case GUI_ID_QUIT_BUTTON:
-                        this->_Context.device->closeDevice();
+                        this->_window->closeDevice();
                         return true;
                     case GUI_ID_PLAY_BUTTON:
                         this->_core.setState(Core::mainGame);
