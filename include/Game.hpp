@@ -26,13 +26,16 @@ public:
     void loadButtons(irr::IrrlichtDevice *window) override;
     void loadTextures(irr::IrrlichtDevice *window) override;
     bool getMap(const std::string& fileName);
+    void createBlocks(irr::IrrlichtDevice *window);
     int generateMap();
 
 private:
     std::map<std::string, irr::video::ITexture *> _textures;
     std::map<std::string, irr::gui::IGUIButton *> _buttons;
     std::vector<std::vector<char>> _map;
-    std::vector<std::vector<irr::scene::IMeshSceneNode *>> _cubes;
+    std::vector<std::vector<irr::scene::ISceneNode *>> _cubes;
+    irr::video::ITexture* _bricks;
+    irr::video::ITexture* _wooden;
 };
 
 

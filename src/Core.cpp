@@ -58,10 +58,9 @@ void Core::run()
                 break;
             case mainGame:
                 if (!this->_game) {
-                    this->_game = new Game(this->_window);
                     this->_window->getVideoDriver()->removeAllTextures();
+                    this->_game = new Game(this->_window);
                     this->_window->getGUIEnvironment()->clear();
-                    delete(this->_menu);
                 }
                 this->_game->run(this->_window);
                 break;

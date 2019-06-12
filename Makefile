@@ -23,9 +23,15 @@ SRC		=	main.cpp \
 			Game.cpp	\
 			Event.cpp
 
+TEST	=	test.cpp
+
 SRCS		=	$(addprefix $(PATH_SRCS), $(SRC))
 
+SRCS_TEST	=	$(addprefix ., $(TEST))
+
 OBJS		=	$(SRCS:.cpp=.o)
+
+TEST_OBJS	=	$(TEST:.cpp=.o)
 
 %.o : 		%.cpp
 		@g++ -c -o $@ $^ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
@@ -34,6 +40,10 @@ OBJS		=	$(SRCS:.cpp=.o)
 $(NAME):	$(OBJS)
 		@g++ -o $(NAME) $(OBJS) $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 		@printf "[\033[0;36mCore built\033[0m] % 32s\n"
+
+test: $(TEST_OBJS)
+	@g++ -o a.out $(TEST_OBJS) $(CFLAGS) $(LDFLAGS) $(LDLIBS)
+	@printf "[\033[0;36mCore built\033[0m] % 32s\n"
 
 all:		$(NAME)
 
