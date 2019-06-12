@@ -68,6 +68,12 @@ void Core::run()
                                 continue;
                             it2->setVisible(false);
                         }
+                    for (auto &it : this->_game->getFloor())
+                        for (auto &it2 : it) {
+                            if (!it2)
+                                continue;
+                            it2->setVisible(false);
+                        }
                 }
                 if (this->_menu) {
                     for (auto &it : this->_menu->getButtons())
