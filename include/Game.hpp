@@ -22,6 +22,10 @@ public:
     //DTOR
     ~Game() override = default;
 
+    //Getters
+    std::vector<std::vector<irr::scene::ISceneNode *>> getCubes();
+
+
     void run(irr::IrrlichtDevice *window) override;
     void loadButtons(irr::IrrlichtDevice *window) override;
     void loadTextures(irr::IrrlichtDevice *window) override;

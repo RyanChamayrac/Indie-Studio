@@ -8,7 +8,12 @@
 #include "Core.hpp"
 #include "GameStat.hpp"
 
-bool MyEventReceiver::OnEvent(const irr::SEvent &event)
+bool MyEventReceiver::IsKeyDown(irr::EKEY_CODE keyCode) const
+{
+    return this->_keyIsDown[keyCode];
+}
+
+bool MyEventReceiver::clicks(const irr::SEvent &event)
 {
     if (event.EventType == irr::EET_GUI_EVENT) {
         irr::s32 id = event.GUIEvent.Caller->getID();
@@ -20,10 +25,8 @@ bool MyEventReceiver::OnEvent(const irr::SEvent &event)
                         return true;
                     case GUI_ID_PLAY_BUTTON:
                         this->_core.setState(Core::mainGame);
-                        std::cout << "print game" << std::endl;
                         return true;
                     case GUI_ID_OPTIONS_BUTTON:
-                        std::cout << "print options" << std::endl;
                         return true;
                     default:
                         return false;
@@ -32,14 +35,40 @@ bool MyEventReceiver::OnEvent(const irr::SEvent &event)
                 break;
         }
     }
+    return false;
+}
+
+bool MyEventReceiver::keyInputs(const irr::SEvent &event)
+{
     if (event.EventType == irr::EET_KEY_INPUT_EVENT) {
-        KeyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
-        if (this->IsKeyDown(irr::KEY_ESCAPE) && this->_core.getState() == Core::mainGame)
-            std::cout << "enter pause menu" << std::endl;
-        if (this->IsKeyDown(irr::KEY_KEY_Z))
-            std::cout << "z pressed" << std::endl;
-        else if (this->IsKeyDown(irr::KEY_KEY_S))
-            std::cout << "s pressed" << std::endl;
+        _keyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+        if (this->_core.getState() == Core::mainGame) {
+            if (this->IsKeyDown(irr::KEY_ESCAPE)) {
+                this->_core.setState(Core::mainMenu);
+                return true;
+            } else if (this->IsKeyDown(irr::KEY_KEY_Z)) {
+                std::cout << "z pressed" << std::endl;
+            } else if (this->IsKeyDown(irr::KEY_KEY_S)) {
+                std::cout << "s pressed" << std::endl;
+            }
+        } else if (this->_core.getState() == Core::mainMenu) {
+            if (this->IsKeyDown(irr::KEY_ESCAPE)) {
+                this->_window->closeDevice();
+                return true;
+            }
+        }
     }
+    return false;
+}
+
+
+bool MyEventReceiver::OnEvent(const irr::SEvent &event)
+{
+    for (bool & i : _keyIsDown)
+        i = false;
+    if (this->clicks(event))
+        return true;
+    if (this->keyInputs(event))
+        return true;
     return false;
 }

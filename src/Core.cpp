@@ -54,6 +54,14 @@ void Core::run()
             case mainMenu:
                 if (!this->_menu)
                     this->_menu = new Menu(this->_window);
+                if (this->_game) {
+                    for (auto &it : this->_game->getCubes())
+                        for (auto &it2 : it) {
+                            if (!it2)
+                                continue;
+                            it2->setVisible(false);
+                        }
+                }
                 this->_menu->run(this->_window);
                 break;
             case mainGame:
@@ -61,7 +69,15 @@ void Core::run()
                     this->_window->getVideoDriver()->removeAllTextures();
                     this->_game = new Game(this->_window);
                     this->_window->getGUIEnvironment()->clear();
+                    delete(this->_menu);
+                    this->_menu = nullptr;
                 }
+                for (auto &it : this->_game->getCubes())
+                    for (auto &it2 : it) {
+                        if (!it2)
+                            continue;
+                        it2->setVisible(true);
+                    }
                 this->_game->run(this->_window);
                 break;
             default:

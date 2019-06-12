@@ -12,16 +12,6 @@ void Game::run(irr::IrrlichtDevice *window)
     (void)window;
     if (this->_map.empty())
         return;
-    for (auto &it : this->_cubes) {
-        for (auto &it2 : it) {
-            if (!it2)
-                continue;
-            it2->setVisible(false);
-            window->getSceneManager()->drawAll();
-            it2->setVisible(true);
-        }
-    }
-
 }
 
 void Game::loadTextures(irr::IrrlichtDevice *window)
@@ -99,6 +89,11 @@ bool Game::getMap(const std::string& fileName)
     return true;
 }
 
+std::vector<std::vector<irr::scene::ISceneNode *>> Game::getCubes()
+{
+    return this->_cubes;
+}
+
 void Game::createBlocks(irr::IrrlichtDevice *window)
 {
     int x = 0;
@@ -128,7 +123,6 @@ void Game::createBlocks(irr::IrrlichtDevice *window)
         this->_cubes.push_back(tmp);
         y++;
     }
-
 }
 
 Game::Game(irr::IrrlichtDevice *window) : _bricks(), _wooden()
