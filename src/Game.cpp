@@ -101,8 +101,6 @@ bool Game::getMap(const std::string& fileName)
 
 void Game::createBlocks(irr::IrrlichtDevice *window)
 {
-    int starting_x = -20;
-    int starting_y = 0;
     int x = 0;
     int y = 0;
     std::vector<irr::scene::ISceneNode *> tmp;
@@ -114,11 +112,11 @@ void Game::createBlocks(irr::IrrlichtDevice *window)
         for (auto &it2 : it) {
             if (it2 == 'A' || it2 == 'T') {
                 tmp.push_back(window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
-                      irr::core::vector3df((starting_x) + x * 2, (starting_y) + y * 2, 0.0f),
+                      irr::core::vector3df(x * 2, - y * 2, 0.0f),
                       irr::core::vector3df(0.0f, 0.0f, 0.0f)));
                 if (it2 == 'A')
                     tmp.back()->setMaterialTexture(0, this->_bricks);
-                else if (it2 == 'T')
+                else
                     tmp.back()->setMaterialTexture(0, this->_wooden);
                 tmp.back()->setMaterialFlag(irr::video::EMF_LIGHTING, true);
             } else {
@@ -138,9 +136,10 @@ Game::Game(irr::IrrlichtDevice *window) : _bricks(), _wooden()
     if (!this->getMap("assets/map/map.txt"))
         return;
     this->createBlocks(window);
-    window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(0, 0, -30),
+    window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(19, 0, -30),
                                                  irr::video::SColorf(1.0f, 1.0f, 1.0f));
-    window->getSceneManager()->setAmbientLight(irr::video::SColor(0,60,60,60));
-    window->getSceneManager()->addCameraSceneNode(nullptr, irr::core::vector3df(0, -5, -30),
-          irr::core::vector3df(0, 15, 0));
+    window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(19, -38, -30),
+                                                 irr::video::SColorf(1.0f, 1.0f, 1.0f));
+    window->getSceneManager()->addCameraSceneNode(nullptr, irr::core::vector3df(19, -40, -38),
+          irr::core::vector3df(19, -19, 0));
 }
