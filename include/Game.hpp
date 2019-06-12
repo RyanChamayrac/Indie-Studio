@@ -24,6 +24,7 @@ public:
 
     //Getters
     std::vector<std::vector<irr::scene::ISceneNode *>> getCubes();
+    std::vector<std::vector<irr::scene::ISceneNode *>> getFloor();
 
 
     void run(irr::IrrlichtDevice *window) override;
@@ -38,6 +39,7 @@ private:
     std::map<std::string, irr::gui::IGUIButton *> _buttons;
     std::vector<std::vector<char>> _map;
     std::vector<std::vector<irr::scene::ISceneNode *>> _cubes;
+    std::vector<std::vector<irr::scene::ISceneNode *>> _floor;
 };
 
 

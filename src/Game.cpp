@@ -24,6 +24,8 @@ void Game::loadTextures(irr::IrrlichtDevice *window)
           window->getVideoDriver()->getTexture("./assets/blocks/WoodenFloor.bmp")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("gameBackground"),
           window->getVideoDriver()->getTexture("./assets/images/gameBackground.jpg")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("grass"),
+          window->getVideoDriver()->getTexture("./assets/images/grass.jpg")));
 }
 
 void Game::loadButtons(irr::IrrlichtDevice *window)
@@ -79,7 +81,7 @@ bool Game::getMap(const std::string& fileName)
     std::vector<char> tmp;
 
     if (!in) {
-        std::cerr << "Loading map failed: "<<fileName<<std::endl;
+        std::cerr << "Loading map failed: " << fileName << std::endl;
         return false;
     }
 
@@ -101,11 +103,17 @@ std::vector<std::vector<irr::scene::ISceneNode *>> Game::getCubes()
     return this->_cubes;
 }
 
+std::vector<std::vector<irr::scene::ISceneNode *>> Game::getFloor()
+{
+    return this->_floor;
+}
+
 void Game::createBlocks(irr::IrrlichtDevice *window)
 {
     int x = 0;
     int y = 0;
     std::vector<irr::scene::ISceneNode *> tmp;
+    std::vector<irr::scene::ISceneNode *> floorTmp;
 
     this->loadTextures(window);
     for (auto &it : this->_map) {
@@ -122,11 +130,21 @@ void Game::createBlocks(irr::IrrlichtDevice *window)
             } else {
                 tmp.push_back(nullptr);
             }
-            x++;
-        }
-        x = 0;
-        this->_cubes.push_back(tmp);
-        y++;
+
+            floorTmp.push_back(window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
+                  irr::core::vector3df(x * 2, - y * 2, 2.0f),
+                  irr::core::vector3df(0.0f, 0.0f, 0.0f)));
+            floorTmp.back()->setMaterialTexture(0, this->_textures["grass"]);
+            floorTmp.back()->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+
+    x++;
+    }
+    x = 0;
+    this->_cubes.push_back(tmp);
+            this->_floor.push_back(floorTmp);
+            tmp.clear();
+            floorTmp.clear();
+    y++;
     }
 }
 
