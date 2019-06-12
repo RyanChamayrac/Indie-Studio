@@ -93,11 +93,15 @@ Game::Game(irr::IrrlichtDevice *window)
 {
     if (!this->getMap("assets/map/map.txt"))
         return;
-    int starting_x = -14;
-    int starting_y = -14;
+    int starting_x = -20;
+    int starting_y = 0;
     int x = 0;
     int y = 0;
     std::vector<irr::scene::IMeshSceneNode *> tmp;
+/*
+    irr::video::ITexture *rt = window->getVideoDriver()->
+            addRenderTargetTexture(irr::core::dimension2d<irr::u32>(256,256), "RTT1");
+*/
 
     for (auto &it : this->_map) {
         for (auto &it2 : it) {
@@ -105,7 +109,18 @@ Game::Game(irr::IrrlichtDevice *window)
                 tmp.push_back(window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
                    irr::core::vector3df((starting_x) + x * 2, (starting_y) + y * 2, 0.0f),
                    irr::core::vector3df(0.0f, 0.0f, 0.0f)));
+/*
+                tmp.back()->setMaterialTexture(0, rt);
+*/
+                tmp.back()->getMaterial(0).Shininess = 20.0f;
                 tmp.back()->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
+/*
+                window->getSceneManager()->getMeshManipulator()->setVertexColors(tmp.back()->getMesh(),
+                        irr::video::SColor(255, 0,0,255));
+*/
+/*
+                window->getSceneManager()->addLightSceneNode();
+*/
             } else {
                 tmp.push_back(nullptr);
             }
@@ -116,6 +131,6 @@ Game::Game(irr::IrrlichtDevice *window)
         this->_cubes.push_back(tmp);
         y++;
     }
-    window->getSceneManager()->addCameraSceneNode(nullptr, irr::core::vector3df(0, 0, -10),
-          irr::core::vector3df(0, 0, 0));
+    window->getSceneManager()->addCameraSceneNode(nullptr, irr::core::vector3df(0, 0, -30),
+          irr::core::vector3df(0, 10, 0));
 }
