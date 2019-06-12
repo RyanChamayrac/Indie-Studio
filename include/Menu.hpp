@@ -17,6 +17,9 @@ public:
     ~Menu() override = default;
     void run(irr::IrrlichtDevice *window) override;
 
+    //Getter
+    std::map<std::string, irr::gui::IGUIButton *> getButtons();
+
     //Loaders
     void loadButtons(irr::IrrlichtDevice *window) override;
     void loadTextures(irr::IrrlichtDevice *window) override;

@@ -12,11 +12,18 @@ void Game::run(irr::IrrlichtDevice *window)
     (void)window;
     if (this->_map.empty())
         return;
+    window->getVideoDriver()->draw2DImage(this->_textures["gameBackground"], irr::core::position2d<irr::s32>(0, 0),
+          irr::core::rect<irr::s32>(0, 0, 1920, 1080), nullptr, irr::video::SColor(255, 255, 255, 255), true);
 }
 
 void Game::loadTextures(irr::IrrlichtDevice *window)
 {
-    (void)window;
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("RedBricks"),
+          window->getVideoDriver()->getTexture("./assets/blocks/RedBricks.bmp")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("WoodenFloor"),
+          window->getVideoDriver()->getTexture("./assets/blocks/WoodenFloor.bmp")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("gameBackground"),
+          window->getVideoDriver()->getTexture("./assets/images/gameBackground.jpg")));
 }
 
 void Game::loadButtons(irr::IrrlichtDevice *window)
@@ -100,9 +107,7 @@ void Game::createBlocks(irr::IrrlichtDevice *window)
     int y = 0;
     std::vector<irr::scene::ISceneNode *> tmp;
 
-    this->_bricks = window->getVideoDriver()->getTexture("./assets/blocks/RedBricks.bmp");
-    this->_wooden = window->getVideoDriver()->getTexture("./assets/blocks/WoodenFloor.bmp");
-
+    this->loadTextures(window);
     for (auto &it : this->_map) {
         for (auto &it2 : it) {
             if (it2 == 'A' || it2 == 'T') {
@@ -110,9 +115,9 @@ void Game::createBlocks(irr::IrrlichtDevice *window)
                       irr::core::vector3df(x * 2, - y * 2, 0.0f),
                       irr::core::vector3df(0.0f, 0.0f, 0.0f)));
                 if (it2 == 'A')
-                    tmp.back()->setMaterialTexture(0, this->_bricks);
+                    tmp.back()->setMaterialTexture(0, this->_textures["RedBricks"]);
                 else
-                    tmp.back()->setMaterialTexture(0, this->_wooden);
+                    tmp.back()->setMaterialTexture(0, this->_textures["WoodenFloor"]);
                 tmp.back()->setMaterialFlag(irr::video::EMF_LIGHTING, true);
             } else {
                 tmp.push_back(nullptr);
@@ -125,7 +130,7 @@ void Game::createBlocks(irr::IrrlichtDevice *window)
     }
 }
 
-Game::Game(irr::IrrlichtDevice *window) : _bricks(), _wooden()
+Game::Game(irr::IrrlichtDevice *window) : _textures()
 {
     if (!this->getMap("assets/map/map.txt"))
         return;

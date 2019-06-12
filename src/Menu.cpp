@@ -48,6 +48,11 @@ void Menu::loadButtons(irr::IrrlichtDevice *window)
     this->_buttons["menuExit"]->setPressedImage(this->_textures["menuLeavepressed"]);
 }
 
+std::map<std::string, irr::gui::IGUIButton *> Menu::getButtons()
+{
+    return this->_buttons;
+}
+
 Menu::Menu(irr::IrrlichtDevice *window)
 {
     this->loadTextures(window);

@@ -38,8 +38,6 @@ private:
     std::map<std::string, irr::gui::IGUIButton *> _buttons;
     std::vector<std::vector<char>> _map;
     std::vector<std::vector<irr::scene::ISceneNode *>> _cubes;
-    irr::video::ITexture* _bricks;
-    irr::video::ITexture* _wooden;
 };
 
 

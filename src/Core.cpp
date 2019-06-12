@@ -62,6 +62,10 @@ void Core::run()
                             it2->setVisible(false);
                         }
                 }
+                if (this->_menu) {
+                    for (auto &it : this->_menu->getButtons())
+                        it.second->setVisible(true);
+                }
                 this->_menu->run(this->_window);
                 break;
             case mainGame:
@@ -71,6 +75,10 @@ void Core::run()
                     this->_window->getGUIEnvironment()->clear();
                     delete(this->_menu);
                     this->_menu = nullptr;
+                }
+                if (this->_menu) {
+                    for (auto &it : this->_menu->getButtons())
+                        it.second->setVisible(false);
                 }
                 for (auto &it : this->_game->getCubes())
                     for (auto &it2 : it) {
