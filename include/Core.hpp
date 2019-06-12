@@ -22,10 +22,15 @@ class MyEventReceiver : public irr::IEventReceiver
 public:
     explicit MyEventReceiver(irr::IrrlichtDevice *window, Core &core) : _window(window), _core(core) {};
     bool OnEvent(const irr::SEvent &event) override;
+    virtual bool IsKeyDown(irr::EKEY_CODE keyCode) const
+    {
+        return KeyIsDown[keyCode];
+    }
 private:
 
     irr::IrrlichtDevice *_window;
     Core &_core;
+    bool KeyIsDown[irr::KEY_KEY_CODES_COUNT];
 };
 
 
