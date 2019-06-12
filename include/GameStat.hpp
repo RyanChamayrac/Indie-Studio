@@ -17,6 +17,8 @@ enum button{
     GUI_ID_QUIT_BUTTON = 101,
     GUI_ID_PLAY_BUTTON = 102,
     GUI_ID_OPTIONS_BUTTON = 103,
+    GUI_ID_RESUME_BUTTON = 104,
+    GUI_ID_RETURN_MENU_BUTTON = 105
 };
 
 class GameStat {

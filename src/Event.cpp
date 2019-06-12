@@ -28,6 +28,10 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                         return true;
                     case GUI_ID_OPTIONS_BUTTON:
                         return true;
+                    case GUI_ID_RETURN_MENU_BUTTON:
+                        this->_window->getGUIEnvironment()->clear();
+                        this->_core.setState(Core::mainMenu);
+                        return true;
                     default:
                         return false;
                 }
@@ -44,7 +48,7 @@ bool MyEventReceiver::keyInputs(const irr::SEvent &event)
         _keyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
         if (this->_core.getState() == Core::mainGame) {
             if (this->IsKeyDown(irr::KEY_ESCAPE)) {
-                this->_core.setState(Core::mainMenu);
+                this->_core.setState(Core::mainPause);
                 return true;
             } else if (this->IsKeyDown(irr::KEY_KEY_Z)) {
                 std::cout << "z pressed" << std::endl;

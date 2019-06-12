@@ -17,11 +17,12 @@ LDLIBS		+=	-Llib -L/usr/lib64 -L/usr/X11R6/lib
 
 LDLIBS		+=	-lIrrlicht -lGL -lXxf86vm -lXext -lX11 -lXcursor -lpthread
 
-SRC		=	main.cpp \
+SRC		=	main.cpp 	\
 			Core.cpp    \
 			Menu.cpp	\
 			Game.cpp	\
-			Event.cpp
+			Event.cpp	\
+			Pause.cpp
 
 TEST	=	test.cpp
 

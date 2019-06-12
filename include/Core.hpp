@@ -16,6 +16,7 @@
 class Menu;
 class Game;
 class Core;
+class Pause;
 
 class MyEventReceiver : public irr::IEventReceiver
 {
@@ -44,7 +45,8 @@ public:
     enum gameState_e {
         mainMenu,
         mainGame,
-        mainOptions
+        mainOptions,
+        mainPause
     };
 
     //Setters
@@ -53,11 +55,13 @@ public:
     //Getters
     Menu *getMenu();
     Game *getGame();
+    Pause *getPause();
     gameState_e getState();
 
 private:
     Menu *_menu;
     Game *_game;
+    Pause *_pause;
     gameState_e _state;
     irr::IrrlichtDevice *_window;
     MyEventReceiver *_receiver;

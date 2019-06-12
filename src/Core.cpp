@@ -8,6 +8,7 @@
 #include "Core.hpp"
 #include "Menu.hpp"
 #include "Game.hpp"
+#include "Pause.hpp"
 
 Core::Core()
 {
@@ -24,6 +25,7 @@ Core::Core()
     this->_state = mainMenu;
     this->_menu = nullptr;
     this->_game = nullptr;
+    this->_pause = nullptr;
 }
 
 void Core::setState(Core::gameState_e state)
@@ -44,6 +46,11 @@ Game *Core::getGame()
 Menu *Core::getMenu()
 {
     return this->_menu;
+}
+
+Pause *Core::getPause()
+{
+    return this->_pause;
 }
 
 void Core::run()
@@ -87,6 +94,19 @@ void Core::run()
                         it2->setVisible(true);
                     }
                 this->_game->run(this->_window);
+                break;
+            case mainPause:
+                if (!this->_pause)
+                    this->_pause = new Pause(this->_window);
+                if (this->_game) {
+                    for (auto &it : this->_game->getCubes())
+                        for (auto &it2 : it) {
+                            if (!it2)
+                                continue;
+                            it2->setVisible(false);
+                        }
+                }
+                this->_pause->run(this->_window);
                 break;
             default:
                 break;
