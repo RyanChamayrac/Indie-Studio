@@ -34,6 +34,8 @@ bool MyEventReceiver::OnEvent(const irr::SEvent &event)
     }
     if (event.EventType == irr::EET_KEY_INPUT_EVENT) {
         KeyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+        if (this->IsKeyDown(irr::KEY_ESCAPE) && this->_core.getState() == Core::mainGame)
+            std::cout << "enter pause menu" << std::endl;
         if (this->IsKeyDown(irr::KEY_KEY_Z))
             std::cout << "z pressed" << std::endl;
         else if (this->IsKeyDown(irr::KEY_KEY_S))
