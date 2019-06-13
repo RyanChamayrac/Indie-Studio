@@ -15,12 +15,8 @@ void Menu::loadTextures(irr::IrrlichtDevice *window)
             window->getVideoDriver()->getTexture("./assets/buttons/leave.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuPlayButton"),
             window->getVideoDriver()->getTexture("./assets/buttons/play.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuHelpButton"),
-            window->getVideoDriver()->getTexture("./ressources/HELP.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuOptionsButton"),
             window->getVideoDriver()->getTexture("./assets/buttons/options.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuTestButton"),
-            window->getVideoDriver()->getTexture("./ressources/test.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuPlaypressed"),
             window->getVideoDriver()->getTexture("./assets/buttons/play-pressed.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuOptionspressed"),

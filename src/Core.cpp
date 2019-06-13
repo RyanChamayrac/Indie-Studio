@@ -71,6 +71,10 @@ void Core::menuCase()
                     continue;
                 it2->setVisible(false);
             }
+        for (auto &it : this->_game->getNodes()) {
+            std::cout << "aaaaaaaaaaaaaaaaaaaa" << std::endl;
+            it->setVisible(false);
+        }
     }
     if (this->_pause) {
         for (auto &it : this->_pause->getButtons())
@@ -98,12 +102,6 @@ void Core::gameCase()
         for (auto &it : this->_pause->getButtons())
             it.second->setVisible(false);
     }
-    for (auto &it : this->_game->getCubes())
-        for (auto &it2 : it) {
-            if (!it2)
-                continue;
-            it2->setVisible(true);
-        }
     for (auto &it : this->_game->getCubes())
         for (auto &it2 : it) {
             if (!it2)

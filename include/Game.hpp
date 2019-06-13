@@ -25,6 +25,8 @@ public:
     //Getters
     std::vector<std::vector<irr::scene::ISceneNode *>> getCubes();
     std::vector<std::vector<irr::scene::ISceneNode *>> getFloor();
+    std::vector<irr::scene::IAnimatedMesh *> getPlayers();
+    std::vector<irr::scene::IAnimatedMeshSceneNode *> getNodes();
 
 
     void run(irr::IrrlichtDevice *window) override;
@@ -32,6 +34,7 @@ public:
     void loadTextures(irr::IrrlichtDevice *window) override;
     bool getMap(const std::string& fileName);
     void createBlocks(irr::IrrlichtDevice *window);
+    void createPlayers(irr::IrrlichtDevice *window);
     int generateMap();
 
 private:
@@ -40,6 +43,8 @@ private:
     std::vector<std::vector<char>> _map;
     std::vector<std::vector<irr::scene::ISceneNode *>> _cubes;
     std::vector<std::vector<irr::scene::ISceneNode *>> _floor;
+    std::vector<irr::scene::IAnimatedMesh *> _players;
+    std::vector<irr::scene::IAnimatedMeshSceneNode *> _nodes;
 };
 
 
