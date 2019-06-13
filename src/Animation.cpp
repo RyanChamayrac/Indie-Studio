@@ -5,7 +5,6 @@
 ** Render.cpp
 */
 
-
 #include <irrlicht.h>
 #include <iostream>
 
@@ -46,6 +45,7 @@ public:
 private:
     bool KeyIsDown[KEY_KEY_CODES_COUNT];
 };
+
 int main()
 {
     MyEventReceiver receiver;
@@ -59,13 +59,13 @@ int main()
     IVideoDriver *driver = device->getVideoDriver();
     ISceneManager *smgr = device->getSceneManager();
     IGUIEnvironment *guienv = device->getGUIEnvironment();
-    IAnimatedMesh *bomberman = smgr->getMesh("assets/models/Bomberman_0.b3d");
+    IAnimatedMesh *bomberman = smgr->getMesh("assets/models/Bomberman.b3d");
     IAnimatedMeshSceneNode *node = smgr->addAnimatedMeshSceneNode(bomberman);
     
     if (node) {
         node->setPosition(vector3df(0,0,30));
         node->setMaterialFlag(EMF_LIGHTING, false);
-        node->setMaterialTexture(0, driver->getTexture("assets/models/Bomberman_0.png"));
+        node->setMaterialTexture(0, driver->getTexture("assets/models/Bomberman.png"));
     }
     smgr->addCameraSceneNode(0, vector3df(0,05,-01), vector3df(0,5,0));
 
@@ -73,6 +73,7 @@ int main()
     const f32 MOVEMENT_SPEED = 5.f;
 
     while (device->run()) {
+        bool run = false;
         const u32 now = device->getTimer()->getTime();
         const f32 frameDeltaTime = (f32)(now - then) / 1000.f;
         then = now;
@@ -80,23 +81,40 @@ int main()
         vector3df nodeRotation = node->getRotation();
 
         if (receiver.IsKeyDown(KEY_KEY_Z)) {
-            node->setFrameLoop(140, 160);
+            if (run == false) {
+                node->setFrameLoop(140, 160);
+                run = true;
+            }
             nodeRotation.Y = 180;
             nodePosition.Z += MOVEMENT_SPEED * frameDeltaTime;
         } else if (receiver.IsKeyDown(KEY_KEY_S)) {
-            node->setFrameLoop(140, 160);
+            if (run == false) {
+                node->setFrameLoop(140, 160);
+                run = true;
+            }
             nodeRotation.Y = 0;
             nodePosition.Z -= MOVEMENT_SPEED * frameDeltaTime;
         } else if (receiver.IsKeyDown(KEY_KEY_Q)) {
-            node->setFrameLoop(140, 160);
+            if (run == false) {
+                node->setFrameLoop(140, 160);
+                run = true;
+            }
             nodeRotation.Y = 90;
             nodePosition.X -= MOVEMENT_SPEED * frameDeltaTime;
         } else if (receiver.IsKeyDown(KEY_KEY_D)) {
-            node->setFrameLoop(140, 160);
+            if (run == false) {
+                node->setFrameLoop(140, 160);
+                run = true;
+            }
             nodeRotation.Y = 270;
             nodePosition.X += MOVEMENT_SPEED * frameDeltaTime;
         } else if (receiver.IsKeyDown(KEY_ESCAPE))
             break;
+
+        if (run == true) {
+            node->setFrameLoop(240, 270);
+            run = false;
+        }
 
         node->setRotation(nodeRotation);
         node->setPosition(nodePosition);
