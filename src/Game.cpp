@@ -9,7 +9,6 @@
 
 void Game::run(irr::IrrlichtDevice *window)
 {
-    (void)window;
     if (this->_map.empty())
         return;
     window->getVideoDriver()->draw2DImage(this->_textures["gameBackground"], irr::core::position2d<irr::s32>(0, 0),
@@ -31,6 +30,54 @@ void Game::loadTextures(irr::IrrlichtDevice *window)
 void Game::loadButtons(irr::IrrlichtDevice *window)
 {
     (void)window;
+}
+
+void Game::player1MoveRight()
+{
+    irr::core::vector3df nodePosition = this->_nodes[0]->getPosition();
+    irr::core::vector3df nodeRotation = this->_nodes[0]->getRotation();
+
+    nodeRotation.Z = 90;
+    nodePosition.X += this->_frameDeltaTime * 5.f;
+    this->_nodes[0]->setFrameLoop(140, 160);
+    this->_nodes[0]->setRotation(nodeRotation);
+    this->_nodes[0]->setPosition(nodePosition);
+}
+
+void Game::player1MoveLeft()
+{
+    irr::core::vector3df nodePosition = this->_nodes[0]->getPosition();
+    irr::core::vector3df nodeRotation = this->_nodes[0]->getRotation();
+
+    nodeRotation.Z = 270;
+    nodePosition.X -= this->_frameDeltaTime * 5.f;
+    this->_nodes[0]->setFrameLoop(140, 160);
+    this->_nodes[0]->setRotation(nodeRotation);
+    this->_nodes[0]->setPosition(nodePosition);
+}
+
+void Game::player1MoveUp()
+{
+    irr::core::vector3df nodePosition = this->_nodes[0]->getPosition();
+    irr::core::vector3df nodeRotation = this->_nodes[0]->getRotation();
+
+    nodeRotation.Z = 180;
+    nodePosition.Y += this->_frameDeltaTime * 5.f;
+    this->_nodes[0]->setFrameLoop(140, 160);
+    this->_nodes[0]->setRotation(nodeRotation);
+    this->_nodes[0]->setPosition(nodePosition);
+}
+
+void Game::player1MoveDown()
+{
+    irr::core::vector3df nodePosition = this->_nodes[0]->getPosition();
+    irr::core::vector3df nodeRotation = this->_nodes[0]->getRotation();
+
+    nodeRotation.Z = 0;
+    nodePosition.Y -= this->_frameDeltaTime * 5.f;
+    this->_nodes[0]->setFrameLoop(140, 160);
+    this->_nodes[0]->setRotation(nodeRotation);
+    this->_nodes[0]->setPosition(nodePosition);
 }
 
 int Game::generateMap()
@@ -184,10 +231,9 @@ Game::Game(irr::IrrlichtDevice *window) : _textures()
 {
     if (!this->getMap("assets/map/map.txt"))
         return;
+    this->_frameDeltaTime = 0.030;
     this->createBlocks(window);
-    std::cout << this->_nodes.size() << std::endl;
     this->createPlayers(window);
-    std::cout << this->_nodes.size() << std::endl;
     window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(19, 0, -30),
                                                  irr::video::SColorf(1.0f, 1.0f, 1.0f));
     window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(19, -38, -30),

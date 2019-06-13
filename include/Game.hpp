@@ -36,6 +36,11 @@ public:
     void createBlocks(irr::IrrlichtDevice *window);
     void createPlayers(irr::IrrlichtDevice *window);
     int generateMap();
+    void player1MoveRight();
+    void player1MoveLeft();
+    void player1MoveUp();
+    void player1MoveDown();
+
 
 private:
     std::map<std::string, irr::video::ITexture *> _textures;
@@ -45,7 +50,7 @@ private:
     std::vector<std::vector<irr::scene::ISceneNode *>> _floor;
     std::vector<irr::scene::IAnimatedMesh *> _players;
     std::vector<irr::scene::IAnimatedMeshSceneNode *> _nodes;
+    irr::f32 _frameDeltaTime;
 };
-
 
 #endif //OOP_INDIE_STUDIO_2018_GAME_HPP

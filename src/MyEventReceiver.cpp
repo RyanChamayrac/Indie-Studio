@@ -52,11 +52,15 @@ bool MyEventReceiver::keyInputs(const irr::SEvent &event)
                 this->_core.setState(Core::mainPause);
                 return true;
             } else if (this->IsKeyDown(irr::KEY_KEY_Z)) {
-                std::cout << "z pressed" << std::endl;
+                this->_core.getGame()->player1MoveUp();
+            } else if (this->IsKeyDown(irr::KEY_KEY_D)) {
+                this->_core.getGame()->player1MoveRight();
+            } else if (this->IsKeyDown(irr::KEY_KEY_Q)) {
+                this->_core.getGame()->player1MoveLeft();
             } else if (this->IsKeyDown(irr::KEY_KEY_S)) {
-                std::cout << "s pressed" << std::endl;
+                this->_core.getGame()->player1MoveDown();
             }
-        } else if (this->_core.getState() == Core::mainMenu) {
+    } else if (this->_core.getState() == Core::mainMenu) {
             if (this->IsKeyDown(irr::KEY_ESCAPE)) {
                 this->_window->closeDevice();
                 return true;
