@@ -21,7 +21,7 @@ SRC		=	main.cpp 	\
 			Core.cpp    \
 			Menu.cpp	\
 			Game.cpp	\
-			Event.cpp	\
+			MyEventReceiver.cpp	\
 			Pause.cpp
 
 TEST	=	test.cpp

@@ -27,6 +27,11 @@ void Pause::loadTextures(irr::IrrlichtDevice *window)
             window->getVideoDriver()->getTexture("./assets/buttons/resume-pressed.png")));
 }
 
+std::map<std::string, irr::gui::IGUIButton *> Pause::getButtons()
+{
+    return this->_buttons;
+}
+
 void Pause::loadButtons(irr::IrrlichtDevice *window)
 {
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("backMenu"),

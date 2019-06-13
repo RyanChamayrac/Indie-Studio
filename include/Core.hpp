@@ -12,27 +12,11 @@
 #include <map>
 #include <irrlicht.h>
 //#include "driverChoice.h"
-
 class Menu;
 class Game;
 class Core;
 class Pause;
-
-class MyEventReceiver : public irr::IEventReceiver
-{
-public:
-    explicit MyEventReceiver(irr::IrrlichtDevice *window, Core &core) : _window(window), _core(core), _keyIsDown() {};
-    bool OnEvent(const irr::SEvent &event) override;
-    virtual bool IsKeyDown(irr::EKEY_CODE keyCode) const;
-    bool clicks(const irr::SEvent &event);
-    bool keyInputs(const irr::SEvent &event);
-
-private:
-    irr::IrrlichtDevice *_window;
-    Core &_core;
-    bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];
-};
-
+class MyEventReceiver;
 
 class Core
 {
@@ -48,6 +32,11 @@ public:
         mainOptions,
         mainPause
     };
+
+    void menuCase();
+    void pauseCase();
+    void gameCase();
+    void optionCase();
 
     //Setters
     void setState(gameState_e state);
@@ -66,4 +55,7 @@ private:
     irr::IrrlichtDevice *_window;
     MyEventReceiver *_receiver;
 };
+
+#include "Game.hpp"
+
 #endif

@@ -1,12 +1,11 @@
-//
-// EPITECH PROJECT, 2019
-// Event
-// File description:
-// Indie Studio
-//
+/*
+** EPITECH PROJECT, 2019
+** OOP_indie_studio_2018
+** File description:
+** MyEventReceiver.cpp
+*/
 
-#include "Core.hpp"
-#include "GameStat.hpp"
+#include "MyEventReceiver.hpp"
 
 bool MyEventReceiver::IsKeyDown(irr::EKEY_CODE keyCode) const
 {
@@ -29,8 +28,10 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                     case GUI_ID_OPTIONS_BUTTON:
                         return true;
                     case GUI_ID_RETURN_MENU_BUTTON:
-                        this->_window->getGUIEnvironment()->clear();
                         this->_core.setState(Core::mainMenu);
+                        return true;
+                    case GUI_ID_RESUME_BUTTON:
+                        this->_core.setState(Core::mainGame);
                         return true;
                     default:
                         return false;

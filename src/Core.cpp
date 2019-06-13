@@ -9,6 +9,7 @@
 #include "Menu.hpp"
 #include "Game.hpp"
 #include "Pause.hpp"
+#include "MyEventReceiver.hpp"
 
 Core::Core()
 {
@@ -53,66 +54,110 @@ Pause *Core::getPause()
     return this->_pause;
 }
 
+void Core::menuCase()
+{
+    if (!this->_menu)
+        this->_menu = new Menu(this->_window);
+    if (this->_game) {
+        for (auto &it : this->_game->getCubes())
+            for (auto &it2 : it) {
+                if (!it2)
+                    continue;
+                it2->setVisible(false);
+            }
+        for (auto &it : this->_game->getFloor())
+            for (auto &it2 : it) {
+                if (!it2)
+                    continue;
+                it2->setVisible(false);
+            }
+    }
+    if (this->_pause) {
+        for (auto &it : this->_pause->getButtons())
+            it.second->setVisible(false);
+    }
+    for (auto &it : this->_menu->getButtons())
+        it.second->setVisible(true);
+    this->_menu->run(this->_window);
+}
+
+void Core::gameCase()
+{
+    if (!this->_game) {
+        this->_window->getVideoDriver()->removeAllTextures();
+        this->_game = new Game(this->_window);
+        this->_window->getGUIEnvironment()->clear();
+        delete(this->_menu);
+        this->_menu = nullptr;
+    }
+    if (this->_menu) {
+        for (auto &it : this->_menu->getButtons())
+            it.second->setVisible(false);
+    }
+    if (this->_pause) {
+        for (auto &it : this->_pause->getButtons())
+            it.second->setVisible(false);
+    }
+    for (auto &it : this->_game->getCubes())
+        for (auto &it2 : it) {
+            if (!it2)
+                continue;
+            it2->setVisible(true);
+        }
+    for (auto &it : this->_game->getCubes())
+        for (auto &it2 : it) {
+            if (!it2)
+                continue;
+            it2->setVisible(true);
+        }
+    for (auto &it : this->_game->getFloor())
+        for (auto &it2 : it) {
+            if (!it2)
+                continue;
+            it2->setVisible(true);
+        }
+    this->_game->run(this->_window);
+}
+
+void Core::optionCase()
+{
+
+}
+
+void Core::pauseCase()
+{
+    if (!this->_pause)
+        this->_pause = new Pause(this->_window);
+    for (auto &it : this->_game->getCubes())
+        for (auto &it2 : it) {
+            if (!it2)
+                continue;
+            it2->setVisible(false);
+        }
+    for (auto &it : this->_game->getFloor())
+        for (auto &it2 : it) {
+            if (!it2)
+                continue;
+            it2->setVisible(false);
+        }
+    for (auto &it : this->_pause->getButtons())
+            it.second->setVisible(true);
+    this->_pause->run(this->_window);
+}
+
 void Core::run()
 {
     while (this->_window->run()) {
         this->_window->getVideoDriver()->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
         switch (this->_state) {
             case mainMenu:
-                if (!this->_menu)
-                    this->_menu = new Menu(this->_window);
-                if (this->_game) {
-                    for (auto &it : this->_game->getCubes())
-                        for (auto &it2 : it) {
-                            if (!it2)
-                                continue;
-                            it2->setVisible(false);
-                        }
-                    for (auto &it : this->_game->getFloor())
-                        for (auto &it2 : it) {
-                            if (!it2)
-                                continue;
-                            it2->setVisible(false);
-                        }
-                }
-                if (this->_menu) {
-                    for (auto &it : this->_menu->getButtons())
-                        it.second->setVisible(true);
-                }
-                this->_menu->run(this->_window);
+                this->menuCase();
                 break;
             case mainGame:
-                if (!this->_game) {
-                    this->_window->getVideoDriver()->removeAllTextures();
-                    this->_game = new Game(this->_window);
-                    this->_window->getGUIEnvironment()->clear();
-                    delete(this->_menu);
-                    this->_menu = nullptr;
-                }
-                if (this->_menu) {
-                    for (auto &it : this->_menu->getButtons())
-                        it.second->setVisible(false);
-                }
-                for (auto &it : this->_game->getCubes())
-                    for (auto &it2 : it) {
-                        if (!it2)
-                            continue;
-                        it2->setVisible(true);
-                    }
-                this->_game->run(this->_window);
+                this->gameCase();
                 break;
             case mainPause:
-                if (!this->_pause)
-                    this->_pause = new Pause(this->_window);
-                if (this->_game) {
-                    for (auto &it : this->_game->getCubes())
-                        for (auto &it2 : it) {
-                            if (!it2)
-                                continue;
-                            it2->setVisible(false);
-                        }
-                }
-                this->_pause->run(this->_window);
+                this->pauseCase();
                 break;
             default:
                 break;
