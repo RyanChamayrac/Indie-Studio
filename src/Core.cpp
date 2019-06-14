@@ -81,6 +81,10 @@ void Core::menuCase()
         for (auto &it : this->_game->getPlayers())
             it->getNode()->setVisible(false);
     }
+    if (this->_select) {
+        for (auto &it : this->_select->getButtons())
+            it.second->setVisible(false);
+    }
     if (this->_pause) {
         for (auto &it : this->_pause->getButtons())
             it.second->setVisible(false);
@@ -92,19 +96,18 @@ void Core::menuCase()
 
 void Core::gameCase()
 {
-    if (!this->_game) {
-        this->_window->getVideoDriver()->removeAllTextures();
+    if (!this->_game)
         this->_game = new Game(this->_window);
-        this->_window->getGUIEnvironment()->clear();
-        delete(this->_menu);
-        this->_menu = nullptr;
-    }
     if (this->_menu) {
         for (auto &it : this->_menu->getButtons())
             it.second->setVisible(false);
     }
     if (this->_pause) {
         for (auto &it : this->_pause->getButtons())
+            it.second->setVisible(false);
+    }
+    if (this->_select) {
+        for (auto &it : this->_select->getButtons())
             it.second->setVisible(false);
     }
     for (auto &it : this->_game->getCubes())
@@ -154,18 +157,20 @@ void Core::pauseCase()
 
 void Core::selectCase()
 {
-        if(!this->_select)
-            this->_select = new SelectPlayer(this->_window);
-        for (auto &it : this->_menu->getButtons())
-            it.second->setVisible(false);
-        this->_select->run(this->_window);
+    if(!this->_select)
+        this->_select = new SelectPlayer(this->_window);
+    for (auto &it : this->_menu->getButtons())
+        it.second->setVisible(false);
+    for (auto &it : this->_select->getButtons())
+        it.second->setVisible(true);
+    this->_select->run(this->_window);
 }
 
 void Core::run()
 {
     sf::Music music;
     if (!music.openFromFile("assets/music.ogg"))
-        return; // erreur
+        return;
     music.play();
     while (this->_window->run()) {
         this->_window->getVideoDriver()->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
