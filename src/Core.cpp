@@ -11,6 +11,7 @@
 #include "Pause.hpp"
 #include "Select.hpp"
 #include "MyEventReceiver.hpp"
+#include <SFML/Audio.hpp>
 
 Core::Core()
 {
@@ -43,11 +44,6 @@ Core::gameState_e Core::getState()
 Game *Core::getGame()
 {
     return this->_game;
-}
-
-SelectPlayer *Core::getSelect()
-{
-    return this->_select;
 }
 
 Menu *Core::getMenu()
@@ -158,7 +154,7 @@ void Core::pauseCase()
 
 void Core::selectCase()
 {
-        if (!this->_select)
+        if(!this->_select)
             this->_select = new SelectPlayer(this->_window);
         for (auto &it : this->_menu->getButtons())
             it.second->setVisible(false);
@@ -167,6 +163,10 @@ void Core::selectCase()
 
 void Core::run()
 {
+    sf::Music music;
+    if (!music.openFromFile("assets/music.ogg"))
+        return; // erreur
+    music.play();
     while (this->_window->run()) {
         this->_window->getVideoDriver()->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
         switch (this->_state) {
