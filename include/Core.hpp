@@ -46,6 +46,7 @@ public:
     Game *getGame();
     Pause *getPause();
     gameState_e getState();
+    irr::IrrlichtDevice *getWindow();
 
 private:
     Menu *_menu;

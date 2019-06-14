@@ -54,6 +54,11 @@ Pause *Core::getPause()
     return this->_pause;
 }
 
+irr::IrrlichtDevice * Core::getWindow()
+{
+    return this->_window;
+}
+
 void Core::menuCase()
 {
     if (!this->_menu)
@@ -112,6 +117,8 @@ void Core::gameCase()
                 continue;
             it2->setVisible(true);
         }
+    for (auto &it : this->_game->getPlayers())
+        it->getNode()->setVisible(true);
     this->_game->run(this->_window);
 }
 

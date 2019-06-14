@@ -157,10 +157,10 @@ void Game::createPlayers(irr::IrrlichtDevice *window)
 {
     for (int i = 0; i < 4; i++)
         this->_players.push_back(nullptr);
-    this->_players[0] = new Player(window, irr::core::vector3df(2,-2,0), false);
-    this->_players[1] = new Player(window, irr::core::vector3df(34,-34,0), true);
-    this->_players[2] = new Player(window, irr::core::vector3df(2,-34,0), true);
-    this->_players[3] = new Player(window, irr::core::vector3df(34,-2,0), true);
+    this->_players[0] = new Player(window, irr::core::vector3df(2,-2,0), false, this->_cubes, this->_map);
+    this->_players[1] = new Player(window, irr::core::vector3df(34,-34,0), true, this->_cubes, this->_map);
+    this->_players[2] = new Player(window, irr::core::vector3df(2,-34,0), true, this->_cubes, this->_map);
+    this->_players[3] = new Player(window, irr::core::vector3df(34,-2,0), true, this->_cubes, this->_map);
 }
 
 Game::Game(irr::IrrlichtDevice *window) : _textures()
