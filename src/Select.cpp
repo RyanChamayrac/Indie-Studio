@@ -6,6 +6,7 @@
 */
 
 #include "Select.hpp"
+#include "GameStat.hpp"
 
 SelectPlayer::SelectPlayer(irr::IrrlichtDevice *windows)
 {
