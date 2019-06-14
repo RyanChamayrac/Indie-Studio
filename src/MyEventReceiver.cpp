@@ -23,7 +23,7 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                         this->_window->closeDevice();
                         return true;
                     case GUI_ID_PLAY_BUTTON:
-                        this->_core.setState(Core::mainGame);
+                        this->_core.setState(Core::mainSelect);
                         return true;
                     case GUI_ID_OPTIONS_BUTTON:
                         return true;

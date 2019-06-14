@@ -9,6 +9,7 @@
 #include "Menu.hpp"
 #include "Game.hpp"
 #include "Pause.hpp"
+#include "Select.hpp"
 #include "MyEventReceiver.hpp"
 
 Core::Core()
@@ -42,6 +43,11 @@ Core::gameState_e Core::getState()
 Game *Core::getGame()
 {
     return this->_game;
+}
+
+SelectPlayer *Core::getSelect()
+{
+    return this->_select;
 }
 
 Menu *Core::getMenu()
@@ -150,6 +156,15 @@ void Core::pauseCase()
     this->_pause->run(this->_window);
 }
 
+void Core::selectCase()
+{
+        if (!this->_select)
+            this->_select = new SelectPlayer(this->_window);
+        for (auto &it : this->_menu->getButtons())
+            it.second->setVisible(false);
+        this->_select->run(this->_window);
+}
+
 void Core::run()
 {
     while (this->_window->run()) {
@@ -157,6 +172,9 @@ void Core::run()
         switch (this->_state) {
             case mainMenu:
                 this->menuCase();
+                break;
+            case mainSelect:
+                this->selectCase();
                 break;
             case mainGame:
                 this->gameCase();
