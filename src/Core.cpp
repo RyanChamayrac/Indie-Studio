@@ -10,6 +10,7 @@
 #include "Game.hpp"
 #include "Pause.hpp"
 #include "MyEventReceiver.hpp"
+#include <SFML/Audio.hpp>
 
 Core::Core()
 {
@@ -152,6 +153,11 @@ void Core::pauseCase()
 
 void Core::run()
 {
+    sf::Music music;
+    if (!music.openFromFile("music.ogg"))
+        return; // error
+    music.play();
+
     while (this->_window->run()) {
         this->_window->getVideoDriver()->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
         switch (this->_state) {
