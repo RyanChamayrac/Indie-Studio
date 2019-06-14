@@ -38,12 +38,32 @@ void SelectPlayer::loadTextures(irr::IrrlichtDevice *windows)
             windows->getVideoDriver()->getTexture("./assets/buttons/back.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("selectPlay"),
             windows->getVideoDriver()->getTexture("./assets/buttons/play.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("blue"),
+            windows->getVideoDriver()->getTexture("./assets/models/select/blue.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("cyan"),
+            windows->getVideoDriver()->getTexture("./assets/models/select/cyan.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("green"),
+            windows->getVideoDriver()->getTexture("./assets/models/select/green.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("orange"),
+            windows->getVideoDriver()->getTexture("./assets/models/select/orange.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("red"),
+            windows->getVideoDriver()->getTexture("./assets/models/select/red.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("yellow"),
+            windows->getVideoDriver()->getTexture("./assets/models/select/blue.png")));
 }
 
 void SelectPlayer::run(irr::IrrlichtDevice *windows)
 {
     windows->getVideoDriver()->draw2DImage(this->_textures["SelectBackground"], irr::core::position2d<irr::s32>(0,0),
             irr::core::rect<irr::s32>(0,0, 1920, 1080), nullptr, irr::video::SColor(255, 255, 255, 255), true);
+        windows->getVideoDriver()->draw2DImage(this->_textures["blue"], irr::core::position2d<irr::s32>(150, 200),
+            irr::core::rect<irr::s32>(0,0, 310, 400), nullptr, irr::video::SColor(255, 255, 255, 255), true);
+    windows->getVideoDriver()->draw2DImage(this->_textures["green"], irr::core::position2d<irr::s32>(550, 200),
+            irr::core::rect<irr::s32>(0,0, 310, 400), nullptr, irr::video::SColor(255, 255, 255, 255), true);
+    windows->getVideoDriver()->draw2DImage(this->_textures["red"], irr::core::position2d<irr::s32>(950, 200),
+            irr::core::rect<irr::s32>(0,0, 310, 400), nullptr, irr::video::SColor(255, 255, 255, 255), true);
+    windows->getVideoDriver()->draw2DImage(this->_textures["yellow"], irr::core::position2d<irr::s32>(1350, 200),
+            irr::core::rect<irr::s32>(0,0, 310, 400), nullptr, irr::video::SColor(255, 255, 255, 255), true);
 }
 
 std::map<std::string, irr::gui::IGUIButton *> SelectPlayer::getButtons()
