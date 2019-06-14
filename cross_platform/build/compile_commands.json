@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/hsom/Epitech/OOP/OOP_indie_studio_2018/cross_platform/build",
-  "command": "/usr/bin/g++-8    -g   -std=gnu++14 -o CMakeFiles/OOP_indie_studio_2018.dir/src/main.cpp.o -c /home/hsom/Epitech/OOP/OOP_indie_studio_2018/cross_platform/src/main.cpp",
-  "file": "/home/hsom/Epitech/OOP/OOP_indie_studio_2018/cross_platform/src/main.cpp"
-}
-]
