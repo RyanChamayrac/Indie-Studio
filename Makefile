@@ -22,6 +22,7 @@ SRC		=	main.cpp 	\
 			Menu.cpp	\
 			Game.cpp	\
 			MyEventReceiver.cpp	\
+			Player.cpp	\
 			Pause.cpp
 
 TEST	=	test.cpp

@@ -201,6 +201,7 @@ add_executable(OOP_indie_studio_2018
         include/Animation.hpp
         include/MyEventReceiver.hpp
         include/Pause.hpp
+        include/Player.hpp
         lib/lua/readline/examples/rlfe/extern.h
         lib/lua/readline/examples/rlfe/os.h
         lib/lua/readline/examples/rlfe/pty.c
@@ -351,4 +352,5 @@ add_executable(OOP_indie_studio_2018
         src/Game.cpp
         src/Animation.cpp
         src/MyEventReceiver.cpp
+        src/Player.cpp
         src/Pause.cpp)

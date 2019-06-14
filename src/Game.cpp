@@ -32,53 +32,6 @@ void Game::loadButtons(irr::IrrlichtDevice *window)
     (void)window;
 }
 
-void Game::player1MoveRight()
-{
-    irr::core::vector3df nodePosition = this->_nodes[0]->getPosition();
-    irr::core::vector3df nodeRotation = this->_nodes[0]->getRotation();
-
-    nodeRotation.Z = 90;
-    nodePosition.X += this->_frameDeltaTime * 5.f;
-    this->_nodes[0]->setFrameLoop(140, 160);
-    this->_nodes[0]->setRotation(nodeRotation);
-    this->_nodes[0]->setPosition(nodePosition);
-}
-
-void Game::player1MoveLeft()
-{
-    irr::core::vector3df nodePosition = this->_nodes[0]->getPosition();
-    irr::core::vector3df nodeRotation = this->_nodes[0]->getRotation();
-
-    nodeRotation.Z = 270;
-    nodePosition.X -= this->_frameDeltaTime * 5.f;
-    this->_nodes[0]->setFrameLoop(140, 160);
-    this->_nodes[0]->setRotation(nodeRotation);
-    this->_nodes[0]->setPosition(nodePosition);
-}
-
-void Game::player1MoveUp()
-{
-    irr::core::vector3df nodePosition = this->_nodes[0]->getPosition();
-    irr::core::vector3df nodeRotation = this->_nodes[0]->getRotation();
-
-    nodeRotation.Z = 180;
-    nodePosition.Y += this->_frameDeltaTime * 5.f;
-    this->_nodes[0]->setFrameLoop(140, 160);
-    this->_nodes[0]->setRotation(nodeRotation);
-    this->_nodes[0]->setPosition(nodePosition);
-}
-
-void Game::player1MoveDown()
-{
-    irr::core::vector3df nodePosition = this->_nodes[0]->getPosition();
-    irr::core::vector3df nodeRotation = this->_nodes[0]->getRotation();
-
-    nodeRotation.Z = 0;
-    nodePosition.Y -= this->_frameDeltaTime * 5.f;
-    this->_nodes[0]->setFrameLoop(140, 160);
-    this->_nodes[0]->setRotation(nodeRotation);
-    this->_nodes[0]->setPosition(nodePosition);
-}
 
 int Game::generateMap()
 {
@@ -155,14 +108,9 @@ std::vector<std::vector<irr::scene::ISceneNode *>> Game::getFloor()
     return this->_floor;
 }
 
-std::vector<irr::scene::IAnimatedMesh *> Game::getPlayers()
+std::vector<Player*> Game::getPlayers()
 {
     return this->_players;
-}
-
-std::vector<irr::scene::IAnimatedMeshSceneNode *> Game::getNodes()
-{
-    return this->_nodes;
 }
 
 void Game::createBlocks(irr::IrrlichtDevice *window)
@@ -207,31 +155,18 @@ void Game::createBlocks(irr::IrrlichtDevice *window)
 
 void Game::createPlayers(irr::IrrlichtDevice *window)
 {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
         this->_players.push_back(nullptr);
-        this->_nodes.push_back(nullptr);
-        this->_players[i] = window->getSceneManager()->getMesh("assets/models/Bomberman.b3d");
-/*
-        window->getSceneManager()->getMeshManipulator()->scale(this->_players[i], irr::core::vector3df(1, 1, 1));
-*/
-        this->_nodes[i] = window->getSceneManager()->addAnimatedMeshSceneNode(this->_players[i]);
-        if (this->_nodes[i]) {
-            this->_nodes[i]->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-            this->_nodes[i]->setMaterialTexture(0, window->getVideoDriver()->getTexture("assets/models/Bomberman.png"));
-            this->_nodes[i]->setRotation(irr::core::vector3df(-90, 0, 0));
-        }
-    }
-    this->_nodes[0]->setPosition(irr::core::vector3df(2,-2,0));
-    this->_nodes[1]->setPosition(irr::core::vector3df(34,-34,0));
-    this->_nodes[2]->setPosition(irr::core::vector3df(2,-34,0));
-    this->_nodes[3]->setPosition(irr::core::vector3df(34,-2,0));
+    this->_players[0] = new Player(window, irr::core::vector3df(2,-2,0), false);
+    this->_players[1] = new Player(window, irr::core::vector3df(34,-34,0), true);
+    this->_players[2] = new Player(window, irr::core::vector3df(2,-34,0), true);
+    this->_players[3] = new Player(window, irr::core::vector3df(34,-2,0), true);
 }
 
 Game::Game(irr::IrrlichtDevice *window) : _textures()
 {
     if (!this->getMap("assets/map/map.txt"))
         return;
-    this->_frameDeltaTime = 0.030;
     this->createBlocks(window);
     this->createPlayers(window);
     window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(19, 0, -30),

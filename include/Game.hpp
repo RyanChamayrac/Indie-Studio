@@ -11,7 +11,7 @@
 #include <vector>
 #include <fstream>
 #include "GameStat.hpp"
-
+#include "Player.hpp"
 
 class Game : public GameStat {
 
@@ -25,8 +25,7 @@ public:
     //Getters
     std::vector<std::vector<irr::scene::ISceneNode *>> getCubes();
     std::vector<std::vector<irr::scene::ISceneNode *>> getFloor();
-    std::vector<irr::scene::IAnimatedMesh *> getPlayers();
-    std::vector<irr::scene::IAnimatedMeshSceneNode *> getNodes();
+    std::vector<Player *> getPlayers();
 
 
     void run(irr::IrrlichtDevice *window) override;
@@ -36,11 +35,6 @@ public:
     void createBlocks(irr::IrrlichtDevice *window);
     void createPlayers(irr::IrrlichtDevice *window);
     int generateMap();
-    void player1MoveRight();
-    void player1MoveLeft();
-    void player1MoveUp();
-    void player1MoveDown();
-
 
 private:
     std::map<std::string, irr::video::ITexture *> _textures;
@@ -48,9 +42,7 @@ private:
     std::vector<std::vector<char>> _map;
     std::vector<std::vector<irr::scene::ISceneNode *>> _cubes;
     std::vector<std::vector<irr::scene::ISceneNode *>> _floor;
-    std::vector<irr::scene::IAnimatedMesh *> _players;
-    std::vector<irr::scene::IAnimatedMeshSceneNode *> _nodes;
-    irr::f32 _frameDeltaTime;
+    std::vector<Player *> _players;
 };
 
 #endif //OOP_INDIE_STUDIO_2018_GAME_HPP

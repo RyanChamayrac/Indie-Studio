@@ -52,13 +52,15 @@ bool MyEventReceiver::keyInputs(const irr::SEvent &event)
                 this->_core.setState(Core::mainPause);
                 return true;
             } else if (this->IsKeyDown(irr::KEY_KEY_Z)) {
-                this->_core.getGame()->player1MoveUp();
+                this->_core.getGame()->getPlayers()[0]->MoveUp();
             } else if (this->IsKeyDown(irr::KEY_KEY_D)) {
-                this->_core.getGame()->player1MoveRight();
+                this->_core.getGame()->getPlayers()[0]->MoveRight();
             } else if (this->IsKeyDown(irr::KEY_KEY_Q)) {
-                this->_core.getGame()->player1MoveLeft();
+                this->_core.getGame()->getPlayers()[0]->MoveLeft();
             } else if (this->IsKeyDown(irr::KEY_KEY_S)) {
-                this->_core.getGame()->player1MoveDown();
+                this->_core.getGame()->getPlayers()[0]->MoveDown();
+            } else if (this->IsKeyDown(irr::KEY_SPACE)) {
+                this->_core.getGame()->getPlayers()[0]->action();
             }
     } else if (this->_core.getState() == Core::mainMenu) {
             if (this->IsKeyDown(irr::KEY_ESCAPE)) {
