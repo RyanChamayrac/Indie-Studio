@@ -1279,18 +1279,57 @@ CMakeFiles/OOP_indie_studio_2018.dir/src/Game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_indie_studio_2018.dir/src/Game.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tfoucou/OOP_indie_studio_2018/src/Game.cpp -o CMakeFiles/OOP_indie_studio_2018.dir/src/Game.cpp.s
 
-CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o: CMakeFiles/OOP_indie_studio_2018.dir/flags.make
-CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o: ../src/Event.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o -c /home/tfoucou/OOP_indie_studio_2018/src/Event.cpp
+CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o: CMakeFiles/OOP_indie_studio_2018.dir/flags.make
+CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o: ../src/MyEventReceiver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o -c /home/tfoucou/OOP_indie_studio_2018/src/MyEventReceiver.cpp
 
-CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tfoucou/OOP_indie_studio_2018/src/Event.cpp > CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.i
+CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tfoucou/OOP_indie_studio_2018/src/MyEventReceiver.cpp > CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.i
 
-CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tfoucou/OOP_indie_studio_2018/src/Event.cpp -o CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.s
+CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tfoucou/OOP_indie_studio_2018/src/MyEventReceiver.cpp -o CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.s
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o: CMakeFiles/OOP_indie_studio_2018.dir/flags.make
+CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o: ../src/Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building CXX object CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o -c /home/tfoucou/OOP_indie_studio_2018/src/Player.cpp
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tfoucou/OOP_indie_studio_2018/src/Player.cpp > CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.i
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tfoucou/OOP_indie_studio_2018/src/Player.cpp -o CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.s
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o: CMakeFiles/OOP_indie_studio_2018.dir/flags.make
+CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o: ../src/Select.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building CXX object CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o -c /home/tfoucou/OOP_indie_studio_2018/src/Select.cpp
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tfoucou/OOP_indie_studio_2018/src/Select.cpp > CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.i
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tfoucou/OOP_indie_studio_2018/src/Select.cpp -o CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.s
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o: CMakeFiles/OOP_indie_studio_2018.dir/flags.make
+CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o: ../src/Pause.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building CXX object CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o -c /home/tfoucou/OOP_indie_studio_2018/src/Pause.cpp
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tfoucou/OOP_indie_studio_2018/src/Pause.cpp > CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.i
+
+CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tfoucou/OOP_indie_studio_2018/src/Pause.cpp -o CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.s
 
 # Object files for target OOP_indie_studio_2018
 OOP_indie_studio_2018_OBJECTS = \
@@ -1388,7 +1427,10 @@ OOP_indie_studio_2018_OBJECTS = \
 "CMakeFiles/OOP_indie_studio_2018.dir/src/main.cpp.o" \
 "CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.o" \
 "CMakeFiles/OOP_indie_studio_2018.dir/src/Game.cpp.o" \
-"CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o"
+"CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o" \
+"CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o" \
+"CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o" \
+"CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o"
 
 # External object files for target OOP_indie_studio_2018
 OOP_indie_studio_2018_EXTERNAL_OBJECTS =
@@ -1487,10 +1529,13 @@ OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/Core.cpp.o
 OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/main.cpp.o
 OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.o
 OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/Game.cpp.o
-OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o
+OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o
+OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o
+OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o
+OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o
 OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/build.make
 OOP_indie_studio_2018: CMakeFiles/OOP_indie_studio_2018.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Linking CXX executable OOP_indie_studio_2018"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Linking CXX executable OOP_indie_studio_2018"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/OOP_indie_studio_2018.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

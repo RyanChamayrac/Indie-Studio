@@ -109,9 +109,12 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/tfoucou/OOP_indie_studio_2018/cross_platform/src/main.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/cross_platform/src/main.cpp.o"
   "/home/tfoucou/OOP_indie_studio_2018/src/Core.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Core.cpp.o"
-  "/home/tfoucou/OOP_indie_studio_2018/src/Event.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o"
   "/home/tfoucou/OOP_indie_studio_2018/src/Game.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Game.cpp.o"
   "/home/tfoucou/OOP_indie_studio_2018/src/Menu.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.o"
+  "/home/tfoucou/OOP_indie_studio_2018/src/MyEventReceiver.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o"
+  "/home/tfoucou/OOP_indie_studio_2018/src/Pause.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o"
+  "/home/tfoucou/OOP_indie_studio_2018/src/Player.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o"
+  "/home/tfoucou/OOP_indie_studio_2018/src/Select.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o"
   "/home/tfoucou/OOP_indie_studio_2018/src/main.cpp" "/home/tfoucou/OOP_indie_studio_2018/cmake-build-debug/CMakeFiles/OOP_indie_studio_2018.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

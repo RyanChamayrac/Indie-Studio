@@ -657,6 +657,15 @@
 		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/include/Menu.hpp">
 			<Option target="OOP_indie_studio_2018"/>
 		</Unit>
+		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/include/MyEventReceiver.hpp">
+			<Option target="OOP_indie_studio_2018"/>
+		</Unit>
+		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/include/Pause.hpp">
+			<Option target="OOP_indie_studio_2018"/>
+		</Unit>
+		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/include/Player.hpp">
+			<Option target="OOP_indie_studio_2018"/>
+		</Unit>
 		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/lib/lua/lapi.c">
 			<Option target="OOP_indie_studio_2018"/>
 		</Unit>
@@ -1092,13 +1101,22 @@
 		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Core.cpp">
 			<Option target="OOP_indie_studio_2018"/>
 		</Unit>
-		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Event.cpp">
-			<Option target="OOP_indie_studio_2018"/>
-		</Unit>
 		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Game.cpp">
 			<Option target="OOP_indie_studio_2018"/>
 		</Unit>
 		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Menu.cpp">
+			<Option target="OOP_indie_studio_2018"/>
+		</Unit>
+		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/MyEventReceiver.cpp">
+			<Option target="OOP_indie_studio_2018"/>
+		</Unit>
+		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Pause.cpp">
+			<Option target="OOP_indie_studio_2018"/>
+		</Unit>
+		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Player.cpp">
+			<Option target="OOP_indie_studio_2018"/>
+		</Unit>
+		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/Select.cpp">
 			<Option target="OOP_indie_studio_2018"/>
 		</Unit>
 		<Unit filename="/home/tfoucou/OOP_indie_studio_2018/src/main.cpp">

@@ -2580,33 +2580,6 @@ src/Core.cpp.s:
 	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Core.cpp.s
 .PHONY : src/Core.cpp.s
 
-src/Event.o: src/Event.cpp.o
-
-.PHONY : src/Event.o
-
-# target to build an object file
-src/Event.cpp.o:
-	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o
-.PHONY : src/Event.cpp.o
-
-src/Event.i: src/Event.cpp.i
-
-.PHONY : src/Event.i
-
-# target to preprocess a source file
-src/Event.cpp.i:
-	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.i
-.PHONY : src/Event.cpp.i
-
-src/Event.s: src/Event.cpp.s
-
-.PHONY : src/Event.s
-
-# target to generate assembly for a file
-src/Event.cpp.s:
-	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.s
-.PHONY : src/Event.cpp.s
-
 src/Game.o: src/Game.cpp.o
 
 .PHONY : src/Game.o
@@ -2660,6 +2633,114 @@ src/Menu.s: src/Menu.cpp.s
 src/Menu.cpp.s:
 	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.s
 .PHONY : src/Menu.cpp.s
+
+src/MyEventReceiver.o: src/MyEventReceiver.cpp.o
+
+.PHONY : src/MyEventReceiver.o
+
+# target to build an object file
+src/MyEventReceiver.cpp.o:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o
+.PHONY : src/MyEventReceiver.cpp.o
+
+src/MyEventReceiver.i: src/MyEventReceiver.cpp.i
+
+.PHONY : src/MyEventReceiver.i
+
+# target to preprocess a source file
+src/MyEventReceiver.cpp.i:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.i
+.PHONY : src/MyEventReceiver.cpp.i
+
+src/MyEventReceiver.s: src/MyEventReceiver.cpp.s
+
+.PHONY : src/MyEventReceiver.s
+
+# target to generate assembly for a file
+src/MyEventReceiver.cpp.s:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.s
+.PHONY : src/MyEventReceiver.cpp.s
+
+src/Pause.o: src/Pause.cpp.o
+
+.PHONY : src/Pause.o
+
+# target to build an object file
+src/Pause.cpp.o:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o
+.PHONY : src/Pause.cpp.o
+
+src/Pause.i: src/Pause.cpp.i
+
+.PHONY : src/Pause.i
+
+# target to preprocess a source file
+src/Pause.cpp.i:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.i
+.PHONY : src/Pause.cpp.i
+
+src/Pause.s: src/Pause.cpp.s
+
+.PHONY : src/Pause.s
+
+# target to generate assembly for a file
+src/Pause.cpp.s:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.s
+.PHONY : src/Pause.cpp.s
+
+src/Player.o: src/Player.cpp.o
+
+.PHONY : src/Player.o
+
+# target to build an object file
+src/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o
+.PHONY : src/Player.cpp.o
+
+src/Player.i: src/Player.cpp.i
+
+.PHONY : src/Player.i
+
+# target to preprocess a source file
+src/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.i
+.PHONY : src/Player.cpp.i
+
+src/Player.s: src/Player.cpp.s
+
+.PHONY : src/Player.s
+
+# target to generate assembly for a file
+src/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.s
+.PHONY : src/Player.cpp.s
+
+src/Select.o: src/Select.cpp.o
+
+.PHONY : src/Select.o
+
+# target to build an object file
+src/Select.cpp.o:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o
+.PHONY : src/Select.cpp.o
+
+src/Select.i: src/Select.cpp.i
+
+.PHONY : src/Select.i
+
+# target to preprocess a source file
+src/Select.cpp.i:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.i
+.PHONY : src/Select.cpp.i
+
+src/Select.s: src/Select.cpp.s
+
+.PHONY : src/Select.s
+
+# target to generate assembly for a file
+src/Select.cpp.s:
+	$(MAKE) -f CMakeFiles/OOP_indie_studio_2018.dir/build.make CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.s
+.PHONY : src/Select.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -2970,15 +3051,24 @@ help:
 	@echo "... src/Core.o"
 	@echo "... src/Core.i"
 	@echo "... src/Core.s"
-	@echo "... src/Event.o"
-	@echo "... src/Event.i"
-	@echo "... src/Event.s"
 	@echo "... src/Game.o"
 	@echo "... src/Game.i"
 	@echo "... src/Game.s"
 	@echo "... src/Menu.o"
 	@echo "... src/Menu.i"
 	@echo "... src/Menu.s"
+	@echo "... src/MyEventReceiver.o"
+	@echo "... src/MyEventReceiver.i"
+	@echo "... src/MyEventReceiver.s"
+	@echo "... src/Pause.o"
+	@echo "... src/Pause.i"
+	@echo "... src/Pause.s"
+	@echo "... src/Player.o"
+	@echo "... src/Player.i"
+	@echo "... src/Player.s"
+	@echo "... src/Select.o"
+	@echo "... src/Select.i"
+	@echo "... src/Select.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

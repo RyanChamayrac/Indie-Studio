@@ -23,7 +23,8 @@ SRC		=	main.cpp 	\
 			Game.cpp	\
 			MyEventReceiver.cpp	\
 			Player.cpp	\
-			Pause.cpp
+			Pause.cpp   \
+			Select.cpp
 
 TEST	=	test.cpp
 

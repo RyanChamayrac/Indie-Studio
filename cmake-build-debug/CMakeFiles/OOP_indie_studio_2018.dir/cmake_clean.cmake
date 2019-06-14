@@ -93,7 +93,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/OOP_indie_studio_2018.dir/src/main.cpp.o"
   "CMakeFiles/OOP_indie_studio_2018.dir/src/Menu.cpp.o"
   "CMakeFiles/OOP_indie_studio_2018.dir/src/Game.cpp.o"
-  "CMakeFiles/OOP_indie_studio_2018.dir/src/Event.cpp.o"
+  "CMakeFiles/OOP_indie_studio_2018.dir/src/MyEventReceiver.cpp.o"
+  "CMakeFiles/OOP_indie_studio_2018.dir/src/Player.cpp.o"
+  "CMakeFiles/OOP_indie_studio_2018.dir/src/Select.cpp.o"
+  "CMakeFiles/OOP_indie_studio_2018.dir/src/Pause.cpp.o"
   "OOP_indie_studio_2018.pdb"
   "OOP_indie_studio_2018"
 )

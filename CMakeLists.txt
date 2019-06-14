@@ -198,7 +198,6 @@ add_executable(OOP_indie_studio_2018
         include/Menu.hpp
         include/GameStat.hpp
         include/Game.hpp
-        include/Animation.hpp
         include/MyEventReceiver.hpp
         include/Pause.hpp
         include/Player.hpp
@@ -350,7 +349,7 @@ add_executable(OOP_indie_studio_2018
         src/main.cpp
         src/Menu.cpp
         src/Game.cpp
-        src/Animation.cpp
         src/MyEventReceiver.cpp
         src/Player.cpp
+        src/Select.cpp
         src/Pause.cpp)
