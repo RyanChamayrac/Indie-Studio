@@ -96,6 +96,12 @@ void Core::menuCase()
         for (auto &it : this->_pause->getButtons())
             it.second->setVisible(false);
     }
+    if (this->_option) {
+        for (auto &it : this->_option->getButtons())
+            it.second->setVisible(false);
+        for (auto &it : this->_option->getScrollBars())
+            it.second->setVisible(false);
+    }
     for (auto &it : this->_menu->getButtons())
         it.second->setVisible(true);
     this->_menu->run(this->_window);

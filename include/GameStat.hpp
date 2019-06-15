@@ -30,6 +30,9 @@ enum button{
     GUI_ID_RETURN_SELECT_PLAY = 121,
     GUI_ID_PLAY_SELECT = 122,
     GUI_ID_NEW_BUTTON = 123,
+    GUI_ID_OPTION_1 = 124,
+    GUI_ID_OPTION_2 = 125,
+    GUI_ID_OPTION_3 = 126,
 };
 
 class GameStat {

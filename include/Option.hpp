@@ -18,6 +18,7 @@ public:
 
     //Getter
     std::map<std::string, irr::gui::IGUIButton *> getButtons();
+    std::map<std::string, irr::gui::IGUIScrollBar *> getScrollBars();
 
     //Loader
     void loadButtons(irr::IrrlichtDevice *window);
@@ -26,6 +27,7 @@ public:
 private:
     std::map<std::string, irr::video::ITexture *> _textures;
     std::map<std::string, irr::gui::IGUIButton *> _buttons;
+    std::map<std::string, irr::gui::IGUIScrollBar *> _scrollbars;
 };
 
 #endif //OOP_INDIE_STUDIO_2018_OPTION_HPP
