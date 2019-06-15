@@ -9,6 +9,7 @@ set(Irrlicht_DIR "${CMAKE_MODULE_PATH}/Irrlicht")
 
 set(PATH_MODULE_SFML "${CMAKE_MODULE_PATH}/SFML")
 set(SFML_DIR "${CMAKE_MODULE_PATH}/SFML")
+set(SFML_ROOT "${CMAKE_MODULE_PATH}/SFML")
 
 find_package(Irrlicht REQUIRED)
 
