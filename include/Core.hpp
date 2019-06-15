@@ -11,6 +11,7 @@
 #include <iostream>
 #include <map>
 #include <irrlicht.h>
+#include <SFML/Audio.hpp>
 //#include "driverChoice.h"
 class Menu;
 class Game;

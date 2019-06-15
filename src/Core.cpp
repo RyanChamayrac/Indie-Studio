@@ -11,7 +11,6 @@
 #include "Pause.hpp"
 #include "Select.hpp"
 #include "MyEventReceiver.hpp"
-#include <SFML/Audio.hpp>
 
 Core::Core()
 {
@@ -169,7 +168,7 @@ void Core::selectCase()
 void Core::run()
 {
     sf::Music music;
-    if (!music.openFromFile("assets/music.ogg"))
+    if (!music.openFromFile("assets/bomber_music.ogg"))
         return;
     music.play();
     while (this->_window->run()) {
