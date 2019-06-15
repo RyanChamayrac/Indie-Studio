@@ -11,12 +11,18 @@
 #include <iostream>
 #include <map>
 #include <irrlicht.h>
+#include <SFML/Audio.hpp>
+#include "Option.hpp"
+
 //#include "driverChoice.h"
 class Menu;
 class Game;
 class Core;
 class Pause;
+class SelectPlayer;
 class MyEventReceiver;
+
+class Option;
 
 class Core
 {
@@ -30,12 +36,14 @@ public:
         mainMenu,
         mainGame,
         mainOptions,
-        mainPause
+        mainPause,
+        mainSelect,
     };
 
     void menuCase();
     void pauseCase();
     void gameCase();
+    void selectCase();
     void optionCase();
 
     //Setters
@@ -45,12 +53,17 @@ public:
     Menu *getMenu();
     Game *getGame();
     Pause *getPause();
+    SelectPlayer *getSelect();
     gameState_e getState();
+    Option *getOption();
+    irr::IrrlichtDevice *getWindow();
 
 private:
     Menu *_menu;
     Game *_game;
     Pause *_pause;
+    SelectPlayer *_select;
+    Option *_option;
     gameState_e _state;
     irr::IrrlichtDevice *_window;
     MyEventReceiver *_receiver;

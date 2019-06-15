@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/OOP_indie_studio_2018.dir/src/main.cpp.o  -o OOP_indie_studio_2018 

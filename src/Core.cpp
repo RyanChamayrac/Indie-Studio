@@ -5,10 +5,12 @@
 // Indie Studio
 //
 
+#include <Option.hpp>
 #include "Core.hpp"
 #include "Menu.hpp"
 #include "Game.hpp"
 #include "Pause.hpp"
+#include "Select.hpp"
 #include "MyEventReceiver.hpp"
 
 Core::Core()
@@ -27,6 +29,8 @@ Core::Core()
     this->_menu = nullptr;
     this->_game = nullptr;
     this->_pause = nullptr;
+    this->_select = nullptr;
+    this->_option = nullptr;
 }
 
 void Core::setState(Core::gameState_e state)
@@ -44,6 +48,11 @@ Game *Core::getGame()
     return this->_game;
 }
 
+Option *Core::getOption()
+{
+    return this->_option;
+}
+
 Menu *Core::getMenu()
 {
     return this->_menu;
@@ -52,6 +61,11 @@ Menu *Core::getMenu()
 Pause *Core::getPause()
 {
     return this->_pause;
+}
+
+irr::IrrlichtDevice * Core::getWindow()
+{
+    return this->_window;
 }
 
 void Core::menuCase()
@@ -74,6 +88,10 @@ void Core::menuCase()
         for (auto &it : this->_game->getPlayers())
             it->getNode()->setVisible(false);
     }
+    if (this->_select) {
+        for (auto &it : this->_select->getButtons())
+            it.second->setVisible(false);
+    }
     if (this->_pause) {
         for (auto &it : this->_pause->getButtons())
             it.second->setVisible(false);
@@ -85,19 +103,18 @@ void Core::menuCase()
 
 void Core::gameCase()
 {
-    if (!this->_game) {
-        this->_window->getVideoDriver()->removeAllTextures();
+    if (!this->_game)
         this->_game = new Game(this->_window);
-        this->_window->getGUIEnvironment()->clear();
-        delete(this->_menu);
-        this->_menu = nullptr;
-    }
     if (this->_menu) {
         for (auto &it : this->_menu->getButtons())
             it.second->setVisible(false);
     }
     if (this->_pause) {
         for (auto &it : this->_pause->getButtons())
+            it.second->setVisible(false);
+    }
+    if (this->_select) {
+        for (auto &it : this->_select->getButtons())
             it.second->setVisible(false);
     }
     for (auto &it : this->_game->getCubes())
@@ -112,12 +129,10 @@ void Core::gameCase()
                 continue;
             it2->setVisible(true);
         }
+    for (auto &it : this->_game->getPlayers())
+        if (it->getIsAlive())
+            it->getNode()->setVisible(true);
     this->_game->run(this->_window);
-}
-
-void Core::optionCase()
-{
-
 }
 
 void Core::pauseCase()
@@ -138,24 +153,57 @@ void Core::pauseCase()
         }
     for (auto &it : this->_pause->getButtons())
             it.second->setVisible(true);
-    for (auto &it : this->_game->getPlayers())
+    for (auto &it : this->_game->getPlayers()) {
         it->getNode()->setVisible(false);
+    }
     this->_pause->run(this->_window);
+}
+
+void Core::selectCase()
+{
+    if(!this->_select)
+        this->_select = new SelectPlayer(this->_window);
+    for (auto &it : this->_menu->getButtons())
+        it.second->setVisible(false);
+    for (auto &it : this->_select->getButtons())
+        it.second->setVisible(true);
+    this->_select->run(this->_window);
+}
+
+void Core::optionCase()
+{
+    if(!this->_option)
+        this->_option = new Option(this->_window);
+    for (auto &it : this->_menu->getButtons())
+        it.second->setVisible(false);
+    for (auto &it : this->_option->getButtons())
+        it.second->setVisible(true);
+    this->_option->run(this->_window);
 }
 
 void Core::run()
 {
+    sf::Music music;
+    if (!music.openFromFile("assets/bomber_music.ogg"))
+        return;
+    music.play();
     while (this->_window->run()) {
         this->_window->getVideoDriver()->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
         switch (this->_state) {
             case mainMenu:
                 this->menuCase();
                 break;
+            case mainSelect:
+                this->selectCase();
+                break;
             case mainGame:
                 this->gameCase();
                 break;
             case mainPause:
                 this->pauseCase();
+                break;
+            case mainOptions:
+                this->optionCase();
                 break;
             default:
                 break;

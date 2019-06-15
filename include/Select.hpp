@@ -17,10 +17,10 @@ public:
     void run(irr::IrrlichtDevice *windows);
 
     //Getter
-    //std::map<std::string, irr::gui::IGUIButton *> getButtons();
+    std::map<std::string, irr::gui::IGUIButton *> getButtons();
 
     //Loader
-    //void loadButtons(irr::IrrlichtDevice *windows);
+    void loadButtons(irr::IrrlichtDevice *windows);
     void loadTextures(irr::IrrlichtDevice *windows);
 
 private:

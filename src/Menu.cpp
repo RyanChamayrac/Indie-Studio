@@ -6,6 +6,7 @@
 */
 
 #include "Menu.hpp"
+#include "GameStat.hpp"
 
 void Menu::loadTextures(irr::IrrlichtDevice *window)
 {
