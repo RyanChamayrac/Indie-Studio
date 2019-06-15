@@ -253,8 +253,10 @@ void Game::createPlayers(irr::IrrlichtDevice *window)
 
 Game::Game(irr::IrrlichtDevice *window, bool _new) : _textures()
 {
-    if (_new)
+    if (_new) {
+        std::cout << "make new" << std::endl;
         this->generateMap();
+    }
     if (!this->getMap("assets/map/map.txt"))
         return;
     this->createBlocks(window);
