@@ -34,13 +34,15 @@ public:
     bool getIsWalking();
     clock_t getTimer();
     std::pair<bool, irr::scene::ISceneNode *> getBombCube();
+    bool isIA();
+    bool getIsAlive();
 
     //Setters
     void setIsWalking(bool res);
     void setBombCube(std::pair<bool, irr::scene::ISceneNode *> cube);
-    bool isIA();
     void setTimer();
-
+    void setIsAlive(bool);
+    void setMap(std::vector<std::vector<char>> map);
 
     enum direction_e {
         UP,
@@ -61,7 +63,9 @@ private:
     std::vector<std::vector<char>> _map;
     bool _isWalking = false;
     bool _IA;
+    bool _isAlive;
     clock_t _bombTimer;
+    float _correction = 0.5;
 };
 
 

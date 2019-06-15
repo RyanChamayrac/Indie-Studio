@@ -21,6 +21,7 @@ Player::Player(irr::IrrlichtDevice *window, const irr::core::vector3df& position
     this->_window = window;
     this->_frameDeltaTime = 0.020;
     this->_IA = IA;
+    this->_isAlive = true;
     this->_playerMesh = window->getSceneManager()->getMesh("assets/models/Bomberman.b3d");
     this->_playerNode = window->getSceneManager()->addAnimatedMeshSceneNode(this->_playerMesh);
     if (this->_playerNode) {
@@ -70,15 +71,35 @@ void Player::setTimer()
     this->_bombTimer = clock();
 }
 
+bool Player::getIsAlive()
+{
+    return this->_isAlive;
+}
+
+void Player::setIsAlive(bool is)
+{
+    this->_isAlive = is;
+}
+
+void Player::setMap(std::vector<std::vector<char>> map)
+{
+    this->_map = std::move(map);
+}
+
 void Player::MoveRight()
 {
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
+    if (!this->_isAlive)
+        return;
     nodeRotation.Z = 90;
     nodePosition.X += this->_frameDeltaTime * 10.f;
     if (!this->_isWalking)
         this->_playerNode->setFrameLoop(140, 160);
+    if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'A' ||
+            this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'T')
+        return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);
     this->_isWalking = true;
@@ -89,10 +110,15 @@ void Player::MoveLeft()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
+    if (!this->_isAlive)
+        return;
     nodeRotation.Z = 270;
     nodePosition.X -= this->_frameDeltaTime * 10.f;
     if (!this->_isWalking)
         this->_playerNode->setFrameLoop(140, 160);
+    if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
+        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
+        return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);
     this->_direction = Player::LEFT;
@@ -104,10 +130,15 @@ void Player::MoveUp()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
+    if (!this->_isAlive)
+        return;
     nodeRotation.Z = 180;
     nodePosition.Y += this->_frameDeltaTime * 10.f;
     if (!this->_isWalking)
         this->_playerNode->setFrameLoop(140, 160);
+    if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
+        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
+        return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);
     this->_direction = Player::UP;
@@ -119,10 +150,15 @@ void Player::MoveDown()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
+    if (!this->_isAlive)
+        return;
     nodeRotation.Z = 0;
     nodePosition.Y -= this->_frameDeltaTime * 10.f;
     if (!this->_isWalking)
         this->_playerNode->setFrameLoop(140, 160);
+    if (this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
+        this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2 )][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
+        return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);
     this->_direction = Player::DOWN;
@@ -143,6 +179,8 @@ void Player::action()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df intNodePosition;
 
+    if (!this->_isAlive)
+        return;
     if (this->_bombCube.second)
         return;
     intNodePosition.X = roundTo2(nodePosition.X);

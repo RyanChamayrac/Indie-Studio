@@ -9,6 +9,7 @@
 
 void Game::run(irr::IrrlichtDevice *window)
 {
+    int x = 0;
     if (this->_map.empty())
         return;
     window->getVideoDriver()->draw2DImage(this->_textures["gameBackground"], irr::core::position2d<irr::s32>(0, 0),
@@ -18,7 +19,17 @@ void Game::run(irr::IrrlichtDevice *window)
             continue;
         if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 1.00 && it->getBombCube().first)
             this->explosion(window, it);
-        if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 2.00 && !it->getBombCube().first)
+        for (auto &it2 : this->_players) {
+            if (!it2->getIsAlive() || !it2->getBombCube().second)
+                continue;
+            if (this->_map[static_cast<int>(- it2->getNode()->getPosition().Y / 2)]
+                [static_cast<int>(it2->getNode()->getPosition().X / 2)] == 'e') {
+                it->setIsAlive(false);
+                it->getNode()->setVisible(false);
+            }
+            x++;
+        }
+        if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 1.50 && !it->getBombCube().first)
             this->endExplosion(it);
     }
 }
@@ -48,7 +59,7 @@ void Game::explosion(irr::IrrlichtDevice *window, Player *player)
             continue;
         if (this->_cubes[y_start][i])
             this->_cubes[y_start][i]->remove();
-        this->_map[y_start][i] = 'x';
+        this->_map[y_start][i] = 'e';
         this->_cubes[y_start][i] = nullptr;
         this->_cubes[y_start][i] = window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
            irr::core::vector3df(i * 2, -y_start * 2, 0.0f),
@@ -61,7 +72,7 @@ void Game::explosion(irr::IrrlichtDevice *window, Player *player)
             continue;
         if (this->_cubes[i][x_start])
             this->_cubes[i][x_start]->remove();
-        this->_map[i][x_start] = 'x';
+        this->_map[i][x_start] = 'e';
         this->_cubes[i][x_start] = nullptr;
         this->_cubes[i][x_start] = window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
            irr::core::vector3df(x_start * 2, -i * 2, 0.0f),
@@ -83,6 +94,7 @@ void Game::endExplosion(Player *player)
             continue;
         if (!this->_cubes[y_start][i])
             continue;
+        this->_map[y_start][i] = 'x';
         this->_cubes[y_start][i]->remove();
         this->_cubes[y_start][i] = nullptr;
     }
@@ -91,6 +103,7 @@ void Game::endExplosion(Player *player)
             continue;
         if (!this->_cubes[i][x_start])
             continue;
+        this->_map[i][x_start] = 'x';
         this->_cubes[i][x_start]->remove();
         this->_cubes[i][x_start] = nullptr;
     }
@@ -99,6 +112,7 @@ void Game::endExplosion(Player *player)
 */
     player->getBombCube().second->remove();
     player->setBombCube(std::pair<bool, irr::scene::ISceneNode *>(false, nullptr));
+    player->setMap(this->_map);
 }
 
 void Game::loadButtons(irr::IrrlichtDevice *window)

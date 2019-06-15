@@ -29,6 +29,7 @@ Core::Core()
     this->_menu = nullptr;
     this->_game = nullptr;
     this->_pause = nullptr;
+    this->_select = nullptr;
     this->_option = nullptr;
 }
 
@@ -129,7 +130,8 @@ void Core::gameCase()
             it2->setVisible(true);
         }
     for (auto &it : this->_game->getPlayers())
-        it->getNode()->setVisible(true);
+        if (it->getIsAlive())
+            it->getNode()->setVisible(true);
     this->_game->run(this->_window);
 }
 
@@ -151,8 +153,9 @@ void Core::pauseCase()
         }
     for (auto &it : this->_pause->getButtons())
             it.second->setVisible(true);
-    for (auto &it : this->_game->getPlayers())
+    for (auto &it : this->_game->getPlayers()) {
         it->getNode()->setVisible(false);
+    }
     this->_pause->run(this->_window);
 }
 
