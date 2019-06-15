@@ -12,6 +12,7 @@
 #include <vector>
 #include <iostream>
 #include <time.h>
+#include <zconf.h>
 
 class Player {
 
@@ -29,6 +30,16 @@ public:
     void MoveDown();
     void action();
     void Animate(int, int);
+    void ia_core();
+    void ia_start();
+    void ia_careful();
+    void ia_rand_direction();
+    void ia_put_bomb();
+    void ia_to_bonus();
+    void ia_move_right();
+    void ia_move_up();
+    void ia_move_down();
+    void ia_move_left();
 
     //Getters
     irr::scene::IAnimatedMeshSceneNode *getNode();

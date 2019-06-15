@@ -32,6 +32,11 @@ void Game::run(irr::IrrlichtDevice *window)
         if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 1.50 && !it->getBombCube().first)
             this->endExplosion(it);
     }
+    int a = rand() % 3;
+    if (a == 1)
+        this->_players[2]->ia_core();
+    else if (a == 2)
+        this->_players[3]->ia_core();
 }
 
 void Game::loadTextures(irr::IrrlichtDevice *window)
