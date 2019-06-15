@@ -70,5 +70,6 @@ private:
 };
 
 #include "Game.hpp"
+#include "Select.hpp"
 
 #endif

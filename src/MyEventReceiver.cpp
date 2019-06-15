@@ -46,6 +46,18 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                     case GUI_ID_OPTION_1:
                         this->_core.setState(Core::mainMenu);
                         return true;
+                    case GUI_ID_SKIN_1:
+                        this->_core.getSelect()->incSkin(0);
+                        return true;
+                    case GUI_ID_SKIN_2:
+                        this->_core.getSelect()->incSkin(1);
+                        return true;
+                    case GUI_ID_SKIN_3:
+                        this->_core.getSelect()->incSkin(2);
+                        return true;
+                    case GUI_ID_SKIN_4:
+                        this->_core.getSelect()->incSkin(3);
+                        return true;
                     default:
                         return false;
                 }

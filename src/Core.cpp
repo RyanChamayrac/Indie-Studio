@@ -63,6 +63,11 @@ Pause *Core::getPause()
     return this->_pause;
 }
 
+SelectPlayer *Core::getSelect()
+{
+    return this->_select;
+}
+
 irr::IrrlichtDevice * Core::getWindow()
 {
     return this->_window;
