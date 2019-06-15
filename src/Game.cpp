@@ -34,6 +34,8 @@ void Game::run(irr::IrrlichtDevice *window)
     }
     int a = rand() % 3;
     if (a == 1)
+        this->_players[1]->ia_core();
+    else if (a == 0)
         this->_players[2]->ia_core();
     else if (a == 2)
         this->_players[3]->ia_core();
@@ -141,7 +143,10 @@ int Game::generateMap()
         fputs("A", file);
         i = 0;
         while (i < 17) {
-            n = rand();
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> dis(1, 11600);
+            n = dis(gen);
             if ((i == 0 && j == 0) || (i == 0 && j == 16) || (i == 16 && j == 0) || (i == 16 && j == 16))
                 fputs("x", file);
             else if ((i == 1 && j == 0) || (i == 0 && j == 1))

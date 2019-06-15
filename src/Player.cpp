@@ -1,5 +1,3 @@
-#include <utility>
-
 /*
 ** EPITECH PROJECT, 2019
 ** OOP_indie_studio_2018
@@ -8,6 +6,8 @@
 */
 
 #include "Player.hpp"
+#include <random>
+#include <utility>
 
 Player::Player(irr::IrrlichtDevice *window, const irr::core::vector3df& position, bool IA,
                std::vector<std::vector<irr::scene::ISceneNode *>> cubes, std::vector<std::vector<char>> map)
@@ -207,13 +207,12 @@ void Player::ia_move_left()
 {
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
-    int i = 1;
 
-    while (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - i] == 'x') {
+    while (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'x') {
         float tmp = nodePosition.X;
         while (nodePosition.X/2 >= (tmp/2 - 1)) {
             nodeRotation.Z = 270;
-            nodePosition.X -= this->_frameDeltaTime * 1.f;
+            nodePosition.X -= this->_frameDeltaTime * 5.f;
             if (!this->_isWalking)
                 this->_playerNode->setFrameLoop(140, 160);
             if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] ==
@@ -226,8 +225,8 @@ void Player::ia_move_left()
             this->_direction = Player::LEFT;
             this->_isWalking = true;
         }
-        i++;
-        if ((static_cast<int>(nodePosition.X/2) - i) < 0)
+        nodePosition = this->_playerNode->getPosition();
+        if ((static_cast<int>(nodePosition.X/2) - 1) < 0)
             return;
     }
 }
@@ -236,13 +235,12 @@ void Player::ia_move_right()
 {
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
-    int i = 1;
 
-    while (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + i] == 'x') {
+    while (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'x') {
         float tmp = nodePosition.X;
         while (nodePosition.X/2 <= (tmp/2 + 1)) {
             nodeRotation.Z = 90;
-            nodePosition.X += this->_frameDeltaTime * 1.f;
+            nodePosition.X += this->_frameDeltaTime * 5.f;
             if (!this->_isWalking)
                 this->_playerNode->setFrameLoop(140, 160);
             if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(
@@ -255,8 +253,8 @@ void Player::ia_move_right()
             this->_direction = Player::RIGHT;
             this->_isWalking = true;
         }
-        i++;
-        if ((static_cast<int>(nodePosition.X/2) + i) < 19)
+        nodePosition = this->_playerNode->getPosition();
+        if ((static_cast<int>(nodePosition.X/2) + 1) < 19)
             return;
     }
 }
@@ -265,13 +263,12 @@ void Player::ia_move_up()
 {
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
-    int i = 1;
 
-    while (this->_map[- static_cast<int>(nodePosition.Y/2) - i][static_cast<int>(nodePosition.X/2)] == 'x') {
+    while (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'x') {
         float tmp = nodePosition.Y;
         while (nodePosition.Y/2 <= (tmp/2 + 1)) {
             nodeRotation.Z = 180;
-            nodePosition.Y += this->_frameDeltaTime * 1.f;
+            nodePosition.Y += this->_frameDeltaTime * 5.f;
             if (!this->_isWalking)
                 this->_playerNode->setFrameLoop(140, 160);
             if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] ==
@@ -284,8 +281,8 @@ void Player::ia_move_up()
             this->_direction = Player::UP;
             this->_isWalking = true;
         }
-        i++;
-        if ((static_cast<int>(nodePosition.Y/2) - i) < 0)
+        nodePosition = this->_playerNode->getPosition();
+        if ((static_cast<int>(nodePosition.Y/2) - 1) < 0)
             return;
     }
 }
@@ -294,13 +291,12 @@ void Player::ia_move_down()
 {
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
-    int i = 1;
 
-    while (this->_map[- static_cast<int>(nodePosition.Y/2) + i][static_cast<int>(nodePosition.X/2)] == 'x') {
+    while (this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'x') {
         float tmp = nodePosition.Y;
         while (nodePosition.Y/2 >= (tmp/2 - 1)) {
             nodeRotation.Z = 0;
-            nodePosition.Y -= this->_frameDeltaTime * 1.f;
+            nodePosition.Y -= this->_frameDeltaTime * 5.f;
             if (!this->_isWalking)
                 this->_playerNode->setFrameLoop(140, 160);
             if (this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2)][static_cast<int>(
@@ -313,9 +309,69 @@ void Player::ia_move_down()
             this->_direction = Player::DOWN;
             this->_isWalking = true;
         }
-        i++;
-        if ((- static_cast<int>(nodePosition.Y/2) + i) == 19)
+        nodePosition = this->_playerNode->getPosition();
+        if ((- static_cast<int>(nodePosition.Y/2) + 1) == 19)
             return;
+    }
+}
+
+void Player::ia_offensive()
+{
+
+}
+
+void Player::ia_deffensive()
+{
+    irr::core::vector3df nodePosition = this->_playerNode->getPosition();
+    irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
+
+    if ((this->getBombCube().second == NULL) || (nodePosition.X/2 == 1.00 && nodePosition.Y/2 == -1.00)) {
+        ia_move_right();
+        ia_move_up();
+        this->action();
+        ia_move_down();
+        ia_move_left();
+    }
+    if ((this->getBombCube().second == NULL) || (nodePosition.X/2 == 1.00 && nodePosition.Y/2 == -17.00)) {
+        ia_move_left();
+        ia_move_up();
+        this->action();
+        ia_move_down();
+        ia_move_right();
+    }
+    if ((this->getBombCube().second == NULL) || (nodePosition.X/2 == 17.00 && nodePosition.Y/2 == -1.00)) {
+        ia_move_right();
+        ia_move_down();
+        this->action();
+        ia_move_up();
+        ia_move_left();
+    }
+    if ((this->getBombCube().second == NULL) || (nodePosition.X/2 == 17.00 && nodePosition.Y/2 == -17.00)) {
+        ia_move_left();
+        ia_move_down();
+        this->action();
+        ia_move_up();
+        ia_move_right();
+    }
+}
+
+
+
+
+void Player::ia_core()
+{
+    irr::core::vector3df nodePosition = this->_playerNode->getPosition();
+    irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(1, 2);
+    auto n = dis(gen);
+
+    if (n == 1) {
+        ia_offensive();
+    } else if (n == 2) {
+        ia_deffensive();
     }
 }
 
@@ -325,55 +381,55 @@ void Player::ia_start()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    if (a == 0) {
-        if (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'x') {
-            ia_move_up();
-            nodePosition = this->_playerNode->getPosition();
-            nodeRotation = this->_playerNode->getRotation();
-            if ((this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'T')) {
-                this->action();
-            }
-        }
-    } else if (a == 1) {
-        if (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'x') {
-            ia_move_right();
-            nodePosition = this->_playerNode->getPosition();
-            nodeRotation = this->_playerNode->getRotation();
-            if ((this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'T')) {
-                this->action();
-            }
-        }
-    } else if (a == 2) {
-        if (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'x') {
-            ia_move_left();
-            nodePosition = this->_playerNode->getPosition();
-            nodeRotation = this->_playerNode->getRotation();
-            if ((this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'T')) {
-                this->action();
-            }
-        }
-    } else if (a == 3) {
-        if (this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'x') {
-            ia_move_down();
-            nodePosition = this->_playerNode->getPosition();
-            nodeRotation = this->_playerNode->getRotation();
-            if ((this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'T')
-                || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'T')) {
-                this->action();
-            }
-        }
-    }
+    /*   if (a == 0) {
+           if (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'x') {
+               ia_move_up();
+               nodePosition = this->_playerNode->getPosition();
+               nodeRotation = this->_playerNode->getRotation();
+               if ((this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'T')) {
+                   this->action();
+               }
+           }
+       } else if (a == 1) {
+           if (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'x') {
+               ia_move_right();
+               nodePosition = this->_playerNode->getPosition();
+               nodeRotation = this->_playerNode->getRotation();
+               if ((this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'T')) {
+                   this->action();
+               }
+           }
+       } else if (a == 2) {
+           if (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'x') {
+               ia_move_left();
+               nodePosition = this->_playerNode->getPosition();
+               nodeRotation = this->_playerNode->getRotation();
+               if ((this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'T')) {
+                   this->action();
+               }
+           }
+       } else if (a == 3) {
+           if (this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'x') {
+               ia_move_down();
+               nodePosition = this->_playerNode->getPosition();
+               nodeRotation = this->_playerNode->getRotation();
+               if ((this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'T')
+                   || (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'T')) {
+                   this->action();
+               }
+           }
+       }*/
 }
 
 void Player::ia_careful()
@@ -408,9 +464,4 @@ void Player::ia_to_bonus()
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
 
-}
-
-void Player::ia_core()
-{
-    ia_start();
 }

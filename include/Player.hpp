@@ -36,6 +36,8 @@ public:
     void ia_rand_direction();
     void ia_put_bomb();
     void ia_to_bonus();
+    void ia_offensive();
+    void ia_deffensive();
     void ia_move_right();
     void ia_move_up();
     void ia_move_down();

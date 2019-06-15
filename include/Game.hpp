@@ -13,6 +13,8 @@
 #include <iostream>
 #include <time.h>
 #include <string>
+#include <iostream>
+#include <random>
 #include "GameStat.hpp"
 #include "Player.hpp"
 

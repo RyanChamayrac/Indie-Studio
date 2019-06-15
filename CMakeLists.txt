@@ -43,5 +43,6 @@ add_executable(bomberman
         src/Option.cpp
         src/Pause.cpp)
 
+target_compile_options(bomberman PRIVATE -g3)
 
 get_target_property(INDIE_EXE_PATH bomberman CMAKE_RUNTIME_OUTPUT_DIRECTORY)
