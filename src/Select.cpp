@@ -12,27 +12,19 @@ SelectPlayer::SelectPlayer(irr::IrrlichtDevice *windows)
 {
     this->loadTextures(windows);
     this->loadButtons(windows);
+    for (int i = 0; i < 4; i++) {
+        this->_pos.push_back(0);
+        this->_playersIA.push_back(false);
+    }
 }
 
 void SelectPlayer::loadTextures(irr::IrrlichtDevice *windows)
 {
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("SelectBackground"),
             windows->getVideoDriver()->getTexture("./assets/images/indie.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changeSkin1"),
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changeSkin"),
             windows->getVideoDriver()->getTexture("./assets/buttons/skin.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changeSkin2"),
-            windows->getVideoDriver()->getTexture("./assets/buttons/skin.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changeSkin3"),
-            windows->getVideoDriver()->getTexture("./assets/buttons/skin.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changeSkin4"),
-            windows->getVideoDriver()->getTexture("./assets/buttons/skin.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changePlayer1"),
-            windows->getVideoDriver()->getTexture("./assets/buttons/role.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changePlayer2"),
-            windows->getVideoDriver()->getTexture("./assets/buttons/role.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changePlayer3"),
-            windows->getVideoDriver()->getTexture("./assets/buttons/role.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changePlayer4"),
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("changePlayer"),
             windows->getVideoDriver()->getTexture("./assets/buttons/role.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("retourMenu"),
             windows->getVideoDriver()->getTexture("./assets/buttons/back.png")));
@@ -50,6 +42,13 @@ void SelectPlayer::loadTextures(irr::IrrlichtDevice *windows)
             windows->getVideoDriver()->getTexture("./assets/models/select/red.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("yellow"),
             windows->getVideoDriver()->getTexture("./assets/models/select/blue.png")));
+}
+
+void SelectPlayer::switchSkin(int pos)
+{
+    this->_pos[pos]++;
+    if (this->_pos[pos])
+        this->_pos[pos] = 0;
 }
 
 void SelectPlayer::run(irr::IrrlichtDevice *windows)
@@ -94,15 +93,15 @@ void SelectPlayer::loadButtons(irr::IrrlichtDevice *windows)
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("selectPlay"),
             windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_PLAY_SELECT, L"", L"Change player")));
 
-    this->_buttons["changeSkin1"]->setImage(this->_textures["changeSkin1"]);
-    this->_buttons["changeSkin2"]->setImage(this->_textures["changeSkin2"]);
-    this->_buttons["changeSkin3"]->setImage(this->_textures["changeSkin3"]);
-    this->_buttons["changeSkin4"]->setImage(this->_textures["changeSkin4"]);
+    this->_buttons["changeSkin1"]->setImage(this->_textures["changeSkin"]);
+    this->_buttons["changeSkin2"]->setImage(this->_textures["changeSkin"]);
+    this->_buttons["changeSkin3"]->setImage(this->_textures["changeSkin"]);
+    this->_buttons["changeSkin4"]->setImage(this->_textures["changeSkin"]);
 
-    this->_buttons["changePlayer1"]->setImage(this->_textures["changePlayer1"]);
-    this->_buttons["changePlayer2"]->setImage(this->_textures["changePlayer2"]);
-    this->_buttons["changePlayer3"]->setImage(this->_textures["changePlayer3"]);
-    this->_buttons["changePlayer4"]->setImage(this->_textures["changePlayer4"]);
+    this->_buttons["changePlayer1"]->setImage(this->_textures["changePlayer"]);
+    this->_buttons["changePlayer2"]->setImage(this->_textures["changePlayer"]);
+    this->_buttons["changePlayer3"]->setImage(this->_textures["changePlayer"]);
+    this->_buttons["changePlayer4"]->setImage(this->_textures["changePlayer"]);
 
     this->_buttons["retourMenu"]->setImage(this->_textures["retourMenu"]);
     this->_buttons["selectPlay"]->setImage(this->_textures["selectPlay"]);
