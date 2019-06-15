@@ -13,6 +13,14 @@ void Game::run(irr::IrrlichtDevice *window)
         return;
     window->getVideoDriver()->draw2DImage(this->_textures["gameBackground"], irr::core::position2d<irr::s32>(0, 0),
           irr::core::rect<irr::s32>(0, 0, 1920, 1080), nullptr, irr::video::SColor(255, 255, 255, 255), true);
+    for (auto &it : this->_players) {
+        if (!it->getBombCube().second)
+            continue;
+        if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 1.00 && it->getBombCube().first)
+            this->explosion(window, it);
+        if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 2.00 && !it->getBombCube().first)
+            this->endExplosion(it);
+    }
 }
 
 void Game::loadTextures(irr::IrrlichtDevice *window)
@@ -25,6 +33,72 @@ void Game::loadTextures(irr::IrrlichtDevice *window)
           window->getVideoDriver()->getTexture("./assets/images/gameBackground.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("grass"),
           window->getVideoDriver()->getTexture("./assets/images/grass.jpg")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("explosion"),
+          window->getVideoDriver()->getTexture("./assets/blocks/explosion.jpg")));
+}
+
+void Game::explosion(irr::IrrlichtDevice *window, Player *player)
+{
+    irr::scene::ISceneNode *bomb = player->getBombCube().second;
+    int x_start = static_cast<int>(bomb->getPosition().X) / 2;
+    int y_start = - static_cast<int>(bomb->getPosition().Y) / 2;
+
+    for (int i = x_start - 1; i <= x_start + 1; i++) {
+        if (i <= 0 || i >= 19 || this->_map[y_start][i] == 'A')
+            continue;
+        if (this->_cubes[y_start][i])
+            this->_cubes[y_start][i]->remove();
+        this->_map[y_start][i] = 'x';
+        this->_cubes[y_start][i] = nullptr;
+        this->_cubes[y_start][i] = window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
+           irr::core::vector3df(i * 2, -y_start * 2, 0.0f),
+           irr::core::vector3df(0.0f, 0.0f, 0.0f));
+        this->_cubes[y_start][i]->setMaterialTexture(0, this->_textures["explosion"]);
+        this->_cubes[y_start][i]->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+    }
+    for (int i = y_start - 1; i <= y_start + 1; i++) {
+        if (i <= 0 || i >= 19 || this->_map[i][x_start] == 'A')
+            continue;
+        if (this->_cubes[i][x_start])
+            this->_cubes[i][x_start]->remove();
+        this->_map[i][x_start] = 'x';
+        this->_cubes[i][x_start] = nullptr;
+        this->_cubes[i][x_start] = window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
+           irr::core::vector3df(x_start * 2, -i * 2, 0.0f),
+           irr::core::vector3df(0.0f, 0.0f, 0.0f));
+        this->_cubes[i][x_start]->setMaterialTexture(0, this->_textures["explosion"]);
+        this->_cubes[i][x_start]->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+    }
+    player->setBombCube(std::pair<bool, irr::scene::ISceneNode *>(false, bomb));
+}
+
+void Game::endExplosion(Player *player)
+{
+    irr::scene::ISceneNode *bomb = player->getBombCube().second;
+    int x_start = static_cast<int>(bomb->getPosition().X) / 2;
+    int y_start = - static_cast<int>(bomb->getPosition().Y) / 2;
+
+    for (int i = x_start - 1; i <= x_start + 1; i++) {
+        if (i <= 0 || i >= 19 || this->_map[y_start][i] == 'A')
+            continue;
+        if (!this->_cubes[y_start][i])
+            continue;
+        this->_cubes[y_start][i]->remove();
+        this->_cubes[y_start][i] = nullptr;
+    }
+    for (int i = y_start - 1; i <= y_start + 1; i++) {
+        if (i <= 0 || i >= 19 || this->_map[i][x_start] == 'A')
+            continue;
+        if (!this->_cubes[i][x_start])
+            continue;
+        this->_cubes[i][x_start]->remove();
+        this->_cubes[i][x_start] = nullptr;
+    }
+/*
+    player->setBombCube(std::pair<bool, irr::scene::ISceneNode *>(true, bomb));
+*/
+    player->getBombCube().second->remove();
+    player->setBombCube(std::pair<bool, irr::scene::ISceneNode *>(false, nullptr));
 }
 
 void Game::loadButtons(irr::IrrlichtDevice *window)

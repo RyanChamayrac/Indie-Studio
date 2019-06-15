@@ -11,6 +11,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <time.h>
 #include <string>
 #include "GameStat.hpp"
 #include "Player.hpp"
@@ -36,6 +37,8 @@ public:
     bool getMap(const std::string& fileName);
     void createBlocks(irr::IrrlichtDevice *window);
     void createPlayers(irr::IrrlichtDevice *window);
+    void explosion(irr::IrrlichtDevice *window, Player *player);
+    void endExplosion(Player *player);
     int generateMap();
 
 private:
