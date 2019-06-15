@@ -48,6 +48,7 @@ public:
 
     //Setters
     void setState(gameState_e state);
+    void stopMusic();
 
     //Getters
     Menu *getMenu();
@@ -57,6 +58,7 @@ public:
     gameState_e getState();
     Option *getOption();
     irr::IrrlichtDevice *getWindow();
+    sf::Music *getMusic();
 
 private:
     Menu *_menu;
@@ -67,6 +69,7 @@ private:
     gameState_e _state;
     irr::IrrlichtDevice *_window;
     MyEventReceiver *_receiver;
+    sf::Music *_music;
 };
 
 #include "Game.hpp"

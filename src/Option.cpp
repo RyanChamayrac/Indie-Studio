@@ -46,9 +46,9 @@ std::map<std::string, irr::gui::IGUIScrollBar *> Option::getScrollBars()
 void Option::loadButtons(irr::IrrlichtDevice *window)
 {
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("retour"),
-        window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTION_1, L"")));
+        window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTION_RETURN, L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("mute"),
-        window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTION_2, L"")));
+        window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTION_MUTE, L"")));
     this->_scrollbars.insert(std::pair<std::string, irr::gui::IGUIScrollBar *>(std::string("volume"),
         window->getGUIEnvironment()->addScrollBar(true, irr::core::rect<irr::s32>(10,265,150,280), nullptr, GUI_ID_OPTION_3)));
 

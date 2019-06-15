@@ -31,6 +31,20 @@ Core::Core()
     this->_pause = nullptr;
     this->_select = nullptr;
     this->_option = nullptr;
+    this->_music = new sf::Music;
+}
+
+void Core::stopMusic()
+{
+    if (this->getMusic()->getStatus() == 2)
+        this->getMusic()->pause();
+    else if (this->getMusic()->getStatus() == 1)
+        this->getMusic()->play();
+}
+
+sf::Music *Core::getMusic()
+{
+    return this->_music;
 }
 
 void Core::setState(Core::gameState_e state)
@@ -196,10 +210,10 @@ void Core::optionCase()
 
 void Core::run()
 {
-    sf::Music music;
-    if (!music.openFromFile("assets/bomber_music.ogg"))
+    std::cout << this->getMusic() << std::endl;
+    if (!this->getMusic()->openFromFile("assets/bomber_music.ogg"))
         return;
-    music.play();
+    this->getMusic()->play();
     while (this->_window->run()) {
         this->_window->getVideoDriver()->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
         switch (this->_state) {
