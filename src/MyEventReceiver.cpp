@@ -69,25 +69,6 @@ bool MyEventReceiver::keyInputs(const irr::SEvent &event)
                 this->_core.getGame()->getPlayers()[0]->Animate(230, 270);
                 this->_core.getGame()->getPlayers()[0]->setIsWalking(false);
             }
-            if (this->IsKeyDown(irr::KEY_ESCAPE)) {
-                this->_core.setState(Core::mainPause);
-                return true;
-            } else if (this->IsKeyDown(irr::KEY_KEY_Z)) {
-                this->_core.getGame()->getPlayers()[0]->MoveUp();
-                return true;
-            } else if (this->IsKeyDown(irr::KEY_KEY_D)) {
-                this->_core.getGame()->getPlayers()[0]->MoveRight();
-                return true;
-            } else if (this->IsKeyDown(irr::KEY_KEY_Q)) {
-                this->_core.getGame()->getPlayers()[0]->MoveLeft();
-                return true;
-            } else if (this->IsKeyDown(irr::KEY_KEY_S)) {
-                this->_core.getGame()->getPlayers()[0]->MoveDown();
-                return true;
-            } else if (this->IsKeyDown(irr::KEY_SPACE)) {
-                this->_core.getGame()->getPlayers()[0]->action();
-                return true;
-            }
             return false;
     } else if (this->_core.getState() == Core::mainMenu) {
             if (this->IsKeyDown(irr::KEY_ESCAPE)) {

@@ -94,7 +94,7 @@ void Player::MoveRight()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 90;
-    nodePosition.X += this->_frameDeltaTime * 10.f;
+    nodePosition.X += this->_frameDeltaTime * 5.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'T')
         return;
@@ -111,7 +111,7 @@ void Player::MoveLeft()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 270;
-    nodePosition.X -= this->_frameDeltaTime * 10.f;
+    nodePosition.X -= this->_frameDeltaTime * 5.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -129,7 +129,7 @@ void Player::MoveUp()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 180;
-    nodePosition.Y += this->_frameDeltaTime * 10.f;
+    nodePosition.Y += this->_frameDeltaTime * 5.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -147,7 +147,7 @@ void Player::MoveDown()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 0;
-    nodePosition.Y -= this->_frameDeltaTime * 10.f;
+    nodePosition.Y -= this->_frameDeltaTime * 5.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2 )][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -225,7 +225,6 @@ void Player::ia_move_left()
             this->_playerNode->setPosition(nodePosition);
             this->_direction = Player::LEFT;
             this->_isWalking = true;
-            usleep(1000);
         }
         i++;
         if ((static_cast<int>(nodePosition.X/2) - i) < 0)
@@ -255,7 +254,6 @@ void Player::ia_move_right()
             this->_playerNode->setPosition(nodePosition);
             this->_direction = Player::RIGHT;
             this->_isWalking = true;
-            usleep(1000);
         }
         i++;
         if ((static_cast<int>(nodePosition.X/2) + i) < 19)
@@ -285,7 +283,6 @@ void Player::ia_move_up()
             this->_playerNode->setPosition(nodePosition);
             this->_direction = Player::UP;
             this->_isWalking = true;
-            usleep(1000);
         }
         i++;
         if ((static_cast<int>(nodePosition.Y/2) - i) < 0)
@@ -315,7 +312,6 @@ void Player::ia_move_down()
             this->_playerNode->setPosition(nodePosition);
             this->_direction = Player::DOWN;
             this->_isWalking = true;
-            usleep(1000);
         }
         i++;
         if ((- static_cast<int>(nodePosition.Y/2) + i) == 19)
