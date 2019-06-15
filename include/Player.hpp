@@ -66,6 +66,7 @@ private:
     bool _isAlive;
     clock_t _bombTimer;
     float _correction = 0.5;
+    float _movementSpeed = 15;
 };
 
 

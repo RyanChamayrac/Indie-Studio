@@ -14,12 +14,16 @@ void Menu::loadTextures(irr::IrrlichtDevice *window)
             window->getVideoDriver()->getTexture("./assets/images/background.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuExitButton"),
             window->getVideoDriver()->getTexture("./assets/buttons/leave.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuPlayButton"),
-            window->getVideoDriver()->getTexture("./assets/buttons/play.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuNewButton"),
+            window->getVideoDriver()->getTexture("./assets/buttons/new.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuLoadButton"),
+          window->getVideoDriver()->getTexture("./assets/buttons/load.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuOptionsButton"),
             window->getVideoDriver()->getTexture("./assets/buttons/options.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuPlaypressed"),
-            window->getVideoDriver()->getTexture("./assets/buttons/play-pressed.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuNewpressed"),
+            window->getVideoDriver()->getTexture("./assets/buttons/new-pressed.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuLoadpressed"),
+          window->getVideoDriver()->getTexture("./assets/buttons/load-pressed.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuOptionspressed"),
         window->getVideoDriver()->getTexture("./assets/buttons/options-pressed.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuLeavepressed"),
@@ -30,17 +34,22 @@ void Menu::loadButtons(irr::IrrlichtDevice *window)
 {
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuExit"),
             window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_QUIT_BUTTON, L"", L"Exits Program")));
-    this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuPlay"),
-            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_PLAY_BUTTON, L"", L"Play game")));
+    this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuNew"),
+            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_NEW_BUTTON, L"", L"New game")));
+    this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuLoad"),
+             window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_LOAD_BUTTON, L"", L"Load game")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuOptions"),
             window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTIONS_BUTTON, L"", L"Set options")));
     this->_buttons["menuExit"]->setImage(this->_textures["menuExitButton"]);
-    this->_buttons["menuPlay"]->setImage(this->_textures["menuPlayButton"]);
+    this->_buttons["menuLoad"]->setImage(this->_textures["menuLoadButton"]);
+    this->_buttons["menuNew"]->setImage(this->_textures["menuNewButton"]);
     this->_buttons["menuOptions"]->setImage(this->_textures["menuOptionsButton"]);
-    this->_buttons["menuPlay"]->setRelativePosition(irr::core::position2d<irr::s32>(400, 400));
+    this->_buttons["menuLoad"]->setRelativePosition(irr::core::position2d<irr::s32>(400, 300));
+    this->_buttons["menuNew"]->setRelativePosition(irr::core::position2d<irr::s32>(400, 400));
     this->_buttons["menuOptions"]->setRelativePosition(irr::core::position2d<irr::s32>(1300, 400));
     this->_buttons["menuExit"]->setRelativePosition(irr::core::position2d<irr::s32>(852, 800));
-    this->_buttons["menuPlay"]->setPressedImage(this->_textures["menuPlaypressed"]);
+    this->_buttons["menuLoad"]->setPressedImage(this->_textures["menuLoadpressed"]);
+    this->_buttons["menuNew"]->setPressedImage(this->_textures["menuNewpressed"]);
     this->_buttons["menuOptions"]->setPressedImage(this->_textures["menuOptionspressed"]);
     this->_buttons["menuExit"]->setPressedImage(this->_textures["menuLeavepressed"]);
 }

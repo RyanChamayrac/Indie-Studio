@@ -94,7 +94,7 @@ void Player::MoveRight()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 90;
-    nodePosition.X += this->_frameDeltaTime * 10.f;
+    nodePosition.X += this->_frameDeltaTime * this->_movementSpeed;
     if (!this->_isWalking)
         this->_playerNode->setFrameLoop(140, 160);
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'A' ||
@@ -113,7 +113,7 @@ void Player::MoveLeft()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 270;
-    nodePosition.X -= this->_frameDeltaTime * 10.f;
+    nodePosition.X -= this->_frameDeltaTime * this->_movementSpeed;
     if (!this->_isWalking)
         this->_playerNode->setFrameLoop(140, 160);
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
@@ -133,7 +133,7 @@ void Player::MoveUp()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 180;
-    nodePosition.Y += this->_frameDeltaTime * 10.f;
+    nodePosition.Y += this->_frameDeltaTime * this->_movementSpeed;
     if (!this->_isWalking)
         this->_playerNode->setFrameLoop(140, 160);
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
@@ -153,7 +153,7 @@ void Player::MoveDown()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 0;
-    nodePosition.Y -= this->_frameDeltaTime * 10.f;
+    nodePosition.Y -= this->_frameDeltaTime * this->_movementSpeed;
     if (!this->_isWalking)
         this->_playerNode->setFrameLoop(140, 160);
     if (this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||

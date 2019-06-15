@@ -15,7 +15,7 @@
 
 enum button{
     GUI_ID_QUIT_BUTTON = 101,
-    GUI_ID_PLAY_BUTTON = 102,
+    GUI_ID_LOAD_BUTTON = 102,
     GUI_ID_OPTIONS_BUTTON = 103,
     GUI_ID_RESUME_BUTTON = 104,
     GUI_ID_RETURN_MENU_BUTTON = 105,
@@ -29,6 +29,7 @@ enum button{
     GUI_ID_IA_4 = 120,
     GUI_ID_RETURN_SELECT_PLAY = 121,
     GUI_ID_PLAY_SELECT = 122,
+    GUI_ID_NEW_BUTTON = 123,
 };
 
 class GameStat {

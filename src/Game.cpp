@@ -251,8 +251,10 @@ void Game::createPlayers(irr::IrrlichtDevice *window)
     this->_players[3] = new Player(window, irr::core::vector3df(34,-2,0), true, this->_cubes, this->_map);
 }
 
-Game::Game(irr::IrrlichtDevice *window) : _textures()
+Game::Game(irr::IrrlichtDevice *window, bool _new) : _textures()
 {
+    if (_new)
+        this->generateMap();
     if (!this->getMap("assets/map/map.txt"))
         return;
     this->createBlocks(window);
