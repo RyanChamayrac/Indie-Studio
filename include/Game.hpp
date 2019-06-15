@@ -20,7 +20,7 @@ class Game : public GameStat {
 
 public:
     //CTOR
-    explicit Game(irr::IrrlichtDevice *window);
+    explicit Game(irr::IrrlichtDevice *window, bool _new);
 
     //DTOR
     ~Game() override = default;

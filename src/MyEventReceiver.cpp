@@ -22,17 +22,20 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                     case GUI_ID_QUIT_BUTTON:
                         this->_window->closeDevice();
                         return true;
-                    case GUI_ID_PLAY_BUTTON:
+                    case GUI_ID_NEW_BUTTON:
                         this->_core.setState(Core::mainSelect);
+                        return true;
+                    case GUI_ID_LOAD_BUTTON:
+                        this->_core.setState(Core::mainGame);
+                        return true;
+                    case GUI_ID_PLAY_SELECT:
+                        this->_core.setState(Core::mainGame);
                         return true;
                     case GUI_ID_OPTIONS_BUTTON:
                         this->_core.setState(Core::mainOptions);
                         return true;
                     case GUI_ID_RETURN_SELECT_PLAY:
                         this->_core.setState(Core::mainMenu);
-                        return true;
-                    case GUI_ID_PLAY_SELECT:
-                        this->_core.setState(Core::mainGame);
                         return true;
                     case GUI_ID_RETURN_MENU_BUTTON:
                         this->_core.setState(Core::mainMenu);
@@ -58,6 +61,7 @@ bool MyEventReceiver::keyInputs(const irr::SEvent &event)
             if (this->IsKeyDown(irr::KEY_ESCAPE)) {
                 this->_core.setState(Core::mainPause);
                 return true;
+/*
             } else if (this->IsKeyDown(irr::KEY_KEY_Z)) {
                 this->_core.getGame()->getPlayers()[0]->MoveUp();
                 return true;
@@ -73,7 +77,7 @@ bool MyEventReceiver::keyInputs(const irr::SEvent &event)
             } else if (this->IsKeyDown(irr::KEY_SPACE)) {
                 this->_core.getGame()->getPlayers()[0]->action();
                 return true;
-            }
+*/            }
             return false;
     } else if (this->_core.getState() == Core::mainMenu) {
             if (this->IsKeyDown(irr::KEY_ESCAPE)) {

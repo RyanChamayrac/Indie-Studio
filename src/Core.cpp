@@ -104,7 +104,7 @@ void Core::menuCase()
 void Core::gameCase()
 {
     if (!this->_game)
-        this->_game = new Game(this->_window);
+        this->_game = new Game(this->_window, static_cast<bool>(this->_select));
     if (this->_menu) {
         for (auto &it : this->_menu->getButtons())
             it.second->setVisible(false);
