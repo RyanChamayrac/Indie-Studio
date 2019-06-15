@@ -5,6 +5,7 @@
 // Indie Studio
 //
 
+#include <Option.hpp>
 #include "Core.hpp"
 #include "Menu.hpp"
 #include "Game.hpp"
@@ -28,6 +29,7 @@ Core::Core()
     this->_menu = nullptr;
     this->_game = nullptr;
     this->_pause = nullptr;
+    this->_option = nullptr;
 }
 
 void Core::setState(Core::gameState_e state)
@@ -43,6 +45,11 @@ Core::gameState_e Core::getState()
 Game *Core::getGame()
 {
     return this->_game;
+}
+
+Option *Core::getOption()
+{
+    return this->_option;
 }
 
 Menu *Core::getMenu()
@@ -126,11 +133,6 @@ void Core::gameCase()
     this->_game->run(this->_window);
 }
 
-void Core::optionCase()
-{
-
-}
-
 void Core::pauseCase()
 {
     if (!this->_pause)
@@ -165,6 +167,17 @@ void Core::selectCase()
     this->_select->run(this->_window);
 }
 
+void Core::optionCase()
+{
+    if(!this->_option)
+        this->_option = new Option(this->_window);
+    for (auto &it : this->_menu->getButtons())
+        it.second->setVisible(false);
+    for (auto &it : this->_option->getButtons())
+        it.second->setVisible(true);
+    this->_option->run(this->_window);
+}
+
 void Core::run()
 {
     sf::Music music;
@@ -185,6 +198,9 @@ void Core::run()
                 break;
             case mainPause:
                 this->pauseCase();
+                break;
+            case mainOptions:
+                this->optionCase();
                 break;
             default:
                 break;

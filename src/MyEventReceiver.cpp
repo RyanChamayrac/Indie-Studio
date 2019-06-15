@@ -26,6 +26,7 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                         this->_core.setState(Core::mainSelect);
                         return true;
                     case GUI_ID_OPTIONS_BUTTON:
+                        this->_core.setState(Core::mainOptions);
                         return true;
                     case GUI_ID_RETURN_SELECT_PLAY:
                         this->_core.setState(Core::mainMenu);

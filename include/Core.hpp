@@ -12,6 +12,8 @@
 #include <map>
 #include <irrlicht.h>
 #include <SFML/Audio.hpp>
+#include "Option.hpp"
+
 //#include "driverChoice.h"
 class Menu;
 class Game;
@@ -19,6 +21,8 @@ class Core;
 class Pause;
 class SelectPlayer;
 class MyEventReceiver;
+
+class Option;
 
 class Core
 {
@@ -51,6 +55,7 @@ public:
     Pause *getPause();
     SelectPlayer *getSelect();
     gameState_e getState();
+    Option *getOption();
     irr::IrrlichtDevice *getWindow();
 
 private:
@@ -58,6 +63,7 @@ private:
     Game *_game;
     Pause *_pause;
     SelectPlayer *_select;
+    Option *_option;
     gameState_e _state;
     irr::IrrlichtDevice *_window;
     MyEventReceiver *_receiver;

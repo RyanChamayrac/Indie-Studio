@@ -42,6 +42,7 @@ add_executable(bomberman
         src/main.cpp
         src/Menu.cpp
         src/MyEventReceiver.cpp
+        src/Option.cpp
         src/Pause.cpp)
 
 
