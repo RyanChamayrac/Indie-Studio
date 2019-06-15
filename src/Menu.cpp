@@ -48,10 +48,6 @@ void Menu::loadButtons(irr::IrrlichtDevice *window)
     this->_buttons["menuNew"]->setRelativePosition(irr::core::position2d<irr::s32>(400, 550));
     this->_buttons["menuOptions"]->setRelativePosition(irr::core::position2d<irr::s32>(1300, 500));
     this->_buttons["menuExit"]->setRelativePosition(irr::core::position2d<irr::s32>(852, 800));
-    this->_buttons["menuLoad"]->setPressedImage(this->_textures["menuLoadpressed"]);
-    this->_buttons["menuNew"]->setPressedImage(this->_textures["menuNewpressed"]);
-    this->_buttons["menuOptions"]->setPressedImage(this->_textures["menuOptionspressed"]);
-    this->_buttons["menuExit"]->setPressedImage(this->_textures["menuLeavepressed"]);
 }
 
 std::map<std::string, irr::gui::IGUIButton *> Menu::getButtons()

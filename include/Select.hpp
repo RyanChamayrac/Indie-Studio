@@ -25,8 +25,12 @@ public:
     irr::video::ITexture *getSkin(int skin);
     void incSkin(int skin);
 
+    void switchSkin(int pos);
+
 private:
     std::map<std::string, irr::video::ITexture *> _textures;
+    std::vector<int> _pos;
+    std::vector<bool> _playersIA;
     std::map<std::string, irr::gui::IGUIButton *> _buttons;
     std::vector<std::vector<std::string>> selectTab;
     int nbSkin[4] = {0, 1, 2, 3};

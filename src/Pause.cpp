@@ -43,9 +43,6 @@ void Pause::loadButtons(irr::IrrlichtDevice *window)
     this->_buttons["resumeGame"]->setImage(this->_textures["resumeGame"]);
     this->_buttons["backMenu"]->setRelativePosition(irr::core::position2d<irr::s32>(1300, 500));
     this->_buttons["resumeGame"]->setRelativePosition(irr::core::position2d<irr::s32>(400, 500));
-
-    this->_buttons["backMenu"]->setPressedImage(this->_textures["backMenupressed"]);
-    this->_buttons["resumeGame"]->setPressedImage(this->_textures["resumeGamepressed"]);
 }
 
 void Pause::run(irr::IrrlichtDevice *window)

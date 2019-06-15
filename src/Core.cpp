@@ -166,6 +166,8 @@ void Core::pauseCase()
             it.second->setVisible(true);
     for (auto &it : this->_game->getPlayers()) {
         it->getNode()->setVisible(false);
+        if (it->getBombCube().second)
+            it->getBombCube().second->setVisible(false);
     }
     this->_pause->run(this->_window);
 }
