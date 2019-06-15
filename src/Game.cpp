@@ -247,6 +247,6 @@ Game::Game(irr::IrrlichtDevice *window) : _textures()
                                                  irr::video::SColorf(1.0f, 1.0f, 1.0f));
     window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(19, -38, -30),
                                                  irr::video::SColorf(1.0f, 1.0f, 1.0f));
-    window->getSceneManager()->addCameraSceneNode(nullptr, irr::core::vector3df(19, -40, -38),
+    window->getSceneManager()->addCameraSceneNode(nullptr, irr::core::vector3df(19, -25, -38),
           irr::core::vector3df(19, -19, 0));
 }
