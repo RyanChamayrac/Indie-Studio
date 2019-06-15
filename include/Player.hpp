@@ -18,7 +18,7 @@ class Player {
 public:
     //CTOR
     Player(irr::IrrlichtDevice *window, const irr::core::vector3df&, bool IA,
-            std::vector<std::vector<irr::scene::ISceneNode *>> cubes, std::vector<std::vector<char>> map);
+           std::vector<std::vector<irr::scene::ISceneNode *>> cubes, std::vector<std::vector<char>> map);
 
     //DTOR
     ~Player() = default;
@@ -28,6 +28,7 @@ public:
     void MoveUp();
     void MoveDown();
     void action();
+    void Animate(int, int);
 
     //Getters
     irr::scene::IAnimatedMeshSceneNode *getNode();
@@ -66,7 +67,6 @@ private:
     bool _isAlive;
     clock_t _bombTimer;
     float _correction = 0.5;
-    float _movementSpeed = 15;
 };
 
 

@@ -94,11 +94,9 @@ void Player::MoveRight()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 90;
-    nodePosition.X += this->_frameDeltaTime * this->_movementSpeed;
-    if (!this->_isWalking)
-        this->_playerNode->setFrameLoop(140, 160);
+    nodePosition.X += this->_frameDeltaTime * 10.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'A' ||
-            this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'T')
+        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'T')
         return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);
@@ -113,9 +111,7 @@ void Player::MoveLeft()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 270;
-    nodePosition.X -= this->_frameDeltaTime * this->_movementSpeed;
-    if (!this->_isWalking)
-        this->_playerNode->setFrameLoop(140, 160);
+    nodePosition.X -= this->_frameDeltaTime * 10.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -133,9 +129,7 @@ void Player::MoveUp()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 180;
-    nodePosition.Y += this->_frameDeltaTime * this->_movementSpeed;
-    if (!this->_isWalking)
-        this->_playerNode->setFrameLoop(140, 160);
+    nodePosition.Y += this->_frameDeltaTime * 10.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -153,9 +147,7 @@ void Player::MoveDown()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 0;
-    nodePosition.Y -= this->_frameDeltaTime * this->_movementSpeed;
-    if (!this->_isWalking)
-        this->_playerNode->setFrameLoop(140, 160);
+    nodePosition.Y -= this->_frameDeltaTime * 10.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2 )][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -187,10 +179,15 @@ void Player::action()
     intNodePosition.Y = roundTo2(nodePosition.Y);
     intNodePosition.Z = roundTo2(nodePosition.Z);
     this->_bombCube.second = this->_window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
-                                                intNodePosition,
-                                                irr::core::vector3df(0.0f, 0.0f, 0.0f));
+                                                                                intNodePosition,
+                                                                                irr::core::vector3df(0.0f, 0.0f, 0.0f));
     this->_bombCube.second->setMaterialTexture(0, this->_bombTexture);
     this->_bombCube.second->setMaterialFlag(irr::video::EMF_LIGHTING, true);
     this->_bombCube.first = true;
     _bombTimer = clock();
+}
+
+void Player::Animate(int firstFrame, int lastFrame)
+{
+    this->_playerNode->setFrameLoop(firstFrame, lastFrame);
 }
