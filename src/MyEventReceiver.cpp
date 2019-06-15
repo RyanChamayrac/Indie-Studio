@@ -43,6 +43,9 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                     case GUI_ID_RESUME_BUTTON:
                         this->_core.setState(Core::mainGame);
                         return true;
+                    case GUI_ID_OPTION_1:
+                        this->_core.setState(Core::mainMenu);
+                        return true;
                     default:
                         return false;
                 }
