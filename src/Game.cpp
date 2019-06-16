@@ -76,23 +76,23 @@ void Game::addPlayerBonus(Player *player, int y, int x)
 void Game::loadTextures(irr::IrrlichtDevice *window)
 {
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("RedBricks"),
-          window->getVideoDriver()->getTexture("./assets/blocks/RedBricks.bmp")));
+          window->getVideoDriver()->getTexture("assets/blocks/RedBricks.bmp")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("WoodenFloor"),
-          window->getVideoDriver()->getTexture("./assets/blocks/WoodenFloor.bmp")));
+          window->getVideoDriver()->getTexture("assets/blocks/WoodenFloor.bmp")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("gameBackground"),
-          window->getVideoDriver()->getTexture("./assets/images/gameBackground.jpg")));
+          window->getVideoDriver()->getTexture("assets/images/gameBackground.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("grass"),
-          window->getVideoDriver()->getTexture("./assets/images/grass.jpg")));
+          window->getVideoDriver()->getTexture("assets/images/grass.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("explosion"),
-          window->getVideoDriver()->getTexture("./assets/blocks/explosion.jpg")));
+          window->getVideoDriver()->getTexture("assets/blocks/explosion.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("BombUp"),
-          window->getVideoDriver()->getTexture("./assets/blocks/BombUp.jpg")));
+          window->getVideoDriver()->getTexture("assets/blocks/BombUp.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("SpeedUp"),
-          window->getVideoDriver()->getTexture("./assets/blocks/SpeedUp.png")));
+          window->getVideoDriver()->getTexture("assets/blocks/SpeedUp.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("FireUp"),
-          window->getVideoDriver()->getTexture("./assets/blocks/FireUp.jpg")));
+          window->getVideoDriver()->getTexture("assets/blocks/FireUp.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("WallPass"),
-          window->getVideoDriver()->getTexture("./assets/blocks/WallPass.png")));
+          window->getVideoDriver()->getTexture("assets/blocks/WallPass.png")));
 }
 
 irr::video::ITexture *Game::randomBonus(char c)

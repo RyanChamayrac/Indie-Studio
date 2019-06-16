@@ -32,6 +32,7 @@ void Menu::loadButtons(irr::IrrlichtDevice *window)
              window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_LOAD_BUTTON, L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("menuOptions"),
             window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTIONS_BUTTON, L"")));
+
     this->_buttons["menuExit"]->setImage(this->_textures["menuExitButton"]);
     this->_buttons["menuLoad"]->setImage(this->_textures["menuLoadButton"]);
     this->_buttons["menuNew"]->setImage(this->_textures["menuNewButton"]);

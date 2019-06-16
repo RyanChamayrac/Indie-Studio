@@ -14,7 +14,7 @@ Player::Player(irr::IrrlichtDevice *window, char c, bool IA,
 {
     int x = 0;
     int y = 0;
-    this->_bombTexture = window->getVideoDriver()->getTexture("./assets/blocks/tnt.jpg");
+    this->_bombTexture = window->getVideoDriver()->getTexture("assets/blocks/tnt.jpg");
     this->_cubes = std::move(cubes);
     this->_map = std::move(map);
     this->_bombCube = std::pair<bool, irr::scene::ISceneNode *>(false, nullptr);

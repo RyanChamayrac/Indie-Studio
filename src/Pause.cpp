@@ -16,17 +16,17 @@ Pause::Pause(irr::IrrlichtDevice *window)
 void Pause::loadTextures(irr::IrrlichtDevice *window)
 {
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("pauseBackground"),
-            window->getVideoDriver()->getTexture("./assets/images/pause.png")));
+            window->getVideoDriver()->getTexture("assets/images/pause.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("backMenu"),
-            window->getVideoDriver()->getTexture("./assets/buttons/back.png")));
+            window->getVideoDriver()->getTexture("assets/buttons/back.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("backMenupressed"),
-            window->getVideoDriver()->getTexture("./assets/buttons/back-pressed.png")));
+            window->getVideoDriver()->getTexture("assets/buttons/back-pressed.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("resumeGame"),
-            window->getVideoDriver()->getTexture("./assets/buttons/resume.png")));
+            window->getVideoDriver()->getTexture("assets/buttons/resume.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("save"),
-          window->getVideoDriver()->getTexture("./assets/buttons/save.png")));
+          window->getVideoDriver()->getTexture("assets/buttons/save.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("resumeGamepressed"),
-            window->getVideoDriver()->getTexture("./assets/buttons/resume-pressed.png")));
+            window->getVideoDriver()->getTexture("assets/buttons/resume-pressed.png")));
 }
 
 std::map<std::string, irr::gui::IGUIButton *> Pause::getButtons()
@@ -37,11 +37,11 @@ std::map<std::string, irr::gui::IGUIButton *> Pause::getButtons()
 void Pause::loadButtons(irr::IrrlichtDevice *window)
 {
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("backMenu"),
-            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_RETURN_MENU_BUTTON, L"", L"Return to the menu")));
+            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_RETURN_MENU_BUTTON, L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("resumeGame"),
-            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_RESUME_BUTTON, L"", L"Continue your game")));
+            window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_RESUME_BUTTON, L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("save"),
-             window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_PAUSE_SAVE, L"", L"Save your game")));
+             window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_PAUSE_SAVE, L"")));
 
     this->_buttons["backMenu"]->setImage(this->_textures["backMenu"]);
     this->_buttons["resumeGame"]->setImage(this->_textures["resumeGame"]);
