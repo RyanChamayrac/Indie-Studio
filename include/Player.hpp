@@ -12,7 +12,6 @@
 #include <vector>
 #include <iostream>
 #include <time.h>
-#include <zconf.h>
 #include <map>
 
 class Player {
