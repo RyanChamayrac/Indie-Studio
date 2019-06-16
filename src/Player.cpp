@@ -111,8 +111,9 @@ void Player::MoveRight()
         nodePosition.X += this->_frameDeltaTime * 5.f;
     else
         nodePosition.X += this->_frameDeltaTime * 10.f;
-    if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'A' ||
-        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'T')
+    if ((this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'A' ||
+        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'T') &&
+            !this->_bonuses["WallPass"])
         return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);
@@ -131,8 +132,9 @@ void Player::MoveLeft()
         nodePosition.X -= this->_frameDeltaTime * 5.f;
     else
         nodePosition.X -= this->_frameDeltaTime * 10.f;
-    if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
-        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
+    if ((this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
+        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T') &&
+            !this->_bonuses["WallPass"])
         return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);
@@ -152,8 +154,9 @@ void Player::MoveUp()
         nodePosition.Y += this->_frameDeltaTime * 5.f;
     else
         nodePosition.Y += this->_frameDeltaTime * 10.f;
-    if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
-        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
+    if ((this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
+        this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T') &&
+        !this->_bonuses["WallPass"])
         return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);
@@ -173,8 +176,9 @@ void Player::MoveDown()
         nodePosition.Y -= this->_frameDeltaTime * 5.f;
     else
         nodePosition.Y -= this->_frameDeltaTime * 10.f;
-    if (this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
+    if ((this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2 )][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
+        && !this->_bonuses["WallPass"])
         return;
     this->_playerNode->setRotation(nodeRotation);
     this->_playerNode->setPosition(nodePosition);

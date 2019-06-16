@@ -255,7 +255,7 @@ void Core::run()
         this->_window->getGUIEnvironment()->drawAll();
         this->_window->getVideoDriver()->endScene();
 	}
-    this->_window->drop();
+    this->_window->closeDevice();
 }
 
 void Core::initMenu()
