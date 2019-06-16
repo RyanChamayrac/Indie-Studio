@@ -423,35 +423,67 @@ void Player::ia_deffensive()
 
     if (this->getBombCube().second == NULL) {
         if ((nodePosition.X / 2 == 1.00 && nodePosition.Y / 2 == -1.00)) {
-            ia_move_right();
-            ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
             this->action();
-            ia_move_down();
-            ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
             this->_placement = UP_G;
         }
         if ((nodePosition.X / 2 == 1.00 && nodePosition.Y / 2 == -17.00)) {
-            ia_move_left();
-            ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
             this->action();
-            ia_move_down();
-            ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
             this->_placement = DOWN_G;
         }
         if ((nodePosition.X / 2 == 17.00 && nodePosition.Y / 2 == -1.00)) {
-            ia_move_right();
-            ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
             this->action();
-            ia_move_up();
-            ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
             this->_placement = UP_D;
         }
         if ((nodePosition.X / 2 == 17.00 && nodePosition.Y / 2 == -17.00)) {
-            ia_move_right();
-            ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
             this->action();
-            ia_move_down();
-            ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
             this->_placement = DOWN_D;
         }
     }
@@ -471,32 +503,64 @@ void Player::ia_core()
 
     if (this->getBombCube().second == NULL) {
         if (this->_placement == UP_G) {
-            ia_move_right();
-            ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
             this->action();
-            ia_move_down();
-            ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
         }
         if (this->_placement == DOWN_G) {
-            ia_move_left();
-            ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
             this->action();
-            ia_move_down();
-            ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
         }
         if (this->_placement == UP_D) {
-            ia_move_right();
-            ia_move_down();
+            for (int i = 0; i <= 19; i++)
+              ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
             this->action();
-            ia_move_up();
-            ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
         }
         if (this->_placement == DOWN_D) {
-            ia_move_right();
-            ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
             this->action();
-            ia_move_down();
-            ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
         }
     }
 /*    if (n == 1) {
