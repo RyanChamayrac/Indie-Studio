@@ -244,15 +244,15 @@ void Core::run()
         }
         if (this->_receiver->IsKeyDown(irr::KEY_ESCAPE)) {
             this->setState(Core::mainPause);
-        } else if (this->_receiver->IsKeyDown(irr::KEY_KEY_Z)) {
+        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_Z)) {
             this->getGame()->getPlayers()[0]->MoveUp();
-        } else if (this->_receiver->IsKeyDown(irr::KEY_KEY_D)) {
+        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_D)) {
             this->getGame()->getPlayers()[0]->MoveRight();
-        } else if (this->_receiver->IsKeyDown(irr::KEY_KEY_Q)) {
+        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_Q)) {
             this->getGame()->getPlayers()[0]->MoveLeft();
-        } else if (this->_receiver->IsKeyDown(irr::KEY_KEY_S)) {
+        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_S)) {
             this->getGame()->getPlayers()[0]->MoveDown();
-        } else if (this->_receiver->IsKeyDown(irr::KEY_SPACE)) {
+        } if (this->_receiver->IsKeyDown(irr::KEY_SPACE)) {
             this->getGame()->getPlayers()[0]->action();
         }
         this->_window->getSceneManager()->drawAll();
