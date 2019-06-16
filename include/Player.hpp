@@ -13,6 +13,7 @@
 #include <iostream>
 #include <time.h>
 #include <zconf.h>
+#include <map>
 
 class Player {
 
@@ -50,9 +51,11 @@ public:
     std::pair<bool, irr::scene::ISceneNode *> getBombCube();
     bool isIA();
     bool getIsAlive();
+    std::map<std::string, bool> getBonuses();
 
     //Setters
     void setIsWalking(bool res);
+    void setBonuses(const std::string& name);
     void setBombCube(std::pair<bool, irr::scene::ISceneNode *> cube);
     void setTimer();
     void setIsAlive(bool);
@@ -79,7 +82,8 @@ private:
     bool _IA;
     bool _isAlive;
     clock_t _bombTimer;
-    float _correction = 0.5;
+    float _correction = 0.3;
+    std::map<std::string, bool> _bonuses;
 };
 
 

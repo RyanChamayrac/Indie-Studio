@@ -30,6 +30,15 @@ Player::Player(irr::IrrlichtDevice *window, const irr::core::vector3df& position
         this->_playerNode->setRotation(irr::core::vector3df(-90, 0, 0));
     }
     this->_playerNode->setPosition(position);
+    this->_bonuses.insert(std::pair<std::string, bool>(std::string("BombUp"), false));
+    this->_bonuses.insert(std::pair<std::string, bool>(std::string("SpeedUp"), false));
+    this->_bonuses.insert(std::pair<std::string, bool>(std::string("FireUp"), false));
+    this->_bonuses.insert(std::pair<std::string, bool>(std::string("WallPass"), false));
+}
+
+std::map<std::string, bool> Player::getBonuses()
+{
+    return this->_bonuses;
 }
 
 irr::scene::IAnimatedMeshSceneNode * Player::getNode()
@@ -86,6 +95,10 @@ void Player::setMap(std::vector<std::vector<char>> map)
     this->_map = std::move(map);
 }
 
+void Player::setBonuses(const std::string& name)
+{
+    this->_bonuses[name] = true;
+}
 void Player::MoveRight()
 {
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
@@ -94,7 +107,10 @@ void Player::MoveRight()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 90;
-    nodePosition.X += this->_frameDeltaTime * 5.f;
+    if (!this->_bonuses["SpeedUp"])
+        nodePosition.X += this->_frameDeltaTime * 5.f;
+    else
+        nodePosition.X += this->_frameDeltaTime * 10.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X + this->_correction) / 2)] == 'T')
         return;
@@ -111,7 +127,10 @@ void Player::MoveLeft()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 270;
-    nodePosition.X -= this->_frameDeltaTime * 5.f;
+    if (!this->_bonuses["SpeedUp"])
+        nodePosition.X -= this->_frameDeltaTime * 5.f;
+    else
+        nodePosition.X -= this->_frameDeltaTime * 10.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -129,7 +148,10 @@ void Player::MoveUp()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 180;
-    nodePosition.Y += this->_frameDeltaTime * 5.f;
+    if (!this->_bonuses["SpeedUp"])
+        nodePosition.Y += this->_frameDeltaTime * 5.f;
+    else
+        nodePosition.Y += this->_frameDeltaTime * 10.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -147,7 +169,10 @@ void Player::MoveDown()
     if (!this->_isAlive)
         return;
     nodeRotation.Z = 0;
-    nodePosition.Y -= this->_frameDeltaTime * 5.f;
+    if (!this->_bonuses["SpeedUp"])
+        nodePosition.Y -= this->_frameDeltaTime * 5.f;
+    else
+        nodePosition.Y -= this->_frameDeltaTime * 10.f;
     if (this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2)][static_cast<int>(round(nodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(nodePosition.Y - this->_correction) / 2 )][static_cast<int>(round(nodePosition.X) / 2)] == 'T')
         return;
@@ -178,9 +203,11 @@ void Player::action()
     intNodePosition.X = roundTo2(nodePosition.X);
     intNodePosition.Y = roundTo2(nodePosition.Y);
     intNodePosition.Z = roundTo2(nodePosition.Z);
-    this->_bombCube.second = this->_window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
-                                                                                intNodePosition,
-                                                                                irr::core::vector3df(0.0f, 0.0f, 0.0f));
+    if (this->_map[static_cast<int>(-round(intNodePosition.Y) / 2)][static_cast<int>(round(intNodePosition.X) / 2)] == 'A' ||
+        this->_map[static_cast<int>(-round(intNodePosition.Y) / 2)][static_cast<int>(round(intNodePosition.X) / 2)] == 'T')
+        return;    this->_bombCube.second = this->_window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
+        intNodePosition,
+        irr::core::vector3df(0.0f, 0.0f, 0.0f));
     this->_bombCube.second->setMaterialTexture(0, this->_bombTexture);
     this->_bombCube.second->setMaterialFlag(irr::video::EMF_LIGHTING, true);
     this->_bombCube.first = true;

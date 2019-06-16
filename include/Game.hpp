@@ -40,7 +40,9 @@ public:
     void createBlocks(irr::IrrlichtDevice *window);
     void createPlayers(irr::IrrlichtDevice *window);
     void explosion(irr::IrrlichtDevice *window, Player *player);
-    void endExplosion(Player *player);
+    void endExplosion(irr::IrrlichtDevice *window, Player *player);
+    irr::video::ITexture *randomBonus(char c);
+    void addPlayerBonus(Player *player, int x, int y);
     int generateMap();
 
 private:

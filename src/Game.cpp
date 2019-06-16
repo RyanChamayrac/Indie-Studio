@@ -15,6 +15,8 @@ void Game::run(irr::IrrlichtDevice *window)
     window->getVideoDriver()->draw2DImage(this->_textures["gameBackground"], irr::core::position2d<irr::s32>(0, 0),
           irr::core::rect<irr::s32>(0, 0, 1920, 1080), nullptr, irr::video::SColor(255, 255, 255, 255), true);
     for (auto &it : this->_players) {
+        this->addPlayerBonus(it, static_cast<int>(- it->getNode()->getPosition().Y / 2),
+                             static_cast<int>(it->getNode()->getPosition().X / 2));
         if (!it->getBombCube().second)
             continue;
         if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 1.00 && it->getBombCube().first)
@@ -30,7 +32,7 @@ void Game::run(irr::IrrlichtDevice *window)
             x++;
         }
         if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 1.50 && !it->getBombCube().first)
-            this->endExplosion(it);
+            this->endExplosion(window, it);
     }
     int a = rand() % 3;
     if (a == 1)
@@ -39,6 +41,38 @@ void Game::run(irr::IrrlichtDevice *window)
         this->_players[2]->ia_core();
     else if (a == 2)
         this->_players[3]->ia_core();
+}
+
+void Game::addPlayerBonus(Player *player, int y, int x)
+{
+    switch (this->_map[y][x]) {
+        case '0':
+            player->setBonuses("BombUp");
+            if (this->_cubes[y][x])
+                this->_cubes[y][x]->remove();
+            this->_cubes[y][x] = nullptr;
+            break;
+        case '1':
+            player->setBonuses("SpeedUp");
+            if (this->_cubes[y][x])
+                this->_cubes[y][x]->remove();
+            this->_cubes[y][x] = nullptr;
+            break;
+        case '2':
+            player->setBonuses("FireUp");
+            if (this->_cubes[y][x])
+                this->_cubes[y][x]->remove();
+            this->_cubes[y][x] = nullptr;
+            break;
+        case '3':
+            player->setBonuses("WallPass");
+            if (this->_cubes[y][x])
+                this->_cubes[y][x]->remove();
+            this->_cubes[y][x] = nullptr;
+            break;
+        default:
+            break;
+    }
 }
 
 void Game::loadTextures(irr::IrrlichtDevice *window)
@@ -53,6 +87,31 @@ void Game::loadTextures(irr::IrrlichtDevice *window)
           window->getVideoDriver()->getTexture("./assets/images/grass.jpg")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("explosion"),
           window->getVideoDriver()->getTexture("./assets/blocks/explosion.jpg")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("BombUp"),
+          window->getVideoDriver()->getTexture("./assets/blocks/BombUp.jpg")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("SpeedUp"),
+          window->getVideoDriver()->getTexture("./assets/blocks/SpeedUp.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("FireUp"),
+          window->getVideoDriver()->getTexture("./assets/blocks/FireUp.jpg")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("WallPass"),
+          window->getVideoDriver()->getTexture("./assets/blocks/WallPass.png")));
+}
+
+irr::video::ITexture *Game::randomBonus(char c)
+{
+    switch(c) {
+        case '0':
+            return this->_textures["BombUp"];
+        case '1':
+            return this->_textures["SpeedUp"];
+        case '2':
+            return this->_textures["FireUp"];
+        case '3':
+            return this->_textures["WallPass"];
+        default:
+            break;
+    }
+    return nullptr;
 }
 
 void Game::explosion(irr::IrrlichtDevice *window, Player *player)
@@ -60,13 +119,24 @@ void Game::explosion(irr::IrrlichtDevice *window, Player *player)
     irr::scene::ISceneNode *bomb = player->getBombCube().second;
     int x_start = static_cast<int>(bomb->getPosition().X) / 2;
     int y_start = - static_cast<int>(bomb->getPosition().Y) / 2;
+    char res = 0;
+    int size = 0;
 
-    for (int i = x_start - 1; i <= x_start + 1; i++) {
+    if (player->getBonuses()["FireUp"])
+        size = 2;
+    else
+        size = 1;
+    for (int i = x_start - size; i <= x_start + size; i++) {
         if (i <= 0 || i >= 19 || this->_map[y_start][i] == 'A')
             continue;
         if (this->_cubes[y_start][i])
             this->_cubes[y_start][i]->remove();
-        this->_map[y_start][i] = 'e';
+        if (this->_map[y_start][i] == 'T') {
+            res = '0' + (rand() % 10);
+            if (res < '5')
+                this->_map[y_start][i] = 'i';
+        } else
+            this->_map[y_start][i] = 'e';
         this->_cubes[y_start][i] = nullptr;
         this->_cubes[y_start][i] = window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
            irr::core::vector3df(i * 2, -y_start * 2, 0.0f),
@@ -74,12 +144,17 @@ void Game::explosion(irr::IrrlichtDevice *window, Player *player)
         this->_cubes[y_start][i]->setMaterialTexture(0, this->_textures["explosion"]);
         this->_cubes[y_start][i]->setMaterialFlag(irr::video::EMF_LIGHTING, true);
     }
-    for (int i = y_start - 1; i <= y_start + 1; i++) {
-        if (i <= 0 || i >= 19 || this->_map[i][x_start] == 'A')
+    for (int i = y_start - size; i <= y_start + size; i++) {
+        if (i <= 0 || i >= 19 || i == y_start || this->_map[i][x_start] == 'A')
             continue;
         if (this->_cubes[i][x_start])
             this->_cubes[i][x_start]->remove();
-        this->_map[i][x_start] = 'e';
+        if (this->_map[i][x_start] == 'T') {
+            res = '0' + (rand() % 10);
+            if (res < 5)
+                this->_map[i][x_start] = 'i';
+        } else
+            this->_map[i][x_start] = 'e';
         this->_cubes[i][x_start] = nullptr;
         this->_cubes[i][x_start] = window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
            irr::core::vector3df(x_start * 2, -i * 2, 0.0f),
@@ -90,33 +165,54 @@ void Game::explosion(irr::IrrlichtDevice *window, Player *player)
     player->setBombCube(std::pair<bool, irr::scene::ISceneNode *>(false, bomb));
 }
 
-void Game::endExplosion(Player *player)
+void Game::endExplosion(irr::IrrlichtDevice *window, Player *player)
 {
     irr::scene::ISceneNode *bomb = player->getBombCube().second;
     int x_start = static_cast<int>(bomb->getPosition().X) / 2;
     int y_start = - static_cast<int>(bomb->getPosition().Y) / 2;
+    char c = 0;
+    int size = 0;
 
-    for (int i = x_start - 1; i <= x_start + 1; i++) {
+    if (player->getBonuses()["FireUp"])
+        size = 2;
+    else
+        size = 1;
+    for (int i = x_start - size; i <= x_start + size; i++) {
         if (i <= 0 || i >= 19 || this->_map[y_start][i] == 'A')
             continue;
         if (!this->_cubes[y_start][i])
             continue;
-        this->_map[y_start][i] = 'x';
         this->_cubes[y_start][i]->remove();
         this->_cubes[y_start][i] = nullptr;
+        if (this->_map[y_start][i] == 'i') {
+            this->_cubes[y_start][i] = window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
+               irr::core::vector3df(i * 2, -y_start * 2, 0.0f),
+               irr::core::vector3df(0.0f, 0.0f, 0.0f));
+            c = '0' + rand() % 4;
+            this->_cubes[y_start][i]->setMaterialTexture(0, this->randomBonus(c));
+            this->_cubes[y_start][i]->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+            this->_map[y_start][i] = c;
+        } else
+            this->_map[y_start][i] = 'x';
     }
-    for (int i = y_start - 1; i <= y_start + 1; i++) {
-        if (i <= 0 || i >= 19 || this->_map[i][x_start] == 'A')
+    for (int i = y_start - size; i <= y_start + size; i++) {
+        if (i <= 0 || i >= 19 || i == y_start || this->_map[i][x_start] == 'A')
             continue;
         if (!this->_cubes[i][x_start])
             continue;
-        this->_map[i][x_start] = 'x';
         this->_cubes[i][x_start]->remove();
         this->_cubes[i][x_start] = nullptr;
+        if (this->_map[i][x_start] == 'i') {
+            this->_cubes[i][x_start] = window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
+               irr::core::vector3df(x_start * 2, -i * 2, 0.0f),
+               irr::core::vector3df(0.0f, 0.0f, 0.0f));
+            c = '0' + rand() % 4;
+            this->_cubes[i][x_start]->setMaterialTexture(0, this->randomBonus(c));
+            this->_cubes[i][x_start]->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+            this->_map[i][x_start] = c;
+        } else
+            this->_map[i][x_start] = 'x';
     }
-/*
-    player->setBombCube(std::pair<bool, irr::scene::ISceneNode *>(true, bomb));
-*/
     player->getBombCube().second->remove();
     player->setBombCube(std::pair<bool, irr::scene::ISceneNode *>(false, nullptr));
     player->setMap(this->_map);
