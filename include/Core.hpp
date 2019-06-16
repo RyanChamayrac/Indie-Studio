@@ -49,6 +49,7 @@ public:
     //Setters
     void setState(gameState_e state);
     void stopMusic();
+    void changeVolume();
 
     //Getters
     Menu *getMenu();

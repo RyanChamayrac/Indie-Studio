@@ -20,14 +20,6 @@ void Menu::loadTextures(irr::IrrlichtDevice *window)
           window->getVideoDriver()->getTexture("assets/buttons/load.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuOptionsButton"),
             window->getVideoDriver()->getTexture("assets/buttons/options.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuNewpressed"),
-            window->getVideoDriver()->getTexture("assets/buttons/new-pressed.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuLoadpressed"),
-          window->getVideoDriver()->getTexture("assets/buttons/load-pressed.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuOptionspressed"),
-        window->getVideoDriver()->getTexture("assets/buttons/options-pressed.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("menuLeavepressed"),
-            window->getVideoDriver()->getTexture("assets/buttons/leave-pressed.png")));
 }
 
 void Menu::loadButtons(irr::IrrlichtDevice *window)

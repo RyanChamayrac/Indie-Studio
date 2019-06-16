@@ -46,6 +46,9 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                     case GUI_ID_OPTION_RETURN:
                         this->_core.setState(Core::mainMenu);
                         return true;
+                    case GUI_ID_OPTION_MUTE:
+                        this->_core.stopMusic();
+                        return true;
                     case GUI_ID_SKIN_1:
                         this->_core.getSelect()->incSkin(0);
                         return true;
@@ -58,11 +61,14 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                     case GUI_ID_SKIN_4:
                         this->_core.getSelect()->incSkin(3);
                         return true;
-                    case GUI_ID_OPTION_MUTE:
-                        this->_core.stopMusic();
-                        return true;
                     default:
                         return false;
+                }
+            case irr::gui::EGET_SCROLL_BAR_CHANGED:
+                switch(id) {
+                    case GUI_ID_OPTION_SCROLL:
+                        this->_core.changeVolume();
+                        return true;
                 }
             default:
                 break;

@@ -54,12 +54,14 @@ void Option::loadButtons(irr::IrrlichtDevice *window)
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("mute"),
         window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 47, 47), nullptr, GUI_ID_OPTION_MUTE, L"")));
     this->_scrollbars.insert(std::pair<std::string, irr::gui::IGUIScrollBar *>(std::string("volume"),
-        window->getGUIEnvironment()->addScrollBar(true, irr::core::rect<irr::s32>(10,265,150,280), nullptr, GUI_ID_OPTION_3)));
+        window->getGUIEnvironment()->addScrollBar(true, irr::core::rect<irr::s32>(10,265,300,300), nullptr, GUI_ID_OPTION_SCROLL)));
 
+    this->_scrollbars["volume"]->setMax(100);
+    this->_scrollbars["volume"]->setPos(100);
     this->_buttons["retour"]->setImage(this->_textures["retour"]);
     this->_buttons["mute"]->setImage(this->_textures["mute"]);
 
     this->_buttons["retour"]->setRelativePosition(irr::core::position2d<irr::s32>(300, 500));
-    this->_buttons["mute"]->setRelativePosition(irr::core::position2d<irr::s32>(1500, 500));
-    this->_scrollbars["volume"]->setRelativePosition(irr::core::position2d<irr::s32>(900, 850));
+    this->_buttons["mute"]->setRelativePosition(irr::core::position2d<irr::s32>(1550, 500));
+    this->_scrollbars["volume"]->setRelativePosition(irr::core::position2d<irr::s32>(1200, 505));
 }

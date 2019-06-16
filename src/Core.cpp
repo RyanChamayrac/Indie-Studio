@@ -45,6 +45,11 @@ void Core::stopMusic()
     }
 }
 
+void Core::changeVolume()
+{
+    this->getMusic()->setVolume(this->getOption()->getScrollBars()["volume"]->getPos());
+}
+
 sf::Music *Core::getMusic()
 {
     return this->_music;
@@ -213,7 +218,6 @@ void Core::optionCase()
 
 void Core::run()
 {
-    std::cout << this->getMusic() << std::endl;
     if (!this->getMusic()->openFromFile("assets/bomber_music.ogg"))
         return;
     this->getMusic()->play();
