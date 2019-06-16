@@ -51,6 +51,7 @@ public:
     //Setters
     void setState(gameState_e state);
     void stopMusic();
+    void setIsNew(bool isNew);
     void changeVolume();
 
     //Getters
@@ -62,6 +63,7 @@ public:
     Option *getOption();
     irr::IrrlichtDevice *getWindow();
     sf::Music *getMusic();
+    bool getIsNew();
     void changeRole();
 
 private:
@@ -73,6 +75,7 @@ private:
     gameState_e _state;
     irr::IrrlichtDevice *_window;
     MyEventReceiver *_receiver;
+    bool _isNew;
     sf::Music *_music;
 };
 

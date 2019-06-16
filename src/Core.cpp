@@ -31,6 +31,7 @@ Core::Core()
     this->_pause = nullptr;
     this->_select = nullptr;
     this->_option = nullptr;
+    this->_isNew = false;
     this->_music = new sf::Music;
 }
 
@@ -95,25 +96,24 @@ irr::IrrlichtDevice * Core::getWindow()
     return this->_window;
 }
 
+bool Core::getIsNew()
+{
+    return this->_isNew;
+}
+
+void Core::setIsNew(bool isNew)
+{
+    this->_isNew = isNew;
+}
+
 void Core::menuCase()
 {
     if (!this->_menu)
         this->_menu = new Menu(this->_window);
     if (this->_game) {
-        for (auto &it : this->_game->getCubes())
-            for (auto &it2 : it) {
-                if (!it2)
-                    continue;
-                it2->setVisible(false);
-            }
-        for (auto &it : this->_game->getFloor())
-            for (auto &it2 : it) {
-                if (!it2)
-                    continue;
-                it2->setVisible(false);
-            }
-        for (auto &it : this->_game->getPlayers())
-            it->getNode()->setVisible(false);
+        this->_window->getSceneManager()->clear();
+        delete(this->_game);
+        this->_game = nullptr;
     }
     if (this->_select) {
         for (auto &it : this->_select->getButtons())
@@ -137,7 +137,7 @@ void Core::menuCase()
 void Core::gameCase()
 {
     if (!this->_game)
-        this->_game = new Game(this->_window, static_cast<bool>(this->_select));
+        this->_game = new Game(this->_window, this->_isNew);
     if (this->_menu) {
         for (auto &it : this->_menu->getButtons())
             it.second->setVisible(false);
