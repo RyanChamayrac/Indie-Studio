@@ -59,7 +59,7 @@ void SelectPlayer::loadTextures(irr::IrrlichtDevice *windows)
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("p_grey"),
             windows->getVideoDriver()->getTexture("assets/buttons/p2.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("x"),
-            windows->getVideoDriver()->getTexture("assets/buttons/x.png")));
+            windows->getVideoDriver()->getTexture("assets/buttons/switch.png")));
 }
 
 void SelectPlayer::incSkin(int skin)
@@ -160,13 +160,13 @@ void SelectPlayer::loadButtons(irr::IrrlichtDevice *windows)
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("p4"),
             windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 47, 47), nullptr, GUI_ID_P4, L"", L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("x1"),
-            windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 47, 47), nullptr, GUI_ID_X1, L"", L"")));
+            windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 30, 30), nullptr, GUI_ID_X1, L"", L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("x2"),
-            windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 47, 47), nullptr, GUI_ID_X2, L"", L"")));
+            windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 30, 30), nullptr, GUI_ID_X2, L"", L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("x3"),
-            windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 47, 47), nullptr, GUI_ID_X3, L"", L"")));
+            windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 30, 30), nullptr, GUI_ID_X3, L"", L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("x4"),
-            windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 47, 47), nullptr, GUI_ID_X4, L"", L"")));
+            windows->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 30, 30), nullptr, GUI_ID_X4, L"", L"")));
 
     this->_buttons["changeSkin1"]->setImage(this->_textures["changeSkin1"]);
     this->_buttons["changeSkin2"]->setImage(this->_textures["changeSkin2"]);
@@ -203,10 +203,10 @@ void SelectPlayer::loadButtons(irr::IrrlichtDevice *windows)
     this->_buttons["ia3"]->setRelativePosition(irr::core::position2d<irr::s32>(1168, 750));
     this->_buttons["p4"]->setRelativePosition(irr::core::position2d<irr::s32>(1400, 750));
     this->_buttons["ia4"]->setRelativePosition(irr::core::position2d<irr::s32>(1568, 750));
-    this->_buttons["x1"]->setRelativePosition(irr::core::position2d<irr::s32>(284, 750));
-    this->_buttons["x2"]->setRelativePosition(irr::core::position2d<irr::s32>(684, 750));
-    this->_buttons["x3"]->setRelativePosition(irr::core::position2d<irr::s32>(1084, 750));
-    this->_buttons["x4"]->setRelativePosition(irr::core::position2d<irr::s32>(1484, 750));
+    this->_buttons["x1"]->setRelativePosition(irr::core::position2d<irr::s32>(290, 763));
+    this->_buttons["x2"]->setRelativePosition(irr::core::position2d<irr::s32>(690, 763));
+    this->_buttons["x3"]->setRelativePosition(irr::core::position2d<irr::s32>(1090, 763));
+    this->_buttons["x4"]->setRelativePosition(irr::core::position2d<irr::s32>(1490, 763));
 
     this->_buttons["retourMenu"]->setRelativePosition(irr::core::position2d<irr::s32>(800, 925));
     this->_buttons["selectPlay"]->setRelativePosition(irr::core::position2d<irr::s32>(800, 850));
