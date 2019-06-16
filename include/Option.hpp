@@ -19,6 +19,7 @@ public:
     //Getter
     std::map<std::string, irr::gui::IGUIButton *> getButtons();
     std::map<std::string, irr::gui::IGUIScrollBar *> getScrollBars();
+    std::map<std::string, irr::video::ITexture *> getTextures();
 
     //Loader
     void loadButtons(irr::IrrlichtDevice *window);

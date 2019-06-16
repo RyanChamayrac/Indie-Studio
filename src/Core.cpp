@@ -36,10 +36,13 @@ Core::Core()
 
 void Core::stopMusic()
 {
-    if (this->getMusic()->getStatus() == 2)
+    if (this->getMusic()->getStatus() == 2) {
         this->getMusic()->pause();
-    else if (this->getMusic()->getStatus() == 1)
+        this->getOption()->getButtons()["mute"]->setImage(this->getOption()->getTextures()["muted"]);
+    } else if (this->getMusic()->getStatus() == 1) {
         this->getMusic()->play();
+        this->getOption()->getButtons()["mute"]->setImage(this->getOption()->getTextures()["mute"]);
+    }
 }
 
 sf::Music *Core::getMusic()

@@ -21,16 +21,20 @@ void Option::loadTextures(irr::IrrlichtDevice *window)
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("retour"),
             window->getVideoDriver()->getTexture("assets/buttons/back.png")));
     this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("mute"),
-            window->getVideoDriver()->getTexture("assets/buttons/role.png")));
-    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("volume"),
-            window->getVideoDriver()->getTexture("assets/buttons/role.png")));
+            window->getVideoDriver()->getTexture("assets/buttons/sound.png")));
+    this->_textures.insert(std::pair<std::string, irr::video::ITexture *>(std::string("muted"),
+            window->getVideoDriver()->getTexture("assets/buttons/soundoff.png")));
 }
-
 
 void Option::run(irr::IrrlichtDevice *window)
 {
     window->getVideoDriver()->draw2DImage(this->_textures["OptionBackground"], irr::core::position2d<irr::s32>(0,0),
             irr::core::rect<irr::s32>(0,0, 1920, 1080), nullptr, irr::video::SColor(255, 255, 255, 255), true);
+}
+
+std::map<std::string, irr::video::ITexture *> Option::getTextures()
+{
+    return this->_textures;
 }
 
 std::map<std::string, irr::gui::IGUIButton *> Option::getButtons()
@@ -48,7 +52,7 @@ void Option::loadButtons(irr::IrrlichtDevice *window)
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("retour"),
         window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTION_RETURN, L"")));
     this->_buttons.insert(std::pair<std::string, irr::gui::IGUIButton *>(std::string("mute"),
-        window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 215, 47), nullptr, GUI_ID_OPTION_MUTE, L"")));
+        window->getGUIEnvironment()->addButton(irr::core::rect<irr::s32>(0, 0, 47, 47), nullptr, GUI_ID_OPTION_MUTE, L"")));
     this->_scrollbars.insert(std::pair<std::string, irr::gui::IGUIScrollBar *>(std::string("volume"),
         window->getGUIEnvironment()->addScrollBar(true, irr::core::rect<irr::s32>(10,265,150,280), nullptr, GUI_ID_OPTION_3)));
 
