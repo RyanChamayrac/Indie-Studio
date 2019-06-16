@@ -33,12 +33,8 @@ public:
     void Animate(int, int);
     void ia_core();
     void ia_start();
-    void ia_careful();
-    void ia_rand_direction();
-    void ia_put_bomb();
-    void ia_to_bonus();
-    void ia_offensive();
     void ia_deffensive();
+    void ia_offensive();
     void ia_move_right();
     void ia_move_up();
     void ia_move_down();
@@ -68,11 +64,19 @@ public:
         RIGHT
     };
 
-private:
+    enum placement_e {
+        UP_G,
+        UP_D,
+        DOWN_G,
+        DOWN_D,
+    };
+
+    private:
     irr::scene::IAnimatedMesh *_playerMesh;
     irr::video::ITexture *_bombTexture;
     std::pair<bool, irr::scene::ISceneNode *> _bombCube;
     direction_e _direction;
+    placement_e _placement;
     irr::scene::IAnimatedMeshSceneNode * _playerNode;
     irr::f32 _frameDeltaTime;
     irr::IrrlichtDevice *_window;
