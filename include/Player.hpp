@@ -32,9 +32,7 @@ public:
     void action();
     void Animate(int, int);
     void ia_core();
-    void ia_start();
     void ia_deffensive();
-    void ia_offensive();
     void ia_move_right();
     void ia_move_up();
     void ia_move_down();
@@ -61,7 +59,9 @@ public:
         UP,
         DOWN,
         LEFT,
-        RIGHT
+        RIGHT,
+        BOOM,
+        BOOMOK
     };
 
     enum placement_e {
@@ -69,6 +69,7 @@ public:
         UP_D,
         DOWN_G,
         DOWN_D,
+        NONE
     };
 
     private:

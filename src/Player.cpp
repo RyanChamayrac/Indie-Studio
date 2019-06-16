@@ -21,6 +21,7 @@ Player::Player(irr::IrrlichtDevice *window, const irr::core::vector3df& position
     this->_window = window;
     this->_frameDeltaTime = 0.020;
     this->_IA = IA;
+    this->_placement = NONE;
     this->_isAlive = true;
     this->_playerMesh = window->getSceneManager()->getMesh("assets/models/Bomberman.b3d");
     this->_playerNode = window->getSceneManager()->addAnimatedMeshSceneNode(this->_playerMesh);
@@ -239,7 +240,7 @@ void Player::ia_move_left()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    while (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'x') {
+    if (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) - 1] == 'x') {
         float tmp = nodePosition.X;
             nodeRotation.Z = 270;
             nodePosition.X -= 2;
@@ -265,7 +266,7 @@ void Player::ia_move_right()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    while (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'x') {
+    if (this->_map[- static_cast<int>(nodePosition.Y/2)][static_cast<int>(nodePosition.X/2) + 1] == 'x') {
         float tmp = nodePosition.X;
             nodeRotation.Z = 90;
             nodePosition.X += 2;
@@ -291,7 +292,7 @@ void Player::ia_move_up()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    while (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'x') {
+    if (this->_map[- static_cast<int>(nodePosition.Y/2) - 1][static_cast<int>(nodePosition.X/2)] == 'x') {
         float tmp = nodePosition.Y;
             nodeRotation.Z = 180;
             nodePosition.Y += 2;
@@ -317,7 +318,7 @@ void Player::ia_move_down()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    while (this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'x') {
+    if (this->_map[- static_cast<int>(nodePosition.Y/2) + 1][static_cast<int>(nodePosition.X/2)] == 'x') {
         float tmp = nodePosition.Y;
             nodeRotation.Z = 0;
             nodePosition.Y -= 2;
@@ -338,6 +339,200 @@ void Player::ia_move_down()
     }
 }
 
+void Player::ia_deffensive()
+{
+    irr::core::vector3df nodePosition = this->_playerNode->getPosition();
+
+    if (this->getBombCube().second == NULL && this->_placement == NONE) {
+        if ((nodePosition.X / 2 == 1.00 && nodePosition.Y / 2 == -1.00)) {
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            this->action();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            this->_placement = UP_G;
+        }
+        if ((nodePosition.X / 2 == 1.00 && nodePosition.Y / 2 == -17.00)) {
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            this->action();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            this->_placement = DOWN_G;
+        }
+        if ((nodePosition.X / 2 == 17.00 && nodePosition.Y / 2 == -1.00)) {
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            this->action();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            this->_placement = UP_D;
+        }
+        if ((nodePosition.X / 2 == 17.00 && nodePosition.Y / 2 == -17.00)) {
+            for (int i = 0; i <= 19; i++)
+                ia_move_right();
+            for (int i = 0; i <= 19; i++)
+                ia_move_up();
+            this->action();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            for (int i = 0; i <= 19; i++)
+                ia_move_down();
+            for (int i = 0; i <= 19; i++)
+                ia_move_left();
+            this->_placement = DOWN_D;
+        }
+    }
+}
+
+void Player::ia_core() {
+    irr::core::vector3df nodePosition = this->_playerNode->getPosition();
+    irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(1, 2);
+    auto n = dis(gen);
+
+    ia_deffensive();
+
+    if (this->getBombCube().second == NULL) {
+        if (this->_placement == UP_G) {
+            if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
+                ia_move_right();
+            } else if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] ==
+                       'x') {
+                ia_move_up();
+                this->_direction = BOOM;
+            } else if (this->_direction == BOOM) {
+                this->action();
+                ia_move_down();
+                ia_move_left();
+                this->_direction = BOOMOK;
+            }
+            if (this->_direction == BOOMOK) {
+                if (this->_map[-static_cast<int>(nodePosition.Y / 2) + 1][static_cast<int>(nodePosition.X / 2)] ==
+                    'x') {
+                    ia_move_down();
+                } else if (
+                        this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] ==
+                        'x') {
+                    ia_move_left();
+                    this->_direction = UP;
+                }
+            }
+        }
+        if (this->_placement == DOWN_G) {
+            if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] == 'x') {
+                ia_move_left();
+            } else if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] ==
+                       'x') {
+                ia_move_up();
+                this->_direction = BOOM;
+            } else if (this->_direction == BOOM) {
+                this->action();
+                ia_move_down();
+                ia_move_right();
+                this->_direction = BOOMOK;
+            }
+            if (this->_direction == BOOMOK) {
+                if (this->_map[-static_cast<int>(nodePosition.Y / 2) + 1][static_cast<int>(nodePosition.X / 2)] ==
+                    'x') {
+                    ia_move_down();
+                } else if (
+                        this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] ==
+                        'x') {
+                    ia_move_right();
+                    this->_direction = UP;
+                }
+            }
+        }
+        if (this->_placement == UP_D) {
+            if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
+                ia_move_right();
+            } else if (this->_map[-static_cast<int>(nodePosition.Y / 2) + 1][static_cast<int>(nodePosition.X / 2)] ==
+                       'x') {
+                ia_move_down();
+                this->_direction = BOOM;
+            } else if (this->_direction == BOOM) {
+                this->action();
+                ia_move_up();
+                ia_move_left();
+                this->_direction = BOOMOK;
+            }
+            if (this->_direction == BOOMOK) {
+                if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] ==
+                    'x') {
+                    ia_move_up();
+                } else if (
+                        this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] ==
+                        'x') {
+                    ia_move_left();
+                    this->_direction = UP;
+                }
+            }
+        }
+        if (this->_placement == DOWN_D) {
+            if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
+                ia_move_right();
+            } else if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] ==
+                       'x') {
+                ia_move_up();
+                this->_direction = BOOM;
+            } else if (this->_direction == BOOM) {
+                this->action();
+                ia_move_down();
+                ia_move_left();
+                this->_direction = BOOMOK;
+            }
+            if (this->_direction == BOOMOK) {
+                if (this->_map[-static_cast<int>(nodePosition.Y / 2) + 1][static_cast<int>(nodePosition.X / 2)] ==
+                    'x') {
+                    ia_move_down();
+                } else if (
+                        this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] ==
+                        'x') {
+                    ia_move_left();
+                    this->_direction = UP;
+                }
+            }
+        }
+    }
+}
+
+/*    if (n == 1) {
+        ia_offensive();
+    } else if (n == 2) {
+        ia_deffensive();
+    }*/
+
+/*
 void Player::ia_offensive()
 {
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
@@ -417,159 +612,6 @@ void Player::ia_offensive()
     }
 }
 
-void Player::ia_deffensive()
-{
-    irr::core::vector3df nodePosition = this->_playerNode->getPosition();
-
-    if (this->getBombCube().second == NULL) {
-        if ((nodePosition.X / 2 == 1.00 && nodePosition.Y / 2 == -1.00)) {
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            this->action();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            this->_placement = UP_G;
-        }
-        if ((nodePosition.X / 2 == 1.00 && nodePosition.Y / 2 == -17.00)) {
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            this->action();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-            this->_placement = DOWN_G;
-        }
-        if ((nodePosition.X / 2 == 17.00 && nodePosition.Y / 2 == -1.00)) {
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            this->action();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            this->_placement = UP_D;
-        }
-        if ((nodePosition.X / 2 == 17.00 && nodePosition.Y / 2 == -17.00)) {
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            this->action();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            this->_placement = DOWN_D;
-        }
-    }
-}
-
-void Player::ia_core()
-{
-    irr::core::vector3df nodePosition = this->_playerNode->getPosition();
-    irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
-
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(1, 2);
-    auto n = dis(gen);
-
-    ia_deffensive();
-
-    if (this->getBombCube().second == NULL) {
-        if (this->_placement == UP_G) {
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            this->action();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-        }
-        if (this->_placement == DOWN_G) {
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            this->action();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-        }
-        if (this->_placement == UP_D) {
-            for (int i = 0; i <= 19; i++)
-              ia_move_right();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            this->action();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-        }
-        if (this->_placement == DOWN_D) {
-            for (int i = 0; i <= 19; i++)
-                ia_move_right();
-            for (int i = 0; i <= 19; i++)
-                ia_move_up();
-            this->action();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-            for (int i = 0; i <= 19; i++)
-                ia_move_down();
-            for (int i = 0; i <= 19; i++)
-                ia_move_left();
-        }
-    }
-/*    if (n == 1) {
-        ia_offensive();
-    } else if (n == 2) {
-        ia_deffensive();
-    }*/
-}
-
 void Player::ia_start()
 {
     int a = rand() % 4;
@@ -625,4 +667,4 @@ void Player::ia_start()
                }
            }
        }
-}
+}*/
