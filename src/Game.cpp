@@ -35,9 +35,7 @@ void Game::run(irr::IrrlichtDevice *window)
             this->endExplosion(window, it);
     }
     int a = rand() % 3;
-    if (a == 1)
-        this->_players[1]->ia_core();
-    else if (a == 0)
+    if (a == 0)
         this->_players[2]->ia_core();
     else if (a == 2)
         this->_players[3]->ia_core();

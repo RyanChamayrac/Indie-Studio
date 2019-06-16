@@ -13,6 +13,7 @@
 #include <irrlicht.h>
 #include <SFML/Audio.hpp>
 #include "Option.hpp"
+#include <thread>
 
 //#include "driverChoice.h"
 class Menu;
@@ -30,6 +31,7 @@ public:
 	Core();
 	~Core() = default;
 	void run();
+	void th();
     void initMenu();
 
     enum gameState_e {

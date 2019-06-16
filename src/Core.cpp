@@ -244,14 +244,26 @@ void Core::run()
         }
         if (this->_receiver->IsKeyDown(irr::KEY_ESCAPE)) {
             this->setState(Core::mainPause);
-        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_Z)) {
-            this->getGame()->getPlayers()[0]->MoveUp();
-        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_D)) {
-            this->getGame()->getPlayers()[0]->MoveRight();
-        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_Q)) {
-            this->getGame()->getPlayers()[0]->MoveLeft();
-        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_S)) {
-            this->getGame()->getPlayers()[0]->MoveDown();
+        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_Z) || this->_receiver->IsKeyDown(irr::KEY_UP)) {
+            if (this->_receiver->IsKeyDown(irr::KEY_KEY_Z))
+                this->getGame()->getPlayers()[0]->MoveUp();
+            else
+                this->getGame()->getPlayers()[1]->MoveUp();
+        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_D) || this->_receiver->IsKeyDown(irr::KEY_RIGHT)) {
+            if (this->_receiver->IsKeyDown(irr::KEY_KEY_D))
+                this->getGame()->getPlayers()[0]->MoveRight();
+            else
+                this->getGame()->getPlayers()[1]->MoveRight();
+        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_Q) || this->_receiver->IsKeyDown(irr::KEY_LEFT)) {
+            if (this->_receiver->IsKeyDown(irr::KEY_KEY_Q))
+                this->getGame()->getPlayers()[0]->MoveLeft();
+            else
+                this->getGame()->getPlayers()[1]->MoveLeft();
+        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_S) || this->_receiver->IsKeyDown(irr::KEY_DOWN)) {
+            if (this->_receiver->IsKeyDown(irr::KEY_KEY_S))
+                this->getGame()->getPlayers()[0]->MoveDown();
+            else
+                this->getGame()->getPlayers()[1]->MoveDown();
         } if (this->_receiver->IsKeyDown(irr::KEY_SPACE)) {
             this->getGame()->getPlayers()[0]->action();
         }
