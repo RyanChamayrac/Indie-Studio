@@ -194,6 +194,8 @@ void Core::gameCase()
         if (it->getIsAlive())
             it->getNode()->setVisible(true);
     this->_game->run(this->_window);
+    if (this->_game->getDone())
+        this->_state = Core::mainMenu;
 }
 
 void Core::pauseCase()

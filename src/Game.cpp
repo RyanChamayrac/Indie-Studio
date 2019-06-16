@@ -42,6 +42,13 @@ void Game::run(irr::IrrlichtDevice *window)
         this->_players[2]->ia_core();
     else if (a == 2)
         this->_players[3]->ia_core();
+    if (!this->_players[0]->getIsAlive())
+        this->_done = true;
+}
+
+bool Game::getDone()
+{
+    return this->_done;
 }
 
 void Game::addPlayerBonus(Player *player, int y, int x)

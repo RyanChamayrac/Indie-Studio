@@ -45,6 +45,7 @@ public:
     irr::video::ITexture *randomBonus(char c);
     void addPlayerBonus(Player *player, int x, int y);
     int generateMap();
+    bool getDone();
     std::vector<std::vector<char>> getTabMap();
 
 private:
@@ -54,6 +55,7 @@ private:
     std::vector<std::vector<irr::scene::ISceneNode *>> _cubes;
     std::vector<std::vector<irr::scene::ISceneNode *>> _floor;
     std::vector<Player *> _players;
+    bool _done = false;
 };
 
 #endif //OOP_INDIE_STUDIO_2018_GAME_HPP
