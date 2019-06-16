@@ -75,6 +75,10 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                     case GUI_ID_X4:
                         this->_core.getSelect()->changeRole(3);
                         return true;
+                    case GUI_ID_PAUSE_SAVE:
+                        if (!this->_core.saveMap(this->_core.getGame()->getTabMap(), this->_core.getGame()->getPlayersPositions()))
+                            std::cout << "Couldn't save the game" << std::endl;
+                        return true;
                     default:
                         return false;
                 }

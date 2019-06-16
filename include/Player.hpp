@@ -19,7 +19,7 @@ class Player {
 
 public:
     //CTOR
-    Player(irr::IrrlichtDevice *window, const irr::core::vector3df&, bool IA,
+    Player(irr::IrrlichtDevice *window, char c, bool IA,
            std::vector<std::vector<irr::scene::ISceneNode *>> cubes, std::vector<std::vector<char>> map);
 
     //DTOR

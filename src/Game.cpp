@@ -221,6 +221,15 @@ void Game::loadButtons(irr::IrrlichtDevice *window)
     (void)window;
 }
 
+std::vector<irr::core::vector3df> Game::getPlayersPositions()
+{
+    std::vector<irr::core::vector3df> ret;
+
+    for (auto &it : this->_players)
+        ret.push_back(it->getNode()->getPosition());
+    return ret;
+}
+
 int Game::generateMap()
 {
     int i = 0;
@@ -240,8 +249,14 @@ int Game::generateMap()
             std::mt19937 gen(rd());
             std::uniform_int_distribution<> dis(1, 11600);
             n = dis(gen);
-            if ((i == 0 && j == 0) || (i == 0 && j == 16) || (i == 16 && j == 0) || (i == 16 && j == 16))
-                file << "x";
+            if (i == 0 && j == 0)
+                file << ",";
+            else if (i == 0 && j == 16)
+                file << ":";
+            else if (i == 16 && j == 0)
+                file << ";";
+            else if (i == 16 && j == 16)
+                file << "!";
             else if ((i == 1 && j == 0) || (i == 0 && j == 1))
                 file << "x";
             else if ((i == 15 && j == 0) || (i == 16 && j == 1))
@@ -305,6 +320,11 @@ std::vector<Player*> Game::getPlayers()
     return this->_players;
 }
 
+std::vector<std::vector<char>> Game::getTabMap()
+{
+    return this->_map;
+}
+
 void Game::createBlocks(irr::IrrlichtDevice *window)
 {
     int x = 0;
@@ -349,10 +369,10 @@ void Game::createPlayers(irr::IrrlichtDevice *window)
 {
     for (int i = 0; i < 4; i++)
         this->_players.push_back(nullptr);
-    this->_players[0] = new Player(window, irr::core::vector3df(2,-2,0), false, this->_cubes, this->_map);
-    this->_players[1] = new Player(window, irr::core::vector3df(34,-34,0), true, this->_cubes, this->_map);
-    this->_players[2] = new Player(window, irr::core::vector3df(2,-34,0), true, this->_cubes, this->_map);
-    this->_players[3] = new Player(window, irr::core::vector3df(34,-2,0), true, this->_cubes, this->_map);
+    this->_players[0] = new Player(window, ',', false, this->_cubes, this->_map);
+    this->_players[1] = new Player(window, ';', true, this->_cubes, this->_map);
+    this->_players[2] = new Player(window, ':', true, this->_cubes, this->_map);
+    this->_players[3] = new Player(window, '!', true, this->_cubes, this->_map);
 }
 
 Game::Game(irr::IrrlichtDevice *window, bool _new) : _textures()

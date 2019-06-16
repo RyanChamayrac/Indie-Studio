@@ -9,9 +9,11 @@
 #include <random>
 #include <utility>
 
-Player::Player(irr::IrrlichtDevice *window, const irr::core::vector3df& position, bool IA,
+Player::Player(irr::IrrlichtDevice *window, char c, bool IA,
                std::vector<std::vector<irr::scene::ISceneNode *>> cubes, std::vector<std::vector<char>> map)
 {
+    int x = 0;
+    int y = 0;
     this->_bombTexture = window->getVideoDriver()->getTexture("./assets/blocks/tnt.jpg");
     this->_cubes = std::move(cubes);
     this->_map = std::move(map);
@@ -30,7 +32,16 @@ Player::Player(irr::IrrlichtDevice *window, const irr::core::vector3df& position
         this->_playerNode->setMaterialTexture(0, window->getVideoDriver()->getTexture("assets/models/Bomberman.png"));
         this->_playerNode->setRotation(irr::core::vector3df(-90, 0, 0));
     }
-    this->_playerNode->setPosition(position);
+    for (auto &it : this->_map) {
+        x = 0;
+        for (auto &it2 : it) {
+            if (it2 == c) {
+                this->_playerNode->setPosition(irr::core::vector3df(x * 2, -y * 2, 0));
+            }
+            x++;
+        }
+        y++;
+    }
     this->_bonuses.insert(std::pair<std::string, bool>(std::string("BombUp"), false));
     this->_bonuses.insert(std::pair<std::string, bool>(std::string("SpeedUp"), false));
     this->_bonuses.insert(std::pair<std::string, bool>(std::string("FireUp"), false));
@@ -210,7 +221,8 @@ void Player::action()
     intNodePosition.Z = roundTo2(nodePosition.Z);
     if (this->_map[static_cast<int>(-round(intNodePosition.Y) / 2)][static_cast<int>(round(intNodePosition.X) / 2)] == 'A' ||
         this->_map[static_cast<int>(-round(intNodePosition.Y) / 2)][static_cast<int>(round(intNodePosition.X) / 2)] == 'T')
-        return;    this->_bombCube.second = this->_window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
+        return;
+    this->_bombCube.second = this->_window->getSceneManager()->addCubeSceneNode(2.0f, nullptr, -1,
         intNodePosition,
         irr::core::vector3df(0.0f, 0.0f, 0.0f));
     this->_bombCube.second->setMaterialTexture(0, this->_bombTexture);

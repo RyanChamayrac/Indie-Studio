@@ -41,6 +41,7 @@ enum button{
     GUI_ID_OPTION_RETURN = 124,
     GUI_ID_OPTION_MUTE = 125,
     GUI_ID_OPTION_SCROLL = 126,
+    GUI_ID_PAUSE_SAVE = 127,
 };
 
 class GameStat {

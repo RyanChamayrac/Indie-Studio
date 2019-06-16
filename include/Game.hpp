@@ -31,6 +31,7 @@ public:
     std::vector<std::vector<irr::scene::ISceneNode *>> getCubes();
     std::vector<std::vector<irr::scene::ISceneNode *>> getFloor();
     std::vector<Player *> getPlayers();
+    std::vector<irr::core::vector3df> getPlayersPositions();
 
 
     void run(irr::IrrlichtDevice *window) override;
@@ -44,6 +45,7 @@ public:
     irr::video::ITexture *randomBonus(char c);
     void addPlayerBonus(Player *player, int x, int y);
     int generateMap();
+    std::vector<std::vector<char>> getTabMap();
 
 private:
     std::map<std::string, irr::video::ITexture *> _textures;

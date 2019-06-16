@@ -106,6 +106,29 @@ void Core::setIsNew(bool isNew)
     this->_isNew = isNew;
 }
 
+int Core::saveMap(std::vector<std::vector<char>> map, std::vector<irr::core::vector3df> positions)
+{
+    std::ofstream file;
+    file.open ("assets/map/map.txt");
+
+    map[static_cast<int>(-round(positions[0].Y) / 2)][static_cast<int>(round(positions[0].X) / 2)] = ',';
+    map[static_cast<int>(-round(positions[1].Y) / 2)][static_cast<int>(round(positions[1].X) / 2)] = ';';
+    map[static_cast<int>(-round(positions[2].Y) / 2)][static_cast<int>(round(positions[2].X) / 2)] = ':';
+    map[static_cast<int>(-round(positions[3].Y) / 2)][static_cast<int>(round(positions[3].X) / 2)] = '!';
+    for (auto &it : map) {
+        for (auto &it2 : it) {
+            std::cout << it2;
+            if (it2 == 'e')
+                file << 'x';
+            else
+                file << it2;
+        }
+        file << "\n";
+    }
+    file.close();
+    return 1;
+}
+
 void Core::menuCase()
 {
     if (!this->_menu)

@@ -48,6 +48,8 @@ public:
     void selectCase();
     void optionCase();
 
+    int saveMap(std::vector<std::vector<char>> map, std::vector<irr::core::vector3df> positions);
+
     //Setters
     void setState(gameState_e state);
     void stopMusic();
