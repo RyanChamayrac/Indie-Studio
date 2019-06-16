@@ -382,9 +382,6 @@ void Player::ia_deffensive()
     }
 }
 
-
-
-
 void Player::ia_core()
 {
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();

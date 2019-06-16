@@ -223,20 +223,19 @@ void Game::loadButtons(irr::IrrlichtDevice *window)
     (void)window;
 }
 
-
 int Game::generateMap()
 {
-    FILE* file = nullptr;
     int i = 0;
     int j = 0;
     int n = 0;
+    std::ofstream file;
+    file.open ("assets/map/map.txt");
 
-    file = fopen("map.txt", "w");
     if (!file)
         return -1;
-    fputs("AAAAAAAAAAAAAAAAAAA\n", file);
+    file << "AAAAAAAAAAAAAAAAAAA\n";
     while (j < 17) {
-        fputs("A", file);
+        file << "A";
         i = 0;
         while (i < 17) {
             std::random_device rd;
@@ -244,27 +243,28 @@ int Game::generateMap()
             std::uniform_int_distribution<> dis(1, 11600);
             n = dis(gen);
             if ((i == 0 && j == 0) || (i == 0 && j == 16) || (i == 16 && j == 0) || (i == 16 && j == 16))
-                fputs("x", file);
+                file << "x";
             else if ((i == 1 && j == 0) || (i == 0 && j == 1))
-                fputs("x", file);
+                file << "x";
             else if ((i == 15 && j == 0) || (i == 16 && j == 1))
-                fputs("x", file);
+                file << "x";
             else if ((i == 1 && j == 16) || (i == 0 && j == 15))
-                fputs("x", file);
+                file << "x";
             else if ((i == 15 && j == 16) || (i == 16 && j == 15))
-                fputs("x", file);
+                file << "x";
             else if (i % 2 != 0 && j % 2 != 0)
-                fputs("A", file);
+                file << "A";
             else if (n % 2 == 0)
-                fputs("T", file);
+                file << "T";
             else
-                fputs("x", file);
+                file << "x";
             i++;
         }
-        fputs("A\n", file);
+        file << "A\n";
         j++;
     }
-    fputs("AAAAAAAAAAAAAAAAAAA", file);
+    file << "AAAAAAAAAAAAAAAAAAA";
+    file.close();
     return 1;
 }
 
