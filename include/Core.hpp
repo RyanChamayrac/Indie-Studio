@@ -60,6 +60,7 @@ public:
     Option *getOption();
     irr::IrrlichtDevice *getWindow();
     sf::Music *getMusic();
+    void changeRole();
 
 private:
     Menu *_menu;

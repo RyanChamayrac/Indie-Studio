@@ -61,6 +61,18 @@ bool MyEventReceiver::clicks(const irr::SEvent &event)
                     case GUI_ID_SKIN_4:
                         this->_core.getSelect()->incSkin(3);
                         return true;
+                    case GUI_ID_X1:
+                        this->_core.getSelect()->changeRole(0);
+                        return true;
+                    case GUI_ID_X2:
+                        this->_core.getSelect()->changeRole(1);
+                        return true;
+                    case GUI_ID_X3:
+                        this->_core.getSelect()->changeRole(2);
+                        return true;
+                    case GUI_ID_X4:
+                        this->_core.getSelect()->changeRole(3);
+                        return true;
                     default:
                         return false;
                 }

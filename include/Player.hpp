@@ -67,6 +67,10 @@ public:
     enum placement_e {
         UP_G,
         UP_D,
+        BAS_G_D,
+        BAS_D_G,
+        HAUT_D_G,
+        HAUT_G_D,
         DOWN_G,
         DOWN_D,
         NONE

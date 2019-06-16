@@ -423,8 +423,81 @@ void Player::ia_core() {
     ia_deffensive();
 
     if (this->getBombCube().second == NULL) {
+        if (this->_placement == BAS_D_G) {
+            if (this->_map[-static_cast<int>(nodePosition.Y / 2) + 1][static_cast<int>(nodePosition.X / 2)] == 'x') {
+                ia_move_down();
+            } else if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] == 'x') {
+                ia_move_left();
+                this->_direction = BOOM;
+            } else if (this->_direction == BOOM) {
+                this->action();
+                ia_move_right();
+                ia_move_up();
+                this->_direction = BOOMOK;
+            }
+            if (this->_direction == BOOMOK) {
+                if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
+                    ia_move_right();
+                } else if (
+                        this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] == 'x') {
+                    ia_move_up();
+                    this->_direction = UP;
+                }
+            }
+        }
+        if (this->_placement == HAUT_G_D) {
+            if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] == 'x') {
+                ia_move_up();
+            } else if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
+                ia_move_right();
+                this->_direction = BOOM;
+            } else if (this->_direction == BOOM) {
+                this->action();
+                ia_move_left();
+                ia_move_down();
+                this->_direction = BOOMOK;
+            }
+            if (this->_direction == BOOMOK) {
+                if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] == 'x') {
+                    ia_move_left();
+                } else if (
+                        this->_map[-static_cast<int>(nodePosition.Y / 2) + 1][static_cast<int>(nodePosition.X / 2)] == 'x') {
+                    ia_move_down();
+                    this->_direction = UP;
+                }
+            }
+        }
+        if (this->_placement == HAUT_D_G) {
+            if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] == 'x') {
+                ia_move_up();
+            } else if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] == 'x') {
+                ia_move_left();
+                this->_direction = BOOM;
+            } else if (this->_direction == BOOM) {
+                this->action();
+                ia_move_right();
+                ia_move_down();
+                this->_direction = BOOMOK;
+            }
+            if (this->_direction == BOOMOK) {
+                if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] ==
+                    'x') {
+                    ia_move_right();
+                } else if (
+                        this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] ==
+                        'x') {
+                    ia_move_down();
+                    this->_direction = UP;
+                }
+            }
+        }
+        if (this->_placement == BAS_G_D) {
+            //on verra
+        }
         if (this->_placement == UP_G) {
-            if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
+            if (-static_cast<int>(nodePosition.Y / 2) == 16 && static_cast<int>(nodePosition.X / 2) == 1)
+                this->_placement = BAS_G_D;
+            else if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
                 ia_move_right();
             } else if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] ==
                        'x') {
@@ -449,7 +522,9 @@ void Player::ia_core() {
             }
         }
         if (this->_placement == DOWN_G) {
-            if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] == 'x') {
+            if (-static_cast<int>(nodePosition.Y / 2) == 2 && static_cast<int>(nodePosition.X / 2) == 1)
+                this->_placement = HAUT_G_D;
+            else if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) - 1] == 'x') {
                 ia_move_left();
             } else if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] ==
                        'x') {
@@ -474,7 +549,9 @@ void Player::ia_core() {
             }
         }
         if (this->_placement == UP_D) {
-            if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
+            if (-static_cast<int>(nodePosition.Y / 2) == 16 && static_cast<int>(nodePosition.X / 2) == 17)
+                this->_placement = BAS_D_G;
+            else if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
                 ia_move_right();
             } else if (this->_map[-static_cast<int>(nodePosition.Y / 2) + 1][static_cast<int>(nodePosition.X / 2)] ==
                        'x') {
@@ -499,7 +576,9 @@ void Player::ia_core() {
             }
         }
         if (this->_placement == DOWN_D) {
-            if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
+            if (-static_cast<int>(nodePosition.Y / 2) == 2 && static_cast<int>(nodePosition.X / 2) == 17)
+                this->_placement = HAUT_D_G;
+            else if (this->_map[-static_cast<int>(nodePosition.Y / 2)][static_cast<int>(nodePosition.X / 2) + 1] == 'x') {
                 ia_move_right();
             } else if (this->_map[-static_cast<int>(nodePosition.Y / 2) - 1][static_cast<int>(nodePosition.X / 2)] ==
                        'x') {
