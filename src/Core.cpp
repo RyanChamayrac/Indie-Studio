@@ -159,8 +159,13 @@ void Core::menuCase()
 
 void Core::gameCase()
 {
-    if (!this->_game)
-        this->_game = new Game(this->_window, this->_isNew);
+    std::vector<std::vector<int>> IA = {{0, 1}, {1, 0}, {1, 0}, {1, 0}};
+    if (!this->_game) {
+        if (this->_select)
+            this->_game = new Game(this->_window, this->_isNew, this->_select->getNbRole());
+        else
+            this->_game = new Game(this->_window, this->_isNew, IA);
+    }
     if (this->_menu) {
         for (auto &it : this->_menu->getButtons())
             it.second->setVisible(false);
@@ -267,28 +272,31 @@ void Core::run()
         }
         if (this->_receiver->IsKeyDown(irr::KEY_ESCAPE)) {
             this->setState(Core::mainPause);
-        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_Z) || this->_receiver->IsKeyDown(irr::KEY_UP)) {
+        } if ((this->_receiver->IsKeyDown(irr::KEY_KEY_Z) || this->_receiver->IsKeyDown(irr::KEY_UP)) && this->getGame()) {
             if (this->_receiver->IsKeyDown(irr::KEY_KEY_Z))
                 this->getGame()->getPlayers()[0]->MoveUp();
             else
                 this->getGame()->getPlayers()[1]->MoveUp();
-        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_D) || this->_receiver->IsKeyDown(irr::KEY_RIGHT)) {
+        } if ((this->_receiver->IsKeyDown(irr::KEY_KEY_D) || this->_receiver->IsKeyDown(irr::KEY_RIGHT)) && this->getGame()) {
             if (this->_receiver->IsKeyDown(irr::KEY_KEY_D))
                 this->getGame()->getPlayers()[0]->MoveRight();
             else
                 this->getGame()->getPlayers()[1]->MoveRight();
-        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_Q) || this->_receiver->IsKeyDown(irr::KEY_LEFT)) {
+        } if ((this->_receiver->IsKeyDown(irr::KEY_KEY_Q) || this->_receiver->IsKeyDown(irr::KEY_LEFT)) && this->getGame()) {
             if (this->_receiver->IsKeyDown(irr::KEY_KEY_Q))
                 this->getGame()->getPlayers()[0]->MoveLeft();
             else
                 this->getGame()->getPlayers()[1]->MoveLeft();
-        } if (this->_receiver->IsKeyDown(irr::KEY_KEY_S) || this->_receiver->IsKeyDown(irr::KEY_DOWN)) {
+        } if ((this->_receiver->IsKeyDown(irr::KEY_KEY_S) || this->_receiver->IsKeyDown(irr::KEY_DOWN)) && this->getGame()) {
             if (this->_receiver->IsKeyDown(irr::KEY_KEY_S))
                 this->getGame()->getPlayers()[0]->MoveDown();
             else
                 this->getGame()->getPlayers()[1]->MoveDown();
-        } if (this->_receiver->IsKeyDown(irr::KEY_SPACE)) {
-            this->getGame()->getPlayers()[0]->action();
+        } if ((this->_receiver->IsKeyDown(irr::KEY_SPACE) || this->_receiver->IsKeyDown(irr::KEY_RETURN)) && this->getGame()) {
+            if (this->_receiver->IsKeyDown(irr::KEY_SPACE))
+                this->getGame()->getPlayers()[0]->action();
+            else
+                this->getGame()->getPlayers()[1]->action();
         }
         this->_window->getSceneManager()->drawAll();
         this->_window->getGUIEnvironment()->drawAll();

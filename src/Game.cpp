@@ -1,3 +1,5 @@
+#include <utility>
+
 /*
 ** EPITECH PROJECT, 2019
 ** OOP_indie_studio_2018
@@ -365,17 +367,17 @@ void Game::createBlocks(irr::IrrlichtDevice *window)
     }
 }
 
-void Game::createPlayers(irr::IrrlichtDevice *window)
+void Game::createPlayers(irr::IrrlichtDevice *window, const std::vector<std::vector<int>>& IAs)
 {
     for (int i = 0; i < 4; i++)
         this->_players.push_back(nullptr);
-    this->_players[0] = new Player(window, ',', false, this->_cubes, this->_map);
-    this->_players[1] = new Player(window, ';', true, this->_cubes, this->_map);
-    this->_players[2] = new Player(window, ':', true, this->_cubes, this->_map);
-    this->_players[3] = new Player(window, '!', true, this->_cubes, this->_map);
+    this->_players[0] = new Player(window, ',', IAs[0][0], this->_cubes, this->_map);
+    this->_players[1] = new Player(window, ';', IAs[1][0], this->_cubes, this->_map);
+    this->_players[2] = new Player(window, ':', IAs[2][0], this->_cubes, this->_map);
+    this->_players[3] = new Player(window, '!', IAs[3][0], this->_cubes, this->_map);
 }
 
-Game::Game(irr::IrrlichtDevice *window, bool _new) : _textures()
+Game::Game(irr::IrrlichtDevice *window, bool _new, const std::vector<std::vector<int>>& IAs) : _textures()
 {
     if (_new) {
         std::cout << "make new" << std::endl;
@@ -384,7 +386,7 @@ Game::Game(irr::IrrlichtDevice *window, bool _new) : _textures()
     if (!this->getMap("assets/map/map.txt"))
         return;
     this->createBlocks(window);
-    this->createPlayers(window);
+    this->createPlayers(window, IAs);
     window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(19, 0, -30),
                                                  irr::video::SColorf(1.0f, 1.0f, 1.0f));
     window->getSceneManager()->addLightSceneNode(nullptr, irr::core::vector3df(19, -38, -30),

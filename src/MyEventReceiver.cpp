@@ -108,6 +108,14 @@ bool MyEventReceiver::keyInputs(const irr::SEvent &event)
                 this->_core.getGame()->getPlayers()[0]->Animate(230, 270);
                 this->_core.getGame()->getPlayers()[0]->setIsWalking(false);
             }
+            if (event.KeyInput.PressedDown && !this->_core.getGame()->getPlayers()[1]->getIsWalking()) {
+                this->_core.getGame()->getPlayers()[1]->Animate(140, 160);
+                this->_core.getGame()->getPlayers()[1]->setIsWalking(true);
+            }
+            else if (!event.KeyInput.PressedDown && this->_core.getGame()->getPlayers()[1]->getIsWalking()) {
+                this->_core.getGame()->getPlayers()[1]->Animate(230, 270);
+                this->_core.getGame()->getPlayers()[1]->setIsWalking(false);
+            }
             return false;
     } else if (this->_core.getState() == Core::mainMenu) {
             if (this->IsKeyDown(irr::KEY_ESCAPE)) {

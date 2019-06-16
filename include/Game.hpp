@@ -22,7 +22,7 @@ class Game : public GameStat {
 
 public:
     //CTOR
-    explicit Game(irr::IrrlichtDevice *window, bool _new);
+    explicit Game(irr::IrrlichtDevice *window, bool _new, const std::vector<std::vector<int>>& IAs);
 
     //DTOR
     ~Game() override = default;
@@ -39,7 +39,7 @@ public:
     void loadTextures(irr::IrrlichtDevice *window) override;
     bool getMap(const std::string& fileName);
     void createBlocks(irr::IrrlichtDevice *window);
-    void createPlayers(irr::IrrlichtDevice *window);
+    void createPlayers(irr::IrrlichtDevice *window, const std::vector<std::vector<int>>& IAs);
     void explosion(irr::IrrlichtDevice *window, Player *player);
     void endExplosion(irr::IrrlichtDevice *window, Player *player);
     irr::video::ITexture *randomBonus(char c);

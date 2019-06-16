@@ -116,7 +116,7 @@ void Player::MoveRight()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    if (!this->_isAlive)
+    if (!this->_isAlive || this->_IA)
         return;
     nodeRotation.Z = 90;
     if (!this->_bonuses["SpeedUp"])
@@ -137,7 +137,7 @@ void Player::MoveLeft()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    if (!this->_isAlive)
+    if (!this->_isAlive || this->_IA)
         return;
     nodeRotation.Z = 270;
     if (!this->_bonuses["SpeedUp"])
@@ -159,7 +159,7 @@ void Player::MoveUp()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    if (!this->_isAlive)
+    if (!this->_isAlive || this->_IA)
         return;
     nodeRotation.Z = 180;
     if (!this->_bonuses["SpeedUp"])
@@ -181,7 +181,7 @@ void Player::MoveDown()
     irr::core::vector3df nodePosition = this->_playerNode->getPosition();
     irr::core::vector3df nodeRotation = this->_playerNode->getRotation();
 
-    if (!this->_isAlive)
+    if (!this->_isAlive || this->_IA)
         return;
     nodeRotation.Z = 0;
     if (!this->_bonuses["SpeedUp"])
