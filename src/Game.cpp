@@ -1,5 +1,3 @@
-#include <utility>
-
 /*
 ** EPITECH PROJECT, 2019
 ** OOP_indie_studio_2018
@@ -7,6 +5,7 @@
 ** Game.cpp
 */
 
+#include <utility>
 #include "Game.hpp"
 
 void Game::run(irr::IrrlichtDevice *window)
@@ -36,8 +35,10 @@ void Game::run(irr::IrrlichtDevice *window)
         if ((float)(clock() - it->getTimer()) / CLOCKS_PER_SEC >= 1.50 && !it->getBombCube().first)
             this->endExplosion(window, it);
     }
-    int a = rand() % 3;
-    if (a == 0)
+    int a = rand() % 6;
+    if (this->_players[1]->isIA() && a == 1)
+        this->_players[1]->ia_core();
+    else if (a == 0)
         this->_players[2]->ia_core();
     else if (a == 2)
         this->_players[3]->ia_core();
