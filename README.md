@@ -1,6 +1,6 @@
 # Indie Studio
 
-Here is my second year Year-End project at Epitech. This a Bomberman programmed in C++ using Irrlicht library for graphics and 3D models, and SFML library for audio. 
+Here is my second year Year-End group project at Epitech Nice. This a Bomberman programmed in C++ using Irrlicht library for graphics and 3D models, and SFML library for audio. 
 
 
 # Requirements
